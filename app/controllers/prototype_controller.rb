@@ -75,6 +75,7 @@ class PrototypeController < ApplicationController
         exp: 3000,
         money: 1
       }
+    @video_url = 'https://www.youtube.com/watch?v=7P97bFaHOs4'
   end
 
 end

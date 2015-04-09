@@ -1,0 +1,21 @@
+.pb-course-wrapper
+  @extend %section-wrapper
+  .course-title
+    text-align: center
+    padding-bottom: .3em
+    border-bottom: 5px solid lighten($c-grey, 20)
+  .video-wrapper
+    width: 100%
+    height: 550px
+  .course-options
+    +pie-clearfix
+    margin-top: 1em
+    .button-wrapper
+      +span(6)
+      padding: 0 1em
+    .course-btn
+      +sassy-button("flat", 5px, 19px, $c-orange)
+      width: 100%
+      text-align: center
+
+
