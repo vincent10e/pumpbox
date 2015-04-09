@@ -5,25 +5,15 @@
     <%= render partial: 'partials/personal_info' %>
 
     <!-- 技能列表 -->
-    <div class="skill-list-title-wrapper">
-      <span>技能列表</span>
-    </div>
-    <div class="skill-list-content-wrapper">
-      <% @skills.each do |skill| %>
-        <section>
-          <h4><%= skill[:title] %></h4>
-          <ul>
-            <% skill[:learned].each do |item| %>
-            <li><%= item %></li>
-            <% end %>
-          </ul>
-        </section>
-      <% end %>
-    </div>
+    <%= render partial: 'partials/personal_skill_list' %>
   </div>
 
   <div class="index-courses-col">
-    2
+    <div class="courses-path-wrapper">
+      <div class="courses-path-inner">
+
+      </div>
+    </div>
   </div>
 
 </div>
