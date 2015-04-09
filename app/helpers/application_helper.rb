@@ -9,6 +9,10 @@ module ApplicationHelper
     image_tag "http://placehold.it/#{width}x#{height}&text=#{text}", :class => "#{classes}"
   end
 
+  def link_active?(path)
+    'active' if current_page?(path)
+  end
+
   def render_course_status(course_status_code)
     case course_status_code
     when 0
