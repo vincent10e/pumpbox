@@ -1,0 +1,110 @@
+// index page layout
+.pb-index-wrapper
+  @extend %section-wrapper
+
+  .index-info-col
+    +span(5)
+    padding: 0 1em
+  .index-courses-col
+    +span(7)
+    padding-left: 1em
+    padding-right: 1em
+    border-left: 1px solid lighten($c-grey, 30)
+
+// personal info
+.personal-info-wrapper
+  +pie-clearfix
+  .avatar-wrapper
+    +span(4)
+    .avatar
+      max-width: 100%
+      border: 5px solid $c-white
+      +box-shadow($c-grey 0 0 5px)
+  .detail-wrapper
+    +span(8)
+    padding-left: 1em
+    .username
+      margin: 0
+      margin-bottom: .5em
+      font-weight: bolder
+      padding-bottom: .1em
+      border-bottom: 5px solid lighten($c-grey, 20)
+    p
+      font-size: $fz-l
+
+
+// personal skill list
+.personal-skill-list-title
+  margin-top: 25px
+  margin-bottom: 0
+  padding: 5px 0
+  background-color: $c-orange
+  text-align: center
+  color: $c-white
+  font-size: $fz-l
+.personal-skill-list-content-wrapper
+  border-left: 5px solid $c-orange
+  padding-top: 2em
+  section
+    margin-bottom: 2em
+    h4
+      background-color: rgba($c-grey, .3)
+      padding: .2em
+      margin: 0
+      margin-bottom: .5em
+      text-align: center
+      font-weight: bolder
+    ul
+      padding: 0
+      padding-left: 1em
+      list-style: none
+      li
+        margin-bottom: .5em
+        &:last-child
+          margin-bottom: 0
+
+// courses path
+.courses-path-wrapper
+  padding-left: 20%
+  padding-top: 20px
+  padding-bottom: 20px
+  .courses-path-inner
+    border-left: 8px solid $c-green
+    // min-height: 500px
+  .courses-list-wrapper
+    margin-left: -26px
+  .course-item
+    +pie-clearfix
+    position: relative
+    // background-color: rgba(black, .2)
+    margin-bottom: 60px
+    &:last-child
+      margin-bottom: 0
+    .point
+      +span(2)
+      float: left
+      width: 44px
+      height: 44px
+      +border-radius(50%)
+      background-color: $c-green
+      text-align: center
+      color: $c-white
+      padding-top: .35em
+      font-size: $fz-xl
+    .title
+      +span(10)
+      padding: .9em
+      h4
+        margin: 0
+    .description
+      position: absolute
+      display: none
+      z-index: index($elements, description-overlay)
+      padding: 2em
+      width: 350px
+      top: 22px
+      left: 50px
+      background-color: rgba($c-black, .95)
+      color: $c-white
+      +border-radius(8px)
+

@@ -1,0 +1,13 @@
+<h3 class="personal-skill-list-title">技能列表</h3>
+<div class="personal-skill-list-content-wrapper">
+  <% @skills.each do |skill| %>
+    <section>
+      <h4><%= skill[:title] %></h4>
+      <ul>
+        <% skill[:learned].each do |item| %>
+        <li><%= item %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</div>

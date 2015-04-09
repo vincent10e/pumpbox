@@ -1,1 +1,28 @@
-FrontEnd UI preview
+<div class="pb-index-wrapper pb-container">
+
+  <div class="index-info-col">
+    <!-- 個人資料 -->
+    <%= render partial: 'partials/personal_info' %>
+
+    <!-- 技能列表 -->
+    <%= render partial: 'partials/personal_skill_list' %>
+  </div>
+
+  <div class="index-courses-col">
+    <!-- 課程關卡路線 -->
+    <%= render partial: 'partials/courses_path' %>
+  </div>
+
+</div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $('.course-item .point').on('mouseenter', function() {
+      $(this).siblings('.description').fadeIn('fast').addClass('active');
+    });
+
+    $('.course-item .point').on('mouseleave', function() {
+      $('.course-item .active').fadeOut('fast').removeClass('active');
+    });
+  </script>
+<% end %>
