@@ -1,7 +1,11 @@
 class PrototypeController < ApplicationController
 
+  before_action :fake_data
+
   def index
-    fake_data
+  end
+
+  def course
   end
 
   private
