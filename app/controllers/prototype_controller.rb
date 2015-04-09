@@ -8,11 +8,15 @@ class PrototypeController < ApplicationController
   def course
   end
 
+  def rank
+  end
+
   private
 
   def fake_data
     @username = '郭柏廷'
     @level = rand 9
+    @exp = rand 99999
     @money = rand 999
     @school = '中山國中'
     @grade = '八年級'

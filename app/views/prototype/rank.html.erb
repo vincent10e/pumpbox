@@ -1,0 +1,16 @@
+<div class="pb-rank-wrapper pb-container">
+
+  <% 10.times do |f| %>
+    <div class="rank-list-item">
+      <div class="rank-info-col">
+        <%= render partial: 'partials/personal_info' %>
+      </div>
+      <div class="rank-status-col">
+        <p>已獲得 EXP：<span class="exp"><%= @exp %></span></p>
+        <p>已獲得金幣：<span class="exp"><%= @money %> 枚</span></p>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
