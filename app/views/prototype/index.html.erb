@@ -8,6 +8,18 @@
     <div class="skill-list-title-wrapper">
       <span>技能列表</span>
     </div>
+    <div class="skill-list-content-wrapper">
+      <% @skills.each do |skill| %>
+        <section>
+          <h4><%= skill[:title] %></h4>
+          <ul>
+            <% skill[:learned].each do |item| %>
+            <li><%= item %></li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
+    </div>
   </div>
 
   <div class="index-courses-col">
