@@ -1,3 +1,4 @@
+// index page layout
 .pb-index-wrapper
   @extend %section-wrapper
 
@@ -9,9 +10,8 @@
     padding-left: 1em
     padding-right: 1em
     border-left: 1px solid lighten($c-grey, 30)
-    min-height: 80vh
 
-
+// personal info
 .personal-info-wrapper
   +pie-clearfix
   .avatar-wrapper
@@ -27,11 +27,13 @@
       margin: 0
       margin-bottom: .5em
       font-weight: bolder
-      padding-bottom: .2em
-      border-bottom: 1px solid $c-grey
+      padding-bottom: .1em
+      border-bottom: 5px solid lighten($c-grey, 20)
     p
       font-size: $fz-l
 
+
+// personal skill list
 .personal-skill-list-title
   margin-top: 25px
   margin-bottom: 0
@@ -60,3 +62,49 @@
         margin-bottom: .5em
         &:last-child
           margin-bottom: 0
+
+// courses path
+.courses-path-wrapper
+  padding-left: 20%
+  padding-top: 20px
+  padding-bottom: 20px
+  .courses-path-inner
+    border-left: 8px solid $c-green
+    // min-height: 500px
+  .courses-list-wrapper
+    margin-left: -26px
+  .course-item
+    +pie-clearfix
+    position: relative
+    // background-color: rgba(black, .2)
+    margin-bottom: 60px
+    &:last-child
+      margin-bottom: 0
+    .point
+      +span(2)
+      float: left
+      width: 44px
+      height: 44px
+      +border-radius(50%)
+      background-color: $c-green
+      text-align: center
+      color: $c-white
+      padding-top: .35em
+      font-size: $fz-xl
+    .title
+      +span(10)
+      padding: .9em
+      h4
+        margin: 0
+    .description
+      position: absolute
+      display: none
+      z-index: index($elements, description-overlay)
+      padding: 2em
+      width: 350px
+      top: 22px
+      left: 50px
+      background-color: rgba($c-black, .95)
+      color: $c-white
+      +border-radius(8px)
+

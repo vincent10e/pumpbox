@@ -11,9 +11,46 @@
   <div class="index-courses-col">
     <div class="courses-path-wrapper">
       <div class="courses-path-inner">
-
+        <div class="courses-list-wrapper">
+          <% @courses.each do |course| %>
+            <div class="course-item">
+              <div class="point">
+                <%= render_course_status(course[:status]) %>
+              </div>
+              <div class="title">
+                <h4><%= course[:title] %></h4>
+              </div>
+              <div class="description">
+                <h5>關卡描述</h5>
+                <p><%= course[:description] %></p>
+                <h5>子關卡</h5>
+                <ul>
+                  <% course[:sub_titles].each do |sub_title| %>
+                    <li><%= sub_title %></li>
+                  <% end %>
+                </ul>
+                <h5>可獲得的經驗值</h5>
+                <span><%= course[:exp] %></span> EXP
+                <h5>可獲得的金幣</h5>
+                <span><%= course[:money] %> 枚</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 
 </div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $('.course-item .point').on('mouseenter', function() {
+      $(this).siblings('.description').fadeIn('fast').addClass('active');
+    });
+
+    $('.course-item .point').on('mouseleave', function() {
+      $('.course-item .active').fadeOut('fast').removeClass('active');
+    });
+  </script>
+<% end %>
