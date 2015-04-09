@@ -15,12 +15,29 @@
 %m0auto
   margin: 0 auto
 
+%section-wrapper
+  background-image: asset-url("gray_jean.png")
+  margin-top: 50px
+  margin-bottom: 50px
+  padding: 25px
+
+body
+  background-image: asset-url("random_grey_variations.png")
+  +image-2x("random_grey_variations_@2X.png", 200px, 200px)
+
 
 .pumpbox-header-wrapper
   border: none
   border-radius: 0
   background-image: asset-url("paper_fibers.png")
+  +image-2x("paper_fibers_@2X.png", 410px, 410px)
   +box-shadow($c-black 0 0 8px)
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
   background-color: rgba($c-black, .2)
+
+.pb-container
+  +container(1140px)
+  +breakpoint($b-mobile)
+  +breakpoint($b-pad)
+  +breakpoint($b-desktop)
