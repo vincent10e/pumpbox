@@ -40,7 +40,18 @@
   </div>
 
   <div class="missions-option-col">
-    2
+    <h2>單一技能挑戰任務</h2>
+    <div class="mission-section-wrapper">
+      <h3>圓與圓的關係</h3>
+      <a href="#" class="options-wrapper">
+        <h4>新手任務</h4>
+        <span>可獲得金幣：10 枚</span>
+      </a>
+      <a href="#" class="options-wrapper">
+        <h4>大師級任務</h4>
+        <span>可獲得金幣：50 枚</span>
+      </a>
+    </div>
   </div>
 
 </div>
@@ -54,6 +65,7 @@
     $('.course-item .point').on('mouseleave', function() {
       $('.course-item .description.active').fadeOut('fast').removeClass('active');
     });
+
     $('.course-item').on('click', function() {
       $('.point.active').removeClass('active');
       $(this).find('.point').addClass('active');
