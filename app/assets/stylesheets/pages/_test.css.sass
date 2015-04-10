@@ -1,5 +1,15 @@
 .pb-test-wrapper
   @extend %section-wrapper
+  position: relative
+  .test-function-btn-wrapper
+    position: absolute
+    right: 8px
+    top: 8px
+    a
+      +sassy-button("flat", 0, $fz-s, $c-grey)
+    .help-btn
+      background-color: $c-red
+
   .test-title
     text-align: center
     padding-bottom: .3em
