@@ -1,0 +1,74 @@
+<div class="pb-mission-wrapper pb-container">
+
+  <div class="courses-path-col">
+
+    <div class="courses-path-wrapper">
+      <div class="courses-path-inner">
+        <div class="courses-list-wrapper">
+          <% @courses.each do |course| %>
+            <div class="course-item">
+              <div class="point trans-03s">
+                <%= render_course_status(course[:status]) %>
+              </div>
+              <div class="title">
+                <h4>
+                  <%= link_to "#course_#{course[:id]}", id: "course_#{course[:id]}" do %>
+                    <%= course[:title] %>
+                  <% end %>
+                </h4>
+              </div>
+              <div class="description">
+                <h5>關卡描述</h5>
+                <p><%= course[:description] %></p>
+                <h5>子關卡</h5>
+                <ul>
+                  <% course[:sub_titles].each do |sub_title| %>
+                    <li><%= sub_title %></li>
+                  <% end %>
+                </ul>
+                <h5>可獲得的經驗值</h5>
+                <span><%= course[:exp] %></span> EXP
+                <h5>可獲得的金幣</h5>
+                <span><%= course[:money] %> 枚</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="missions-option-col">
+    <h2>單一技能挑戰任務</h2>
+    <div class="mission-section-wrapper">
+      <h3>圓與圓的關係</h3>
+      <a href="#" class="options-wrapper">
+        <h4>新手任務</h4>
+        <span>可獲得金幣：10 枚</span>
+      </a>
+      <a href="#" class="options-wrapper">
+        <h4>大師級任務</h4>
+        <span>可獲得金幣：50 枚</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $('.course-item .point').on('mouseenter', function() {
+      $(this).siblings('.description').fadeIn('fast').addClass('active');
+    });
+
+    $('.course-item .point').on('mouseleave', function() {
+      $('.course-item .description.active').fadeOut('fast').removeClass('active');
+    });
+
+    $('.course-item').on('click', function() {
+      $('.point.active').removeClass('active');
+      $(this).find('.point').addClass('active');
+    });
+  </script>
+<% end %>

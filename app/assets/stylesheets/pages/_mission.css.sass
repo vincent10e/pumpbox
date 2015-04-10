@@ -1,0 +1,35 @@
+.pb-mission-wrapper
+  @extend %section-wrapper
+  .courses-path-col
+    +span(5)
+    .danger-mission-wrapper
+      padding-right: 5em
+    .danger-mission-inner
+      background-image: asset-url("danger-mission-bg.png")
+      height: 500px
+      .text
+        padding-top: 1.5em
+        color: $c-white
+        font-size: 4em
+        text-align: center
+  .missions-option-col
+    +span(7)
+    h2
+      text-align: center
+      color: lighten($c-grey, 10)
+  .mission-section-wrapper
+    h3
+      margin: 0
+      text-align: center
+      padding-bottom: .5em
+      border-bottom: 5px solid lighten($c-grey, 20)
+    .options-wrapper
+      +sassy-button("flat", 5px, 19px, $c-red)
+      padding: 20px
+      margin-top: 20px
+      width: 100%
+      text-align: center
+      h4
+        font-size: $fz-l
+      span
+        font-size: $fz-s
