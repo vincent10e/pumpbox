@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get '/test/13/' => 'prototype#test2', as: :test2
   get '/test/14/' => 'prototype#test3', as: :test3
   get '/test/15/' => 'prototype#special_test', as: :special_test
-  get '/test/12/result' => 'prototype#result_maru', as: :result_maru
-  get '/test/13/result' => 'prototype#result_batsu', as: :result_batsu
+  get '/test/12/result' => 'prototype#result', as: :result
+  get '/test/13/result' => 'prototype#result2', as: :result2
+  get '/test/14/result' => 'prototype#result3', as: :result3
   get '/rank' => 'prototype#rank', as: :rank
   get '/mission_center' => 'prototype#mission_center', as: :mission_center
   get '/mission_danger' => 'prototype#mission_danger', as: :mission_danger
