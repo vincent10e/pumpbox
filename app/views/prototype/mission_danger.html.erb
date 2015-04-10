@@ -16,11 +16,11 @@
     <h2>綜合技能挑戰任務</h2>
     <div class="mission-section-wrapper">
       <h3>方程式的拆解與分析</h3>
-      <a href="#" class="options-wrapper">
+      <%= link_to special_test_path, class: 'options-wrapper' do %>
         <h4>進行緊急任務</h4>
         <span>可獲得金幣：100 枚</span>
-      </a>
-      <a href="#" class="options-wrapper">
+      <% end %>
+      <a href="#" class="options-wrapper disable">
         <h4>重複挑戰</h4>
         <span>可獲得金幣：20 枚</span>
       </a>

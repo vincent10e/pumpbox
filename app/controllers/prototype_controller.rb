@@ -20,6 +20,9 @@ class PrototypeController < ApplicationController
   def test
   end
 
+  def special_test
+  end
+
   private
 
   def fake_data
