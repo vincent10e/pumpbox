@@ -23,6 +23,12 @@ class PrototypeController < ApplicationController
   def special_test
   end
 
+  def result_maru
+  end
+
+  def result_batsu
+  end
+
   private
 
   def fake_data
