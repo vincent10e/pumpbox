@@ -1,0 +1,47 @@
+<div class="pb-mission-wrapper pb-container">
+
+  <div class="courses-path-col">
+
+    <div class="danger-mission-wrapper">
+      <div class="danger-mission-inner">
+        <div class="text">
+          <span>緊<br>急<br>任<br>務</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="missions-option-col">
+    <h2>綜合技能挑戰任務</h2>
+    <div class="mission-section-wrapper">
+      <h3>幾何與測量技能應用</h3>
+      <a href="#" class="options-wrapper">
+        <h4>緊急任務</h4>
+        <span>可獲得金幣：100 枚</span>
+      </a>
+      <a href="#" class="options-wrapper">
+        <h4>重複挑戰</h4>
+        <span>可獲得金幣：20 枚</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $('.course-item .point').on('mouseenter', function() {
+      $(this).siblings('.description').fadeIn('fast').addClass('active');
+    });
+
+    $('.course-item .point').on('mouseleave', function() {
+      $('.course-item .description.active').fadeOut('fast').removeClass('active');
+    });
+
+    $('.course-item').on('click', function() {
+      $('.point.active').removeClass('active');
+      $(this).find('.point').addClass('active');
+    });
+  </script>
+<% end %>

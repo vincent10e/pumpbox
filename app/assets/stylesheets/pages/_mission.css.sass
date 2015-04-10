@@ -2,13 +2,21 @@
   @extend %section-wrapper
   .courses-path-col
     +span(5)
+    .danger-mission-wrapper
+      padding-right: 5em
+    .danger-mission-inner
+      background-image: asset-url("danger-mission-bg.png")
+      height: 500px
+      .text
+        padding-top: 1.5em
+        color: $c-white
+        font-size: 4em
+        text-align: center
   .missions-option-col
     +span(7)
     h2
       text-align: center
       color: lighten($c-grey, 10)
-  .missions-option-col.danger
-    background-image: asset-url("danger-mission-bg.png")
   .mission-section-wrapper
     h3
       margin: 0

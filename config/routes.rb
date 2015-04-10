@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/courses/12/' => 'prototype#course', as: :course
   get '/rank' => 'prototype#rank', as: :rank
   get '/mission_center' => 'prototype#mission_center', as: :mission_center
+  get '/mission_danger' => 'prototype#mission_danger', as: :mission_danger
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

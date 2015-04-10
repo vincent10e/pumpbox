@@ -14,6 +14,9 @@ class PrototypeController < ApplicationController
   def mission_center
   end
 
+  def mission_danger
+  end
+
   private
 
   def fake_data
