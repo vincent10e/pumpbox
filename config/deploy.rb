@@ -1,9 +1,9 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, Sittings.capistrano.app_name
-set :repo_url, Sittings.capistrano.repo_url
-set :deploy_to, Sittings.capistrano.deploy_to
+set :application, 'pumpbox'
+set :repo_url, 'git@github.com:FunnyQ/pumpbox.git'
+set :deploy_to, '/home/deployer/pumpbox'
 
 set :linked_files, %w{config/database.yml}
 set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
