@@ -42,7 +42,7 @@ class PrototypeController < ApplicationController
       }
     @courses = {
       id: 1,
-        title: '初階測距術',
+        title: '提公因式法',
         status: 2, # 0: locked, 1: available, 2: passed
         description: '敘述',
         sub_titles: [
@@ -54,7 +54,7 @@ class PrototypeController < ApplicationController
         money: 1
       },{
         id: 2,
-        title: '圓與圓的關係',
+        title: '十字交乘法',
         status: 1, # 0: locked, 1: available, 2: passed
         description: '了解圓與圓之間的基本關係，未來可以應用到齒輪設計等機械相關技能，可以設計出更省時省力的工具！',
         sub_titles: [
@@ -66,8 +66,8 @@ class PrototypeController < ApplicationController
         money: 1
       },{
         id: 3,
-        title: '切線應用',
-        status: 0, # 0: locked, 1: available, 2: passed
+        title: '乘法公式法',
+        status: 1, # 0: locked, 1: available, 2: passed
         description: '敘述',
         sub_titles: [
           '子關卡1',
