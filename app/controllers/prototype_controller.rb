@@ -41,7 +41,7 @@ class PrototypeController < ApplicationController
         ]
       }
     @courses = {
-      id: 1,
+        id: 1,
         title: '提公因式法',
         status: 2, # 0: locked, 1: available, 2: passed
         description: '敘述',
@@ -77,6 +77,7 @@ class PrototypeController < ApplicationController
         exp: 3000,
         money: 1
       },{
+        id: 4,
         title: '切線應用',
         status: 0, # 0: locked, 1: available, 2: passed
         description: '敘述',
