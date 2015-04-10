@@ -1,7 +1,7 @@
 <div class="pb-test-wrapper pb-container">
 
   <div class="test-function-btn-wrapper">
-    <a href="#" class="hint-btn">使用提示卡(還有 <span>3</span> 張)</a>
+    <a href="#" class="hint-btn" data-toggle="modal" data-target="#myModal">使用提示卡(還有 <span>3</span> 張)</a>
     <a href="#" class="help-btn">HELP</a>
 
   </div>
@@ -42,6 +42,24 @@
     <%= link_to '送出答案', result_path, class: 'submit' %>
   </div>
 </div>
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">提示影片</h4>
+      </div>
+      <div class="modal-body">
+        <p>可以回想一下我們之前教過的分配率，應用到這次的挑戰任務中！</p>
+        <%= youtube_embed('https://www.youtube.com/watch?v=7P97bFaHOs4') %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">關閉提示視窗</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <%= content_for :handwrite_js do %>
 
