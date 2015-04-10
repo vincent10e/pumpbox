@@ -1,14 +1,14 @@
 <div class="courses-path-wrapper">
   <div class="courses-path-inner">
     <div class="courses-list-wrapper">
-      <% @courses.each do |course| %>
+      <% @courses.each_with_index do |course, index| %>
         <div class="course-item">
           <div class="point">
             <%= render_course_status(course[:status]) %>
           </div>
           <div class="title">
             <h4>
-              <%= link_to course_path do %>
+              <%= link_to course[:path] do %>
                 <%= course[:title] %>
               <% end %>
             </h4>

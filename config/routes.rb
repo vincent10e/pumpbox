@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'prototype#index'
   get '/courses/12/' => 'prototype#course', as: :course
+  get '/courses/13/' => 'prototype#course2', as: :course2
+  get '/courses/14/' => 'prototype#course3', as: :course3
   get '/test/12/' => 'prototype#test', as: :test
+  get '/test/13/' => 'prototype#test2', as: :test2
+  get '/test/14/' => 'prototype#test3', as: :test3
   get '/test/15/' => 'prototype#special_test', as: :special_test
   get '/rank' => 'prototype#rank', as: :rank
   get '/mission_center' => 'prototype#mission_center', as: :mission_center

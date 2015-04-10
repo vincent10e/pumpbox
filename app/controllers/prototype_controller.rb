@@ -49,6 +49,7 @@ class PrototypeController < ApplicationController
     @courses = {
         id: 1,
         title: '提公因式法',
+        path: '/test/12',
         status: 2, # 0: locked, 1: available, 2: passed
         description: '敘述',
         sub_titles: [
@@ -61,6 +62,7 @@ class PrototypeController < ApplicationController
       },{
         id: 2,
         title: '十字交乘法',
+        path: '/test/14',
         status: 1, # 0: locked, 1: available, 2: passed
         description: '了解圓與圓之間的基本關係，未來可以應用到齒輪設計等機械相關技能，可以設計出更省時省力的工具！',
         sub_titles: [
@@ -73,6 +75,7 @@ class PrototypeController < ApplicationController
       },{
         id: 3,
         title: '乘法公式法',
+        path: course_path,
         status: 1, # 0: locked, 1: available, 2: passed
         description: '敘述',
         sub_titles: [
