@@ -11,6 +11,9 @@ class PrototypeController < ApplicationController
   def rank
   end
 
+  def mission_center
+  end
+
   private
 
   def fake_data
@@ -35,6 +38,7 @@ class PrototypeController < ApplicationController
         ]
       }
     @courses = {
+      id: 1,
         title: '初階測距術',
         status: 2, # 0: locked, 1: available, 2: passed
         description: '敘述',
@@ -46,6 +50,7 @@ class PrototypeController < ApplicationController
         exp: 3000,
         money: 1
       },{
+        id: 2,
         title: '圓與圓的關係',
         status: 1, # 0: locked, 1: available, 2: passed
         description: '了解圓與圓之間的基本關係，未來可以應用到齒輪設計等機械相關技能，可以設計出更省時省力的工具！',
@@ -57,6 +62,7 @@ class PrototypeController < ApplicationController
         exp: 3000,
         money: 1
       },{
+        id: 3,
         title: '切線應用',
         status: 0, # 0: locked, 1: available, 2: passed
         description: '敘述',
