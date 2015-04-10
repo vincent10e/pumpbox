@@ -17,6 +17,9 @@ class PrototypeController < ApplicationController
   def mission_danger
   end
 
+  def test
+  end
+
   private
 
   def fake_data
@@ -89,7 +92,7 @@ class PrototypeController < ApplicationController
         exp: 3000,
         money: 1
       }
-    @video_url = 'https://www.youtube.com/watch?v=7P97bFaHOs4'
+    @video_url = 'https://www.youtube.com/watch?v=uy-6T1D_2TI'
   end
 
 end
