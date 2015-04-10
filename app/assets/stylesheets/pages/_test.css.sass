@@ -4,3 +4,27 @@
     text-align: center
     padding-bottom: .3em
     border-bottom: 5px solid lighten($c-grey, 20)
+
+  .test-unit
+    border-bottom: 1px solid lighten($c-grey, 20)
+    padding-bottom: 2em
+    .quiz-wrapper
+      padding: 8px
+      background-color: $c-red
+    .quiz-img
+      width: 100%
+    .options-wrapper
+      margin-top: 20px
+      .option
+        +sassy-button("flat", 5px, 19px, $c-red)
+        width: 100%
+        text-align: center
+        margin-bottom: 1em
+        &:last-child
+          margin-bottom: 0
+  .test-options-wrapper
+    margin-top: 20px
+    text-align: center
+    .submit
+      +sassy-button("flat", 5px, 19px, $btn-action)
+      margin: 0 auto
