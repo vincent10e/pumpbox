@@ -27,7 +27,8 @@ pumpBox.singleSelectOptionFunction = ()->
     thisOption = $(@)
     optionScope = thisOption.parent()
     prevOption = optionScope.find('.selected')
+    fadeoutedOptions = optionScope.find('fadeout')
 
     prevOption.removeClass('selected')
-    thisOption.addClass('selected')
+    thisOption.addClass('selected').removeClass('fadeout').siblings().addClass('fadeout')
     return

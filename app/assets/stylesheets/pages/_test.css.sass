@@ -32,6 +32,13 @@
         margin-bottom: 1em
         &:last-child
           margin-bottom: 0
+      .option.fadeout
+        opacity: .5
+      .option.selected
+        background-color: darken($c-red, 20)
+        text-decoration: none
+        &:before
+          content: "✔ "
   .test-options-wrapper
     margin-top: 20px
     text-align: center
