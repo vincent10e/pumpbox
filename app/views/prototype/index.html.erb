@@ -17,12 +17,6 @@
 
 <%= content_for :handwrite_js do %>
   <script>
-    $('.course-item .point').on('mouseenter', function() {
-      $(this).siblings('.description').fadeIn('fast').addClass('active');
-    });
-
-    $('.course-item .point').on('mouseleave', function() {
-      $('.course-item .active').fadeOut('fast').removeClass('active');
-    });
+    pumpBox.coursesPathDescriptionOverlayWindowFunction();
   </script>
 <% end %>
