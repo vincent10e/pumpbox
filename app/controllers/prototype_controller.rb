@@ -57,11 +57,9 @@ class PrototypeController < ApplicationController
         title: '提公因式法',
         path: '/test/12',
         status: 2, # 0: locked, 1: available, 2: passed
-        description: '敘述',
+        description: '提公因式法的主要概念是使用分配率。',
         sub_titles: [
-          '子關卡1',
-          '子關卡2',
-          '子關卡3'
+
         ],
         exp: 3000,
         money: 1
@@ -70,11 +68,9 @@ class PrototypeController < ApplicationController
         title: '十字交乘法',
         path: '/test/14',
         status: 1, # 0: locked, 1: available, 2: passed
-        description: '了解圓與圓之間的基本關係，未來可以應用到齒輪設計等機械相關技能，可以設計出更省時省力的工具！',
+        description: '十字交乘法是作因式分解時很重要的一項工具，主要是由多項式的直式乘法發展而來，藉由係數的分解組合，求得因式分解的過程',
         sub_titles: [
-          '相切',
-          '連心線',
-          '公切線'
+
         ],
         exp: 3000,
         money: 1
@@ -83,11 +79,9 @@ class PrototypeController < ApplicationController
         title: '乘法公式法',
         path: course_path,
         status: 1, # 0: locked, 1: available, 2: passed
-        description: '敘述',
+        description: '因式分解的「乘法公式法」，主要是利用先前章節教過的乘法公式作對照，使多項式能夠以相對應的型式整理並作分解。',
         sub_titles: [
-          '子關卡1',
-          '子關卡2',
-          '子關卡3'
+
         ],
         exp: 3000,
         money: 1
@@ -97,9 +91,9 @@ class PrototypeController < ApplicationController
         status: 0, # 0: locked, 1: available, 2: passed
         description: '敘述',
         sub_titles: [
-          '子關卡1',
-          '子關卡2',
-          '子關卡3'
+          'test1',
+          'test2',
+          'test3'
         ],
         exp: 3000,
         money: 1
