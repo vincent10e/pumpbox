@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Pumpbox
   class Application < Rails::Application
+    config.i18n.available_locales = [:"zh-TW", :zh]
     config.i18n.default_locale = "zh-TW"
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","fontawesome","fonts")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")

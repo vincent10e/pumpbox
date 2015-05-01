@@ -1,0 +1,27 @@
+  # config/application.yml
+  defaults: &defaults
+
+    secret_key: ""
+
+    capistrano:
+      app_name: 'pumpbox'
+      repo_url: 'git@github.com:your/repo.git'
+      deploy_to: '/home/your/path'
+      role: 'your@domain.name'
+      server: 'your.domain'
+      user: 'yourName'
+
+    mysql:
+      detabase:
+      password:
+      username:
+
+  development:
+    <<: *defaults
+
+  test:
+    <<: *defaults
+
+  production:
+    <<: *defaults
+    secret_key: # rake secret to generate one
