@@ -1,8 +1,9 @@
 class PrototypeController < ApplicationController
 
-  before_action :fake_data
+  before_action :fake_data  
 
   def index
+    @user = current_user
   end
 
   def course

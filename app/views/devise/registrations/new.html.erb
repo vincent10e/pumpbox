@@ -27,6 +27,17 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
+    <div class="field">
+      <%= f.label :school %><br />
+      <%= f.text_field :school %>
+    </div>
+
+    <div class="field">
+      <%= f.label :grade %><br />
+      <%= f.select(:grade, options_for_select([['一年級', 1], ['二年級', 2], ['三年級', 3], ['四年級', 4], ['五年級', 5], ['六年級', 6], ['七年級', 7], ['八年級', 8], ['九年級', 9]])) %>
+    </div>
+
+    <br>
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
