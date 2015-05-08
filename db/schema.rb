@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507151038) do
+ActiveRecord::Schema.define(version: 20150508154500) do
 
   create_table "students", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150507151038) do
     t.string   "parent_occupation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grade_cd"
   end
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true

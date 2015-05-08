@@ -34,7 +34,7 @@
 
     <div class="field">
       <%= f.label :grade %><br />
-      <%= f.select(:grade, options_for_select([['一年級', 1], ['二年級', 2], ['三年級', 3], ['四年級', 4], ['五年級', 5], ['六年級', 6], ['七年級', 7], ['八年級', 8], ['九年級', 9]])) %> <br />
+      <%= f.select :grade, enum_option_pairs(Student, :grade, true), class: 'form-control' %> <br />
     </div>
 
     <div class="field">
