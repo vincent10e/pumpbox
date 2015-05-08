@@ -36,27 +36,31 @@
             <i class="fa fa-warning"></i> 挑戰任務中心
           <% end %>
         </li>
-        <% unless user_signed_in? %> 
+        <% unless student_signed_in? %> 
           <li> 
-            <%= link_to new_user_registration_path do %>  
+            <%= link_to new_student_registration_path do %>  
               <i class="fa fa-user-plus"></i> 註冊
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_session_path do%> 
+            <%= link_to new_student_session_path do%> 
               <i class="fa fa-sign-in"></i> 登入
             <% end %>
           </li>   
         <% end %>  
-        <% if user_signed_in? %> 
+        <% if student_signed_in? %> 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> Hello, <%= User.find(current_user.id).username %> <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> Hello, <%= Student.find(current_student.id).username %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#"><i class="fa fa-edit"></i> 編輯個人資料</a></li>
+              <li>
+                <%= link_to edit_student_registration_path do %>
+                  <i class="fa fa-edit"></i> 編輯個人資料
+                <% end %>
+              </li>
               <!-- other function here -->
               <li class="divider"></li>
               <li>
-                <%= link_to destroy_user_session_path, method: :delete do%>
+                <%= link_to destroy_student_session_path, method: :delete do%>
                   <i class="fa fa-sign-out"></i> 登出
                 <% end %>
               </li>

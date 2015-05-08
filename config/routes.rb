@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :students
   root 'prototype#index'
   get '/courses/12/' => 'prototype#course', as: :course
   get '/courses/13/' => 'prototype#course2', as: :course2
