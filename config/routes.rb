@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :students
   root 'prototype#index'
   get '/courses/12/' => 'prototype#course', as: :course
