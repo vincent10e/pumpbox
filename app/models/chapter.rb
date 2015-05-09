@@ -1,5 +1,6 @@
 class Chapter < ActiveRecord::Base
 	belongs_to :subject
+	has_many :concepts
 end
 
 
@@ -19,5 +20,7 @@ RailsAdmin.config do |config|
       	label "章節敘述"
       end
 		end
+
+		weight 2 # for nav order 
 	end
 end

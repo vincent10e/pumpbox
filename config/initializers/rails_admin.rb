@@ -31,4 +31,9 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Subject' do
+    navigation_label 'League related'
+    weight -1
+  end
 end

@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509052355) do
+ActiveRecord::Schema.define(version: 20150509074221) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number"
     t.integer  "subject_id"
     t.string   "title"
     t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "concepts", force: :cascade do |t|
+    t.integer  "subject_id"
+    t.integer  "volume_number"
+    t.integer  "chapter_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "video"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
