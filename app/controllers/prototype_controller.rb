@@ -1,9 +1,9 @@
 class PrototypeController < ApplicationController
 
-  before_action :fake_data  
+  before_action :fake_data
+  before_action :load_student_as_user
 
   def index
-    @user = current_student
   end
 
   def course
@@ -31,6 +31,10 @@ class PrototypeController < ApplicationController
   end
 
   private
+
+  def load_student_as_user
+    @user = current_student
+  end
 
   def fake_data
     @username = '郭柏廷'
