@@ -3,7 +3,8 @@ class PrototypeController < ApplicationController
   before_action :fake_data  
 
   def index
-    @user = current_student
+    @users = current_student
+    @concepts = Concept.all
   end
 
   def course
