@@ -2,6 +2,8 @@ class Concept < ActiveRecord::Base
 	belongs_to :subject
 	belongs_to :volume
 	belongs_to :chapter
+
+  mount_uploader :lecture, LectureUploader
 end
 
 
@@ -22,6 +24,9 @@ RailsAdmin.config do |config|
       end
       field :description do
       	label "觀念敘述"
+      end
+      field :lecture do
+        label "講義"
       end
       field :video do
       	label "影片連結"
