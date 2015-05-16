@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508154500) do
+ActiveRecord::Schema.define(version: 20150509074221) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.integer  "volume_number"
+    t.integer  "subject_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "concepts", force: :cascade do |t|
+    t.integer  "subject_id"
+    t.integer  "volume_number"
+    t.integer  "chapter_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "video"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +58,12 @@ ActiveRecord::Schema.define(version: 20150508154500) do
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,23 @@
+<div class="pb-course-wrapper pb-container">
+
+  <h2 class="course-title"><%= @concept.title %></h2>
+
+  <div class="course-video-wrapper">
+    <%= youtube_embed(@concept.video) %>
+  </div>
+
+  <div class="course-options">
+    <div class="button-wrapper">
+      <a href="#" class="course-btn">顯示講義</a>
+    </div>
+    <div class="button-wrapper">
+      <a href="#" class="course-btn">選擇理解度</a>
+    </div>
+    <div class="button-full-wrapper">
+      <%= link_to test_path, class: "course-btn" do %>
+        開始自我挑戰！
+      <% end %>
+    </div>
+  </div>
+
+</div>
