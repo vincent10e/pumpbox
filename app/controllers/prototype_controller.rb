@@ -4,6 +4,8 @@ class PrototypeController < ApplicationController
   before_action :load_student_as_user
 
   def index
+    @users = current_student
+    @concepts = Concept.all
   end
 
   def course

@@ -34,3 +34,10 @@
     </div>
   </div>
 </div>
+
+
+<ul> 
+  <% @concepts.each do |concept| %>
+    <li> <%= link_to(concept.title, concept_path(concept)) %> </li>
+  <% end %>
+</ul>
