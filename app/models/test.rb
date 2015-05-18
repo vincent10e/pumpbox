@@ -38,6 +38,12 @@ RailsAdmin.config do |config|
       
     end
 
+    list do
+      field :concept
+      field :answer
+      field :tip
+    end
+
     weight 3 # for nav order 
   end
 end

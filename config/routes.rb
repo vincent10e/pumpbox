@@ -70,5 +70,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :concepts
+  resources :concepts do
+    resources :tests
+  end
 end
