@@ -2,6 +2,8 @@ class Concept < ActiveRecord::Base
 	belongs_to :subject
 	belongs_to :volume
 	belongs_to :chapter
+  has_many :tests
+  
 
   mount_uploader :lecture, LectureUploader
 end

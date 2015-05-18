@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516025701) do
+ActiveRecord::Schema.define(version: 20150518071558) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -23,15 +23,23 @@ ActiveRecord::Schema.define(version: 20150516025701) do
   end
 
   create_table "concepts", force: :cascade do |t|
-    t.integer  "subject_id"
-    t.integer  "volume_number"
-    t.integer  "chapter_id"
-    t.string   "title"
-    t.text     "description"
-    t.string   "video"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "lecture"
+    t.integer  "subject_id",    limit: 4
+    t.integer  "volume_number", limit: 4
+    t.integer  "chapter_id",    limit: 4
+    t.string   "title",         limit: 255
+    t.text     "description",   limit: 65535
+    t.string   "video",         limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "lecture",       limit: 255
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.integer  "test_id",     limit: 4
+    t.boolean  "is_answer",   limit: 1,   default: false
+    t.string   "description", limit: 255
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -64,6 +72,19 @@ ActiveRecord::Schema.define(version: 20150516025701) do
     t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.integer  "concept_id", limit: 4
+    t.string   "question",   limit: 255
+    t.string   "tip",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "option_1",   limit: 255
+    t.string   "option_2",   limit: 255
+    t.string   "option_3",   limit: 255
+    t.string   "option_4",   limit: 255
+    t.string   "answer",     limit: 255
   end
 
   create_table "users", force: :cascade do |t|
