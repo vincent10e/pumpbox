@@ -80,6 +80,11 @@ ActiveRecord::Schema.define(version: 20150527034049) do
     t.string   "tip",           limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "option_1",      limit: 255
+    t.string   "option_2",      limit: 255
+    t.string   "option_3",      limit: 255
+    t.string   "option_4",      limit: 255
+    t.string   "answer",        limit: 255
     t.string   "related_video", limit: 255
   end
 
