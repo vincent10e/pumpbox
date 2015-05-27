@@ -10,7 +10,7 @@
 
   <% @tests.each_with_index do |test, index|  %>
     <section class="test-unit">
-      <h3>第 1 題</h3>
+      <h3>第 <%= index+1 %> 題</h3>
       <div class="quiz-wrapper">
         <%= image_tag test.question, class: 'quiz-img' %>
       </div>
