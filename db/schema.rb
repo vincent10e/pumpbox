@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527022854) do
+ActiveRecord::Schema.define(version: 20150527034049) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -75,11 +75,12 @@ ActiveRecord::Schema.define(version: 20150527022854) do
   end
 
   create_table "tests", force: :cascade do |t|
-    t.integer  "concept_id", limit: 4
-    t.text     "question",   limit: 65535
-    t.string   "tip",        limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "concept_id",    limit: 4
+    t.text     "question",      limit: 65535
+    t.string   "tip",           limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "related_video", limit: 255
   end
 
   create_table "users", force: :cascade do |t|

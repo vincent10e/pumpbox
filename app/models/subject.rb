@@ -1,6 +1,7 @@
 class Subject < ActiveRecord::Base
 	has_many :chapters
 	has_many :concepts
+  validates :title, presence: true
 end
 
 

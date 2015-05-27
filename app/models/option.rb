@@ -1,7 +1,7 @@
 class Option < ActiveRecord::Base
  belongs_to :test
 
-  
+ validates :test_id, :description, presence: true
 
   RailsAdmin.config do |config| 
     config.model 'Option' do

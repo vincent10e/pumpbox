@@ -2,6 +2,8 @@ class Test < ActiveRecord::Base
   belongs_to :concept
   has_many :options, :dependent => :destroy, :inverse_of => :test
   accepts_nested_attributes_for :options, :allow_destroy => true
+
+  validates :concept, :question, presence: true
 end
 
 
@@ -19,6 +21,9 @@ RailsAdmin.config do |config|
       end
       field :tip do
         label "提示"
+      end
+      field :related_video do
+        label "補救影片連結"
       end
       field :options do
       end

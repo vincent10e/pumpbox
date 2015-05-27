@@ -4,7 +4,7 @@ class Concept < ActiveRecord::Base
 	belongs_to :chapter
   has_many :tests
   
-
+  validates :subject_id, :volume_number, :chapter_id, :title, :description, :video, presence: true
   mount_uploader :lecture, LectureUploader
 end
 
