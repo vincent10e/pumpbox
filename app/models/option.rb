@@ -15,7 +15,7 @@ class Option < ActiveRecord::Base
         end
       end
 
-      weight 4  # for nav order 
+      weight 6  # for nav order 
     end
   end
 end

@@ -22,6 +22,6 @@ RailsAdmin.config do |config|
       end
 		end
 
-		weight 2 # for nav order 
+		weight 3 # for nav order 
 	end
 end

@@ -36,7 +36,7 @@ RailsAdmin.config do |config|
     #   field :tip
     # end
 
-    weight 3 # for nav order 
+    weight 5 # for nav order 
   end
 end
 

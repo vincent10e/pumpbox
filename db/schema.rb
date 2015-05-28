@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527084429) do
+ActiveRecord::Schema.define(version: 20150528082148) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -23,15 +23,16 @@ ActiveRecord::Schema.define(version: 20150527084429) do
   end
 
   create_table "concepts", force: :cascade do |t|
-    t.integer  "subject_id",    limit: 4
-    t.integer  "volume_number", limit: 4
-    t.integer  "chapter_id",    limit: 4
-    t.string   "title",         limit: 255
-    t.text     "description",   limit: 65535
-    t.string   "video",         limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "lecture",       limit: 255
+    t.integer  "subject_id",       limit: 4
+    t.integer  "volume_number",    limit: 4
+    t.integer  "chapter_id",       limit: 4
+    t.string   "title",            limit: 255
+    t.text     "description",      limit: 65535
+    t.string   "video",            limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "lecture",          limit: 255
+    t.integer  "target_course_id", limit: 4
   end
 
   create_table "options", force: :cascade do |t|
@@ -65,6 +66,13 @@ ActiveRecord::Schema.define(version: 20150527084429) do
   end
 
   create_table "subjects", force: :cascade do |t|
+    t.string   "title",            limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "target_course_id", limit: 4
+  end
+
+  create_table "target_courses", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
