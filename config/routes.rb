@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :students
   root 'prototype#index'
   get '/courses/12/' => 'prototype#course', as: :course
   get '/courses/13/' => 'prototype#course2', as: :course2
@@ -69,6 +69,18 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  devise_for :users, :controllers => {
+    registrations: 'users/registrations',
+    # omniauth_callbacks: "users/omniauth_callbacks",
+    # confirmations: "users/confirmations",
+    # passwords: "users/passwords"
+  }
+
+  devise_scope :user do
+    get 'users/student_new', to: 'users/registrations#student_new', :as => :new_student_registration
+    get 'users/teacher_new', to: 'users/registrations#teacher_new', :as => :new_teacher_registration
+  end
 
   resources :concepts do
     resources :tests

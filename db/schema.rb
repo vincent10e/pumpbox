@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527034049) do
+ActiveRecord::Schema.define(version: 20150527084429) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -42,36 +42,43 @@ ActiveRecord::Schema.define(version: 20150527034049) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "username",               limit: 255
-    t.string   "school",                 limit: 255
-    t.integer  "grade",                  limit: 4
-    t.string   "phone",                  limit: 255
-    t.string   "parent_name",            limit: 255
-    t.string   "parent_phone",           limit: 255
-    t.string   "parent_occupation",      limit: 255
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.integer  "resource_id",   limit: 4
+    t.string   "resource_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "grade_cd",               limit: 4
   end
 
-  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
-  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "students", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "username",   limit: 255
+    t.date     "birth"
+    t.string   "school",     limit: 255
+    t.integer  "gender",     limit: 4
+    t.integer  "grade",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "subjects", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "username",     limit: 255
+    t.string   "service_unit", limit: 255
+    t.date     "birth"
+    t.integer  "gender",       limit: 4
+    t.string   "suject",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "tests", force: :cascade do |t|
@@ -80,11 +87,6 @@ ActiveRecord::Schema.define(version: 20150527034049) do
     t.string   "tip",           limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "option_1",      limit: 255
-    t.string   "option_2",      limit: 255
-    t.string   "option_3",      limit: 255
-    t.string   "option_4",      limit: 255
-    t.string   "answer",        limit: 255
     t.string   "related_video", limit: 255
   end
 
@@ -99,14 +101,18 @@ ActiveRecord::Schema.define(version: 20150527034049) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.string   "username",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "school",                 limit: 255
-    t.integer  "grade",                  limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id", limit: 4
+    t.integer "role_id", limit: 4
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
 end

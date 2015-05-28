@@ -4,7 +4,7 @@ class PrototypeController < ApplicationController
   before_action :load_student_as_user
 
   def index
-    @users = current_student
+    @users = current_user.student
     @concepts = Concept.all
   end
 
@@ -35,7 +35,7 @@ class PrototypeController < ApplicationController
   private
 
   def load_student_as_user
-    @user = current_student
+    @user = current_user
   end
 
   def fake_data

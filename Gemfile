@@ -75,6 +75,8 @@ end
 
 gem 'mysql2'
 gem 'devise'
+gem 'cancancan'
+gem 'rolify'
 gem 'sprockets-rails', '3.0.0.beta1'
 gem 'sass-rails', '5.0.0.beta1'
 gem 'compass-rails', '2.0.1'

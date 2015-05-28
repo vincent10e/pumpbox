@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :student do
+  factory :teacher do
     user_id 1
 username "MyString"
-school "MyString"
+service_unit "MyString"
   end
 
 end
