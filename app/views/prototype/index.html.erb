@@ -1,18 +1,30 @@
 <div class="pb-index-wrapper pb-container">
+  <% if current_user.has_role? :student %>
+    <div class="index-info-col">
+      <!-- 個人資料 -->
+      <%= render partial: 'partials/personal_info' %>
 
-  <div class="index-info-col">
-    <!-- 個人資料 -->
-    <%= render partial: 'partials/personal_info' %>
+      <!-- 技能列表 -->
+      <%= render partial: 'partials/personal_skill_list' %>
+    </div>
 
-    <!-- 技能列表 -->
-    <%= render partial: 'partials/personal_skill_list' %>
-  </div>
+    <div class="index-courses-col">
+      <!-- 課程關卡路線 -->
+      <%= render partial: 'partials/courses_path' %>
+    </div>
+  <% else %>
+    <div class="index-info-col">
+      <!-- 個人資料 -->
+      <%= render partial: 'partials/personal_info' %>
 
-  <div class="index-courses-col">
-    <!-- 課程關卡路線 -->
-    <%= render partial: 'partials/courses_path' %>
-  </div>
+    </div>
 
+    <div class="index-courses-col">
+      <!-- 課程關卡路線 -->
+      <%= render partial: 'partials/courses_path' %>
+    </div>
+
+  <% end %>
 </div>
 
 <%= content_for :handwrite_js do %>

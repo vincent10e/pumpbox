@@ -4,7 +4,11 @@ class PrototypeController < ApplicationController
   before_action :load_student_as_user
 
   def index
-    @users = current_user.student
+    if current_user.has_role? :student
+      @users = current_user.student
+    else
+      @users = current_user.teacher
+    end
     @concepts = Concept.all
   end
 

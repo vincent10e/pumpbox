@@ -4,11 +4,19 @@
     <%= image_placeholder height: 500, width: 500, text: "avatar", :class => "avatar" %>
   </div>
 
-  <div class="detail-wrapper">
-    <h3 class="username"><%= @users.username %></h3>
-    <p><span class="school-name"><%= @users.school %></span> <span class="grade"><%= @grade %></span></p>
-    <p>等級：<span class="level"><%= @level %></span></p>
-    <p>金幣：<sapn class="money"><%= @money %></sapn> 枚</p>
-  </div>
+  <% if current_user.has_role? :student %>
+    <div class="detail-wrapper">
+      <h3 class="username"><%= @users.username %></h3>
+      <p><span class="school-name"><%= @users.school %></span> <span class="grade"><%= @grade %></span></p>
+      <p>等級：<span class="level"><%= @level %></span></p>
+      <p>金幣：<sapn class="money"><%= @money %></sapn> 枚</p>
+    </div>
+  <% else %>
+    <div class="detail-wrapper">
+      <h3 class="username"><%= @users.username %></h3>
+      <p>服務單位：<%= @users.service_unit %></p>
+      <p>教授科目：</p>
+    </div>
+  <% end %>
 
 </div>

@@ -15,13 +15,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user.add_role :student
       @student = @user.build_student(:username => params[:username], 
                              :school => params[:school])
-      binding.pry
       @student.save!
     else  #teacher
       @user.save!
       @user.add_role :teacher
-      @user.teacher.create!(:username => params[:username], 
-                            :school => params[:school])
+      @teacher = @user.build_teacher(:username => params[:username], 
+                            :service_unit => params[:service_unit])
+      @teacher.save!
+      binding.pry
     end
 
   end
