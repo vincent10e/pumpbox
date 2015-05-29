@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :courses
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'prototype#index'
-  get '/courses/12/' => 'prototype#course', as: :course
+  get '/courses/12/' => 'prototype#course', as: :course1
   get '/courses/13/' => 'prototype#course2', as: :course2
   get '/courses/14/' => 'prototype#course3', as: :course3
   get '/test/12/' => 'prototype#test', as: :test

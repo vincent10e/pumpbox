@@ -8,6 +8,7 @@ class PrototypeController < ApplicationController
       @users = current_user.student
     else
       @users = current_user.teacher
+      @courses = Course.all
     end
     @concepts = Concept.all
   end
@@ -88,7 +89,7 @@ class PrototypeController < ApplicationController
       },{
         id: 3,
         title: '乘法公式法',
-        path: course_path,
+        path: '/test/14',
         status: 1, # 0: locked, 1: available, 2: passed
         description: '因式分解的「乘法公式法」，主要是利用先前章節教過的乘法公式作對照，使多項式能夠以相對應的型式整理並作分解。',
         sub_titles: [
