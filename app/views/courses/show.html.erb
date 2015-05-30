@@ -1,19 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="pb-index-wrapper pb-container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Teacher:</strong>
-  <%= @course.teacher_id %>
-</p>
+  
 
-<p>
-  <strong>Title:</strong>
-  <%= @course.title %>
-</p>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>
+        <strong>Title:</strong>
+        <%= @course.title %>
+      </h2>
+    </div>
+    <div class="col-md-4">
+      <%= link_to 'Edit', edit_course_path(@course) %>
+      <%= link_to 'Back', courses_path %>
+    </div>
+  </div>
 
-<p>
-  <strong>Overview:</strong>
-  <%= @course.overview %>
-</p>
+  <h4>
+    <strong>Overview:</strong>
+    <%= @course.overview %>
+  </h4>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+  <p>
+    <strong>Teacher:</strong>
+    <%= @course.teacher_id %>
+  </p>
+
+
+  <div class="row">
+    <div class="col-md-9 col-md-push-3">
+      <h3> 已建立觀念地圖 </h3>
+      <%= render 'customized_concepts/index', locals: {customized_concepts: @customized_concepts} %>
+    </div>
+    <div class="col-md-3 col-md-pull-9">
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          Cras justo odio
+        </a>
+        <%= link_to("新增觀念", new_course_customized_concept_path(@course), class: "list-group-item") %>
+        <a href="#" class="list-group-item">新增題目</a>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+
