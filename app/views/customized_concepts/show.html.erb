@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="pb-index-wrapper pb-container"> 
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Course:</strong>
-  <%= @customized_concept.course_id %>
-</p>
+  <p>
+    <strong>Course:</strong>
+    <%= @customized_concept.course_id %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @customized_concept.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @customized_concept.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @customized_concept.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @customized_concept.description %>
+  </p>
 
-<p>
-  <strong>Video:</strong>
-  <%= @customized_concept.video %>
-</p>
+  <p>
+    <strong>Video:</strong>
+    <%= @customized_concept.video %>
+  </p>
 
-<p>
-  <strong>Lecture:</strong>
-  <%= @customized_concept.lecture %>
-</p>
+  <p>
+    <strong>Lecture:</strong>
+    <%= @customized_concept.lecture %>
+  </p>
 
-<%= link_to 'Edit', edit_customized_concept_path(@customized_concept) %> |
-<%= link_to 'Back', customized_concepts_path %>
+  <%= link_to 'Edit', edit_course_customized_concept_path(@course, @customized_concept) %> |
+  <%= link_to 'Back', course_customized_concepts_path(@course) %>
+</div>

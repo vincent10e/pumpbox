@@ -30,4 +30,35 @@
 
 <br>
 
-<%= link_to 'New Customized concept' %>
+
+
+
+<div class="courses-path-wrapper">
+  <div class="courses-path-inner">
+    <div class="courses-list-wrapper">
+      <% @customized_concepts.each_with_index do |course, index| %>
+        <div class="course-item">
+          <div class="point">
+            <%= render_course_status(course[:status]) %>
+          </div>
+          <div class="title">
+            <h4>
+              <%= link_to course_customized_concept_path(@course, course) do %>
+                <%= course[:title] %>
+              <% end %>
+            </h4>
+          </div>
+          <div class="description"> 
+            <h5>課程描述</h5>
+            <p><%= course[:description] %></p>
+           
+              <h5>子關卡</h5>
+              <ul>
+                <li> test </li>
+              </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

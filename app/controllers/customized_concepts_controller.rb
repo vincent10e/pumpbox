@@ -10,6 +10,8 @@ class CustomizedConceptsController < ApplicationController
   # GET /customized_concepts/1
   # GET /customized_concepts/1.json
   def show
+    @course = Course.find(params[:course_id])
+    @customized_concept = @course.customized_concepts.find(params[:id])
   end
 
   # GET /customized_concepts/new
