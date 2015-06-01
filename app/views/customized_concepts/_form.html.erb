@@ -1,14 +1,53 @@
-<%= simple_form_for([@course, @customized_concept]) do |f| %>
-  <%= f.error_notification %>
+<div class="row">
+  <div class="col-md-9 col-md-push-3">
+    <%= simple_form_for([@course, @customized_concept]) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :video %>
-    <%= f.input :lecture %>
+      <div class="form-inputs">
+        <%= f.input :title %>
+        <%= f.input :description, class: "fa fa-user"%>
+        <%= f.input :video %><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="glyphicon glyphicon-plus"></span></button>
+        <%= f.input :lecture %>
+      </div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".test-modal">題庫出題</button>
+        <%= f.input :test_question %>
+        <%= f.input :test_tip %>
+        <%= f.input :test_related_video %>
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+
+    <%= render 'video_modal' %>
+    <%= render partial: 'customized_concepts/test_modal', locals: {tests: @tests} %>
+   
+
+  </div>
+  <div class="col-md-3 col-md-pull-9">
+    <div class="panel-group" role="tablist">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+          <h4 class="panel-title" id="-collapsible-list-group-">
+            <a class="" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+              Chapters
+            </a>
+          <a class="anchorjs-link" href="#-collapsible-list-group-"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+          <ul class="list-group">
+            <li class="list-group-item">Bootply</li>
+            <li class="list-group-item">One itmus ac facilin</li>
+            <li class="list-group-item">Second eros</li>
+          </ul>
+          <div class="panel-footer">Footer</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>
+
+
+<script> 
+  $('.collapse').collapse()
+</script>

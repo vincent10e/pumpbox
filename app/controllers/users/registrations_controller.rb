@@ -22,7 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @teacher = @user.build_teacher(:username => params[:username], 
                             :service_unit => params[:service_unit])
       @teacher.save!
-      binding.pry
     end
 
   end

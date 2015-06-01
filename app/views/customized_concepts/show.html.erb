@@ -26,6 +26,16 @@
     <%= @customized_concept.lecture %>
   </p>
 
-  <%= link_to 'Edit', edit_course_customized_concept_path(@course, @customized_concept) %> |
+  <p>
+    <strong>Question:</strong>
+    <%= @customized_concept.test_question %>
+  </p>
+
+  <p>
+    <strong>Tip:</strong>
+    <%= @customized_concept.test_tip %>
+  </p>
+
+  <%= link_to 'Edit', edit_course_customized_concept_path(@course, @customized_concept) %> 
   <%= link_to 'Back', course_customized_concepts_path(@course) %>
 </div>

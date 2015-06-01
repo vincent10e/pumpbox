@@ -20,10 +20,13 @@ class CustomizedConceptsController < ApplicationController
 
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.new
+    @tests = Test.all
   end
 
   # GET /customized_concepts/1/edit
   def edit
+    @course = Course.find(params[:course_id])
+    @customized_concept = @course.customized_concepts.find(params[:id])
   end
 
   # POST /customized_concepts
