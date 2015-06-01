@@ -1,11 +1,11 @@
 set :stage, :production
 
-role :app, %w{deployer@funnyq.rocks}
-role :web, %w{deployer@funnyq.rocks}
-role :db,  %w{deployer@funnyq.rocks}
+role :app, %w{deploy@52.68.186.174}
+role :web, %w{deploy@52.68.186.174}
+role :db,  %w{deploy@52.68.186.174}
 
 
-server 'funnyq.rocks', user: 'deployer', roles: %w{web app}
+server '52.68.186.174', user: 'deploy', roles: %w{web app}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

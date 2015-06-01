@@ -2,8 +2,8 @@
 lock '3.1.0'
 
 set :application, 'pumpbox'
-set :repo_url, 'git@github.com:FunnyQ/pumpbox.git'
-set :deploy_to, '/home/deployer/pumpbox'
+set :repo_url, 'git@github.com:vincent10e/pumpbox.git'
+set :deploy_to, '/home/deploy/pumpbox'
 
 set :linked_files, %w{config/database.yml}
 set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
