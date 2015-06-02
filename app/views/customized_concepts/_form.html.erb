@@ -33,16 +33,17 @@
             </a>
           <a class="anchorjs-link" href="#-collapsible-list-group-"><span class="anchorjs-icon"></span></a></h4>
         </div>
-        <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
-          <ul class="list-group">
-            <li class="list-group-item">Bootply</li>
-            <li class="list-group-item">One itmus ac facilin</li>
-            <li class="list-group-item">Second eros</li>
-          </ul>
-          <div class="panel-footer">Footer</div>
-        </div>
+        
+          <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+            <ul class="list-group">
+              <% @chapters.each do |chapter| %>
+              <li class="list-group-item"><%= chapter.title %></li>
+              <% end %>
+            </ul>
+          </div>
       </div>
     </div>
+
   </div>
 
 </div>
@@ -51,3 +52,6 @@
 <script> 
   $('.collapse').collapse()
 </script>
+
+
+

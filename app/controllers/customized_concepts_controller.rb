@@ -17,10 +17,12 @@ class CustomizedConceptsController < ApplicationController
   # GET /customized_concepts/new
   def new
     @customized_concept = CustomizedConcept.new
-
     @course = Course.find(params[:course_id])
+    
     @customized_concept = @course.customized_concepts.new
-    @tests = Test.all
+    @tests = Test.all # TO-DO :  like @chapter.test
+
+    @chapters = Subject.find(@course.subject_id).chapters 
   end
 
   # GET /customized_concepts/1/edit
