@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   
 
+  resources :groups
+
   resources :courses do
     resources :customized_concepts
   end
