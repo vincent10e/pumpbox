@@ -2,8 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :overview %>
+    <%= f.input :education_level_id do%>
+      <%= f.select :education_level_id, EducationLevel.all.map { |r| [r.title, r.id, { class: r.id }] } %>
+    <% end %>
+    <%= f.input :subject_id do %>
+      <%= f.select :subject_id, Subject.all.map { |s| [s.title, s.id, { class: s.id }] } %>
+    <% end %>
+    <%= f.input :title, label: '課程名稱'%>
+    <%= f.input :overview, label: '課程描述'%>
   </div>
 
   <div class="form-actions">

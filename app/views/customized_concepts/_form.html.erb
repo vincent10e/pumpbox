@@ -6,11 +6,11 @@
       <div class="form-inputs">
         <%= f.input :title %>
         <%= f.input :description, class: "fa fa-user"%>
-        <%= f.input :video %><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="glyphicon glyphicon-plus"></span></button>
+        <%= f.input :video %><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">影片資料庫</button>
         <%= f.input :lecture %>
       </div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".test-modal">題庫出題</button>
-        <%= f.input :test_question %>
+      
+        <%= f.input :test_question %> <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".test-modal">題庫出題</button>
         <%= f.input :test_tip %>
         <%= f.input :test_related_video %>
       <div class="form-actions">
