@@ -18,6 +18,13 @@ class CoursesController < ApplicationController
   def new
     @teacher = current_user.teacher
     @course = @teacher.courses.build
+
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      @course_group = @group.course_groupships.create
+      @course_group.course = @course
+      @course_group.save
+    end
   end
 
   # GET /courses/1/edit

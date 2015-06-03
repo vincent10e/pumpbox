@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   
   
-
-  resources :groups
+  resources :teachers do
+    resources :groups
+  end
 
   resources :courses do
     resources :customized_concepts
   end
+
+  resources :groups do
+    resources :courses
+  end
+
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'prototype#index'

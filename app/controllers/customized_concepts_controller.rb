@@ -16,7 +16,6 @@ class CustomizedConceptsController < ApplicationController
 
   # GET /customized_concepts/new
   def new
-    @customized_concept = CustomizedConcept.new
     @course = Course.find(params[:course_id])
     
     @customized_concept = @course.customized_concepts.new

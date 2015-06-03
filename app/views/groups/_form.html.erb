@@ -1,13 +1,14 @@
-<%= simple_form_for(@group) do |f| %>
-  <%= f.error_notification %>
+<div class="pb-index-wrapper pb-container">
+  <%= simple_form_for([@teacher, @group]) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :teacher_id %>
-    <%= f.input :name %>
-    <%= f.input :group_code %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :group_code %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>

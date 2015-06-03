@@ -18,7 +18,7 @@
 
 
 
-<button type="button" class="btn btn-default"><%= link_to("建立群組", new_group_path) %></button>
+<button type="button" class="btn btn-default"><%= link_to("建立群組", new_teacher_group_path(@users.id)) %></button>
 <table class="table table-striped .table-bordered .table-hover">
   <thead>
     <tr>
@@ -27,9 +27,11 @@
     </tr>
   </thead>
   <tbody>
+    <% my_groups.each do |group| %>
     <tr>
-      <td>高二數學班級</td>
+      <td><%= link_to(group.name, teacher_group_path(group.teacher_id, group)) %></td>
       <td>2015.05.29</td>
     </tr>
+    <% end %>
   </tbody>
 </table>

@@ -9,6 +9,7 @@ class PrototypeController < ApplicationController
     else
       @users = current_user.teacher
       @courses = Course.all
+      @groups = @users.groups
     end
     @concepts = Concept.all
   end

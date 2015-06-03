@@ -1,5 +1,5 @@
 class Teacher < ActiveRecord::Base
   belongs_to :user
-  has_many :courses
-  has_many :groups
+  has_many :courses, :dependent => :destroy
+  has_many :groups, :dependent => :destroy
 end

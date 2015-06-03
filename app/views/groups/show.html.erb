@@ -1,19 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="pb-index-wrapper pb-container">
+  
 
-<p>
-  <strong>Teacher:</strong>
-  <%= @group.teacher_id %>
-</p>
+  <div class="row">
+    <div class="col-md-9 col-md-push-3">
+      <%= render "group_course", locals: {my_courses: @courses}%>
+    </div>
+    <div class="col-md-3 col-md-pull-9">
+      <p id="notice"><%= notice %></p>
+      <h2><%= Teacher.find(@group.teacher_id).username %>老師</h2>
+      <h3><%= @group.name %></h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+      
 
-<p>
-  <strong>Group code:</strong>
-  <%= @group.group_code %>
-</p>
+      <p>
+        <strong>Group code:</strong>
+        <%= @group.group_code %>
+      </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+      <p><button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button></p>
+      <p><a href="#" class="btn btn-default" role="button">加入現有課程</a></p>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          群組成員
+        </a>
+        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item">Morbi leo risus</a>
+        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item">Vestibulum at eros</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
