@@ -28,11 +28,6 @@
     </div>
 
     <div class="field">
-      <%= f.label :school %><br />
-      <%= f.text_field :school %>
-    </div>
-
-    <div class="field">
       <%= f.label :grade %><br />
       <%= f.select :grade, enum_option_pairs(Student, :grade, true), class: 'form-control' %> <br />
     </div>

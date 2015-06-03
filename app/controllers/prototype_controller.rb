@@ -4,12 +4,14 @@ class PrototypeController < ApplicationController
   before_action :load_student_as_user
 
   def index
+    @courses = Course.all
     if current_user.has_role? :student
       @users = current_user.student
+      @groups = Group.all # To-Do : should modify the group which is student belongs to
     else
       @users = current_user.teacher
-      @courses = Course.all
       @groups = @users.groups
+      @subjects = Subject.all
     end
     @concepts = Concept.all
   end
