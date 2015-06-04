@@ -6,19 +6,24 @@
       <%= render "group_course", locals: {my_courses: @courses}%>
     </div>
     <div class="col-md-3 col-md-pull-9">
-      <p id="notice"><%= notice %></p>
-      <h2><%= Teacher.find(@group.teacher_id).username %>老師</h2>
-      <h3><%= @group.name %></h3>
+      <% if current_user.has_role? :student %>
+        <p id="notice"><%= notice %></p>
+        <h2><%= Teacher.find(@group.teacher_id).username %>老師的群組</h2>
+        <h3>建立者：<%= @group.name %></h3>
+      <% else %>
+        <p id="notice"><%= notice %></p>
+        <h2><%= Teacher.find(@group.teacher_id).username %>老師</h2>
+        <h3><%= @group.name %></h3>
+
+        <p>
+          <strong>Group code:</strong>
+          <%= @group.group_code %>
+        </p>
+        <p><button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button></p>
+        <p><a href="#" class="btn btn-default" role="button">加入現有課程</a></p>
+      <% end %>
 
       
-
-      <p>
-        <strong>Group code:</strong>
-        <%= @group.group_code %>
-      </p>
-
-      <p><button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button></p>
-      <p><a href="#" class="btn btn-default" role="button">加入現有課程</a></p>
       <div class="list-group">
         <a href="#" class="list-group-item active">
           群組成員

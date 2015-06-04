@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :courses
+    get 'add_student', on: :collection
   end
 
 

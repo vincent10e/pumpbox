@@ -7,7 +7,7 @@ class PrototypeController < ApplicationController
     @courses = Course.all
     if current_user.has_role? :student
       @users = current_user.student
-      @groups = Group.all # To-Do : should modify the group which is student belongs to
+      @groups = @users.groups # To-Do : should modify the group which is student belongs to
     else
       @users = current_user.teacher
       @groups = @users.groups

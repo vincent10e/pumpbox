@@ -10,9 +10,16 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @teacher = Teacher.find(params[:teacher_id])
-    @group = @teacher.groups.find(params[:id])
-    @courses = @group.courses
+    if current_user.has_role? :student
+      @group = Group.find(params[:id])
+      @courses = @group.courses
+    end
+
+    if current_user.has_role? :teacher
+      @teacher = Teacher.find(params[:teacher_id])
+      @group = @teacher.groups.find(params[:id])
+      @courses = @group.courses
+    end
   end
 
   # GET /groups/new
@@ -31,6 +38,7 @@ class GroupsController < ApplicationController
     @teacher = Teacher.find(params[:teacher_id])
     @group = @teacher.groups.new(group_params)
 
+    @group.group_code = SecureRandom.hex(2)
     respond_to do |format|
       if @group.save
         format.html { redirect_to teacher_group_path(@teacher, @group), notice: 'Group was successfully created.' }
@@ -63,6 +71,19 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def add_student
+    @group = Group.where(group_code: params[:group_id])
+    if @group.count != 0
+      @student_group = @group.first.student_groupships.create
+      @student_group.student = current_user.student
+      @student_group.save
+      redirect_to root_path
+
+    else
+      redirect_to root_path
     end
   end
 
