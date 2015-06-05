@@ -1,41 +1,43 @@
-<div class="pb-index-wrapper pb-container"> 
-  <p id="notice"><%= notice %></p>
+<div class="pb-course-wrapper pb-container"> 
 
-  <p>
-    <strong>Course:</strong>
-    <%= @customized_concept.course_id %>
-  </p>
+  <div class="row">
+    <div class="col-md-9 col-md-push-3">
+      <div class="course-video-wrapper">
+        <%= youtube_embed(@customized_concept.video) %>
+      </div>
+      <nav>
+        <ul class="pager">
+          <li><a href="#">Previous</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </nav>
+      <div class="course-options">
+        <div class="button-wrapper">
+          <a href="#" class="course-btn">顯示講義</a>
+        </div>
+        <div class="button-wrapper">
+          <a href="#" class="course-btn">開始自我挑戰</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-md-pull-9">
+      <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @customized_concept.title %>
-  </p>
+       <h2 class="course-title">
+        <%= @customized_concept.title %>
+      </h2>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @customized_concept.description %>
-  </p>
+      <h4>
+        <%= @customized_concept.description %>
+      </h4>
 
-  <p>
-    <strong>Video:</strong>
-    <%= @customized_concept.video %>
-  </p>
+      <%= render 'customized_concepts/index', locals: {customized_concepts: @customized_concepts} %>
+    </div>
+  </div>
 
-  <p>
-    <strong>Lecture:</strong>
-    <%= @customized_concept.lecture %>
-  </p>
 
-  <p>
-    <strong>Question:</strong>
-    <%= @customized_concept.test_question %>
-  </p>
 
-  <p>
-    <strong>Tip:</strong>
-    <%= @customized_concept.test_tip %>
-  </p>
-
-  <%= link_to 'Edit', edit_course_customized_concept_path(@course, @customized_concept) %> 
-  <%= link_to 'Back', course_customized_concepts_path(@course) %>
 </div>
+
+
+
