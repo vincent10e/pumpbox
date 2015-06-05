@@ -97,7 +97,7 @@ Rails.application.routes.draw do
     get 'users/teacher_new', to: 'users/registrations#teacher_new', :as => :new_teacher_registration
   end
 
-  resources :concepts do
+  resources :customized_concepts do
     resources :tests
   end
 end

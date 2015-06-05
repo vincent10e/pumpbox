@@ -20,7 +20,11 @@ class CustomizedConceptsController < ApplicationController
     @course = Course.find(params[:course_id])
     
     @customized_concept = @course.customized_concepts.new
-    @tests = Test.all # TO-DO :  like @chapter.test
+    3.times do 
+      test = @customized_concept.tests.build 
+      4.times { test.options.build }
+    end
+    @database_tests = Test.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 
   end
@@ -36,11 +40,11 @@ class CustomizedConceptsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.new(customized_concept_params)
-
+    
     respond_to do |format|
       if @customized_concept.save
         format.html { redirect_to @course, notice: 'Customized concept was successfully created.' }
-        format.json { render :show, status: :created, location: @customized_concept }
+        # format.json { render :show, status: :created, location: @customized_concept }
       else
         format.html { render :new }
         format.json { render json: @customized_concept.errors, status: :unprocessable_entity }
@@ -80,6 +84,17 @@ class CustomizedConceptsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customized_concept_params
-      params.require(:customized_concept).permit(:course_id, :title, :description, :video, :lecture)
+      params.require(:customized_concept).permit(:course_id, 
+                                                :title, 
+                                                :description,
+                                                :video, 
+                                                :lecture, 
+                                                tests_attributes: [:id, 
+                                                                   :question, 
+                                                                   :tip,
+                                                                   :_destroy,
+                                                                   :related_video, 
+                                                                   options_attributes: [:id, :description, :is_answer]
+                                                                   ])
     end
 end

@@ -8,43 +8,23 @@
         <%= f.input :description, class: "fa fa-user"%>
         <%= f.input :video %><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">影片資料庫</button>
         <%= f.input :lecture, as: :file%>
+        <%= f.fields_for :tests do |test| %>
+          <%= render 'test_fields', :f => test %>
+        <% end %>
+        
       </div>
       
-        <%= f.input :test_question %> <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".test-modal">題庫出題</button>
-        <%= f.input :test_tip %>
-        <%= f.input :test_related_video %>
       <div class="form-actions">
         <%= f.button :submit %>
       </div>
     <% end %>
 
     <%= render 'video_modal' %>
-    <%= render partial: 'customized_concepts/test_modal', locals: {tests: @tests} %>
+    
    
 
   </div>
-  <div class="col-md-3 col-md-pull-9">
-    <div class="panel-group" role="tablist">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
-          <h4 class="panel-title" id="-collapsible-list-group-">
-            <a class="" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
-              Chapters
-            </a>
-          <a class="anchorjs-link" href="#-collapsible-list-group-"><span class="anchorjs-icon"></span></a></h4>
-        </div>
-        
-          <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
-            <ul class="list-group">
-              <% @chapters.each do |chapter| %>
-              <li class="list-group-item"><%= chapter.title %></li>
-              <% end %>
-            </ul>
-          </div>
-      </div>
-    </div>
-
-  </div>
+  
 
 </div>
 

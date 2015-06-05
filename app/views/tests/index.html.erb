@@ -11,15 +11,10 @@
   <% @tests.each_with_index do |test, index|  %>
     <section class="test-unit">
       <h3>第 <%= index+1 %> 題</h3>
-      <div class="quiz-wrapper">
-        <%= image_tag test.question, class: 'quiz-img' %>
-      </div>
-      <div class="options-wrapper">
-        <a href="#" class="option">A</a>
-        <a href="#" class="option">B</a>
-        <a href="#" class="option">C</a>
-        <a href="#" class="option">D</a>
-      </div>
+      <%= test.question %>
+      <% test.options.each do |option| %>
+        <li><%= option.description %></li>
+      <% end %>
     </section>
    <%end%>
 

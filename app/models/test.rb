@@ -1,9 +1,7 @@
 class Test < ActiveRecord::Base
-  belongs_to :concept
+  belongs_to :customized_concept
   has_many :options, :dependent => :destroy, :inverse_of => :test
   accepts_nested_attributes_for :options, :allow_destroy => true
-
-  validates :concept, :question, presence: true
 end
 
 

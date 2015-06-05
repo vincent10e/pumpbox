@@ -1,6 +1,6 @@
 class TestsController < ApplicationController
   def index
-    @concept = Concept.find(params[:concept_id])
+    @concept = CustomizedConcept.find(params[:customized_concept_id])
     @tests = @concept.tests
   end
 end

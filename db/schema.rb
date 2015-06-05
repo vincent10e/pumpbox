@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603080108) do
+ActiveRecord::Schema.define(version: 20150605055429) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -53,24 +53,13 @@ ActiveRecord::Schema.define(version: 20150603080108) do
   end
 
   create_table "customized_concepts", force: :cascade do |t|
-    t.integer  "course_id",          limit: 4
-    t.string   "title",              limit: 255
-    t.text     "description",        limit: 65535
-    t.string   "video",              limit: 255
-    t.string   "lecture",            limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.text     "test_question",      limit: 65535
-    t.string   "test_tip",           limit: 255
-    t.string   "test_related_video", limit: 255
-    t.string   "option_1",           limit: 255
-    t.string   "option_2",           limit: 255
-    t.string   "option_3",           limit: 255
-    t.string   "option_4",           limit: 255
-    t.boolean  "option_1_is_answer", limit: 1
-    t.boolean  "option_2_is_answer", limit: 1
-    t.boolean  "option_3_is_answer", limit: 1
-    t.boolean  "option_4_is_answer", limit: 1
+    t.integer  "course_id",   limit: 4
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "video",       limit: 255
+    t.string   "lecture",     limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "education_levels", force: :cascade do |t|
@@ -149,12 +138,12 @@ ActiveRecord::Schema.define(version: 20150603080108) do
   end
 
   create_table "tests", force: :cascade do |t|
-    t.integer  "concept_id",    limit: 4
-    t.text     "question",      limit: 65535
-    t.string   "tip",           limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "related_video", limit: 255
+    t.integer  "customized_concept_id", limit: 4
+    t.text     "question",              limit: 65535
+    t.string   "tip",                   limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "related_video",         limit: 255
   end
 
   create_table "users", force: :cascade do |t|
