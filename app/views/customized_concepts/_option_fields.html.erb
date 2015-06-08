@@ -1,7 +1,7 @@
-<p class="fields">
+<div class="fields">
   <%= f.label :description, "Answer" %>
   <%= f.text_field :description %>
-  
+  <%= f.input :is_answer, inline_label: '勾選為正確答案'%>
   <%= f.hidden_field :_destroy %>  
   <%= link_to_remove_fields "remove", f %><br /> 
-<p>
+</div>

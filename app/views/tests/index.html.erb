@@ -12,9 +12,11 @@
     <section class="test-unit">
       <h3>第 <%= index+1 %> 題</h3>
       <%= test.question %>
+      <div class="options-wrapper">
       <% test.options.each do |option| %>
-        <li><%= option.description %></li>
+        <li class="option"><%= option.description %></li>
       <% end %>
+      </div>
     </section>
    <%end%>
 

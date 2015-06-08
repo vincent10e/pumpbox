@@ -16,15 +16,15 @@
           <a href="#" class="course-btn">顯示講義</a>
         </div>
         <div class="button-wrapper">
-          <a href="#" class="course-btn">開始自我挑戰</a>
+          <%= link_to("開始自我挑戰", customized_concept_tests_path(@customized_concept), class: "course-btn") %>
         </div>
-        <%= link_to("Test", customized_concept_tests_path(@customized_concept)) %>
+        
       </div>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <p id="notice"><%= notice %></p>
-
-       <h2 class="course-title">
+      <%= link_to("編輯", edit_course_customized_concept_path(@course, @customized_concept)) %>
+      <h2 class="course-title">
         <%= @customized_concept.title %>
       </h2>
 
