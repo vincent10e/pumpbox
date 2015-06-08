@@ -20,10 +20,10 @@ class CustomizedConceptsController < ApplicationController
     @course = Course.find(params[:course_id])
     
     @customized_concept = @course.customized_concepts.new
-    3.times do 
-      test = @customized_concept.tests.build 
-      4.times { test.options.build }
-    end
+    
+    test = @customized_concept.tests.build 
+    4.times { test.options.build }
+    
     @database_tests = Test.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 

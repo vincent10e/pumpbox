@@ -1,7 +1,7 @@
-
 <%= f.input :question, as: :text %>
 <%= f.input :tip %>
 <%= f.input :related_video %>
 <%= f.fields_for :options do |builder| %>
   <%= render 'option_fields', :f => builder %>
 <% end %>
+<p><%= link_to_add_fields "Add a new Answer", f, :options, "btn btn-primary", "Add a new Answer" %></p>
