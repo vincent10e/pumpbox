@@ -4,7 +4,8 @@ class CustomizedConceptsController < ApplicationController
   # GET /customized_concepts
   # GET /customized_concepts.json
   def index
-    @customized_concepts = CustomizedConcept.all
+    @course = Course.find(params[:course_id]) 
+    @customized_concepts = @course.customized_concepts
   end
 
   # GET /customized_concepts/1
@@ -55,9 +56,10 @@ class CustomizedConceptsController < ApplicationController
   # PATCH/PUT /customized_concepts/1
   # PATCH/PUT /customized_concepts/1.json
   def update
+    @course = Course.find(params[:course_id])
     respond_to do |format|
       if @customized_concept.update(customized_concept_params)
-        format.html { redirect_to @customized_concept, notice: 'Customized concept was successfully updated.' }
+        format.html { redirect_to course_customized_concepts_path(@course), notice: 'Customized concept was successfully updated.' }
         format.json { render :show, status: :ok, location: @customized_concept }
       else
         format.html { render :edit }
@@ -69,9 +71,10 @@ class CustomizedConceptsController < ApplicationController
   # DELETE /customized_concepts/1
   # DELETE /customized_concepts/1.json
   def destroy
+    @course = Course.find(params[:course_id])
     @customized_concept.destroy
     respond_to do |format|
-      format.html { redirect_to customized_concepts_url, notice: 'Customized concept was successfully destroyed.' }
+      format.html { redirect_to course_customized_concepts_path(@course), notice: 'Customized concept was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

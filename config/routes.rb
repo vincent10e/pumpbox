@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :customized_concepts
+    get 'list_students'
+    get 'reports'
   end
 
   resources :groups do

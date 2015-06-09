@@ -6,7 +6,9 @@
 # *************************************
 #= require _plugins
 #= require _app-base
-
+//= require highcharts/highstock
+//= require highcharts/highcharts                                                           
+//= require highcharts/highcharts-more    
 pumpBox.coursesPathDescriptionOverlayWindowFunction = ()->
   showOverlayWindow = (node)->
     node.siblings('.description').fadeIn('fast').addClass 'active'

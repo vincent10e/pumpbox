@@ -1,0 +1,6 @@
+<div class="list-group">
+  <%= link_to("課程總覽", courses_path, class: "list-group-item active") %>
+  <%= link_to("觀念", course_customized_concepts_path(@course), class: "list-group-item") %>
+  <%= link_to("學生", course_list_students_path(@course), class: "list-group-item") %>
+  <%= link_to("Report", course_reports_path(@course), class: "list-group-item") %>
+</div>

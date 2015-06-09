@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
       @teacher = Teacher.find(params[:teacher_id])
       @group = @teacher.groups.find(params[:id])
       @courses = @group.courses
+      @students = @group.students
     end
   end
 
