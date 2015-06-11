@@ -30,6 +30,7 @@ class TestAttemptsController < ApplicationController
   # POST /test_attempts
   # POST /test_attempts.json
   def create
+    @
     @concept = CustomizedConcept.find(params[:test_attempt][:customized_concept_id])
     @tests = @concept.tests
     @test_attempt = @concept.test_attempts.new(test_attempt_params)
@@ -40,11 +41,12 @@ class TestAttemptsController < ApplicationController
       if (@error_test.length == 0) 
         binding.pry
         if @test_attempt.save
-          format.html { redirect_to @course_customized_concept_path, notice: 'Test attempt was successfully created.' }
+          format.html { redirect_to @test_attempt, notice: 'Test attempt was successfully created.' }
           format.json { render :show, status: :created, location: @test_attempt }
         end
       else
-        format.html { render :edit }
+        binding.pry
+        format.html { render :new }
         format.json { render json: @test_attempt.errors, status: :unprocessable_entity }
       end
     end
@@ -80,6 +82,7 @@ class TestAttemptsController < ApplicationController
       if !Option.find(a.answer).is_answer
         a.error_times += 1
         error_test << a.test
+        binding.pry
       end
     end
 

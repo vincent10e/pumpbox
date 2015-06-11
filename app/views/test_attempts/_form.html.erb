@@ -9,7 +9,7 @@
         <%= f.input :user, as: :hidden %>
       </div>
       
-      <div class="form-inputs">
+      
         <%= f.fields_for :answer_records do |a| %>
 
 
@@ -22,13 +22,16 @@
                 <div class="jumbotron"><%= test.question %></div>
               <% end %>
               <%= f.error_notification %>
-              <%= a.select :answer, test.options.map {|t|[t.description, t.id]}%>
-              <%= a.input :test, input_html: { value: test.id }, as: :hidden %>
+              <div class="form-inputs">
+                <%= a.select :answer, test.options.map {|t|[t.description, t.id]}%>
+                <%= a.input :test, input_html: { value: test.id}, as: :hidden %>
+                <%= a.input :error_times, as: :hidden %>
+              </div>
             <% end %>
           <% end %>
 
         <% end %>
-      </div>
+      
     </section>
 
     <div class="form-actions">
