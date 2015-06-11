@@ -1,0 +1,45 @@
+<div class="pb-test-wrapper pb-container">
+  <% if @error_test %>
+    <h1> 再試一次</h1>
+  <% end %>
+  <%= simple_form_for(@test_attempt) do |f| %>
+    <section class="test-unit">
+      <div class="form-inputs">
+        <%= f.input :customized_concept_id, as: :hidden %>
+        <%= f.input :user, as: :hidden %>
+      </div>
+      
+      <div class="form-inputs">
+        <%= f.fields_for :answer_records do |a| %>
+
+
+          <% @tests.each_with_index do |test, index| %>
+            <% if a.index == index %>
+              <h3>第 <%= index+1 %> 題</h3>
+              <% if @error_test && @error_test[index]%>
+                <div class="jumbotron error"><%= test.question %></div>
+              <% else %>
+                <div class="jumbotron"><%= test.question %></div>
+              <% end %>
+              <%= f.error_notification %>
+              <%= a.select :answer, test.options.map {|t|[t.description, t.id]}%>
+              <%= a.input :test, input_html: { value: test.id }, as: :hidden %>
+            <% end %>
+          <% end %>
+
+        <% end %>
+      </div>
+    </section>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $(".error").addClass("alert alert-danger");
+  });
+</script>

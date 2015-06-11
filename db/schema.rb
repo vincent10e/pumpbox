@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605055429) do
+ActiveRecord::Schema.define(version: 20150611023007) do
+
+  create_table "answer_records", force: :cascade do |t|
+    t.integer  "test_attempt_id", limit: 4
+    t.integer  "test",            limit: 4
+    t.integer  "answer",          limit: 4
+    t.integer  "error_times",     limit: 4, default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -133,6 +142,21 @@ ActiveRecord::Schema.define(version: 20150605055429) do
     t.date     "birth"
     t.integer  "gender",       limit: 4
     t.string   "suject",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "test_attempts", force: :cascade do |t|
+    t.integer  "customized_concept_id", limit: 4
+    t.integer  "user",                  limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "test_record_attempts", force: :cascade do |t|
+    t.integer  "test_record_id", limit: 4
+    t.integer  "test_id",        limit: 4
+    t.integer  "retry_time",     limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end

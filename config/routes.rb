@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  resources :test_attempts
+
   resources :teachers do
     resources :groups
   end
@@ -101,5 +103,6 @@ Rails.application.routes.draw do
 
   resources :customized_concepts do
     resources :tests
+    resources :test_attempts
   end
 end
