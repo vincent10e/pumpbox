@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
     if current_user.has_role? :student
       @group = Group.find(params[:id])
       @courses = @group.courses
+      @students = @group.students
     end
 
     if current_user.has_role? :teacher
@@ -92,6 +93,7 @@ class GroupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
+      @courses = @group.courses
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

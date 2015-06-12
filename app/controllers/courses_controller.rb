@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_teacher, only: [:reports]
 
   # GET /courses
   # GET /courses.json
@@ -80,8 +81,10 @@ class CoursesController < ApplicationController
   def reports
     @course = Course.find(params[:course_id])
     @concepts = @course.customized_concepts
-    
+    @group = @course.groups.find_by(teacher_id: @teacher.id)
+    @students = @group.students
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -89,6 +92,9 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
+    def set_teacher
+      @teacher = current_user.teacher
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview)

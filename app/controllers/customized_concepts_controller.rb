@@ -79,6 +79,13 @@ class CustomizedConceptsController < ApplicationController
     end
   end
 
+  def student_detail
+    @concept = CustomizedConcept.find(params[:customized_concept_id])
+    @tests = @concept.tests
+    @test_attempts = @concept.test_attempts.where(user: params[:user_id], customized_concept_id: @concept.id)
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customized_concept

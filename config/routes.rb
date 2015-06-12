@@ -101,8 +101,11 @@ Rails.application.routes.draw do
     get 'users/teacher_new', to: 'users/registrations#teacher_new', :as => :new_teacher_registration
   end
 
+
+  
   resources :customized_concepts do
     resources :tests
     resources :test_attempts
+    get 'student_detail/:user_id', to: 'customized_concepts#student_detail', as: 'student_detail'
   end
 end
