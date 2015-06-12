@@ -44,7 +44,7 @@ class CustomizedConceptsController < ApplicationController
     
     respond_to do |format|
       if @customized_concept.save
-        format.html { redirect_to @course, notice: 'Customized concept was successfully created.' }
+        format.html { redirect_to course_customized_concepts_path(@course.id), notice: 'Customized concept was successfully created.' }
         # format.json { render :show, status: :created, location: @customized_concept }
       else
         format.html { render :new }
