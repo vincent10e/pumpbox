@@ -13,6 +13,7 @@
 #= require vendor/_bootstrap
 #= require growlyflash
 #= require sweet-alert-confirm
+#= require ckeditor/init 
 
 
 
