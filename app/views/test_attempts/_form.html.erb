@@ -19,9 +19,9 @@
               <section class="test-unit">
                 <h3>第 <%= index+1 %> 題</h3>
                 <% if @error_test && @error_test[index]%>
-                  <div class="jumbotron error"><%= test.question %></div>
+                  <div class="jumbotron error"><%= test.question.raw() %></div>
                 <% else %>
-                  <div class="jumbotron"><%= test.question %></div>
+                  <div class="jumbotron"><%= raw(test.question) %></div>
                 <% end %>
                 <%= f.error_notification %>
                 <div class="form-inputs">

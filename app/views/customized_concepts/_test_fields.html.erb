@@ -1,5 +1,5 @@
 
-<%= f.input :content, :as => :ckeditor %>
+<%= f.input :question, :as => :ckeditor %>
 <%= f.fields_for :options do |builder| %>
   <%= render 'option_fields', :f => builder %>
 <% end %>
