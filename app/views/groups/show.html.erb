@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-md-9 col-md-push-3">
-      <%= render "group_course", locals: {my_courses: @courses}%>
+      <%= render partial: "partials/course_info", locals: {my_courses: @courses}%>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <% if current_user.has_role? :student %>
@@ -20,7 +20,7 @@
           <%= @group.group_code %>
         </p>
         <p><button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button></p>
-        <p><a href="#" class="btn btn-default" role="button">加入現有課程</a></p>
+        <p><button type="button" class="btn btn-default"><%= link_to("課程編輯", group_courses_path(@group)) %></button></p>
       <% end %>
 
       

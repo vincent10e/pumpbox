@@ -6,7 +6,7 @@ class Concept < ActiveRecord::Base
   has_many :tests
   
   validates :subject_id, :target_course_id, :volume_number, :chapter_id, :title, :description, :video, presence: true
-  mount_uploader :lecture, LectureUploader
+  # mount_uploader :lecture, LectureUploader
 end
 
 

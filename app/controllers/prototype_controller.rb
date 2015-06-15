@@ -13,7 +13,7 @@ class PrototypeController < ApplicationController
       @groups = @users.groups
       @subjects = Subject.all
     end
-    @concepts = Concept.all
+    
   end
 
   def course_filter

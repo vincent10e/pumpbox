@@ -5,7 +5,8 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @group = Group.find(params[:group_id])
+    @courses = @group.courses
   end
 
   # GET /courses/1
@@ -35,6 +36,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
+    @group = Group.find(params[:group_id])
     @teacher = current_user.teacher
     @course = @teacher.courses.new(course_params)
 
