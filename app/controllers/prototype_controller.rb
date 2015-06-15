@@ -16,6 +16,13 @@ class PrototypeController < ApplicationController
     @concepts = Concept.all
   end
 
+  def course_filter
+    @list_courses
+    respond_to do |format|
+      format.js
+    end  
+  end
+
   def course
   end
 

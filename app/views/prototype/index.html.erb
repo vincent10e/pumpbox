@@ -1,5 +1,5 @@
 <div class="pb-index-wrapper pb-container">
-  <% if current_user.has_role? :student %>
+  <% if current_user.has_role? :student %>  <!-- if student login  -->
     <div class="row">
       <div class="col-md-9 col-md-push-3">
         <%= render partial: 'partials/course_info', locals: {my_courses: @courses, my_groups: @groups} %>
@@ -8,9 +8,9 @@
         <%= render partial: 'partials/personal_info', locals: {my_courses: @courses, my_groups: @groups} %>
       </div>
     </div>
-  <% else %>
+  <% else %>  <!-- if teacher login -->
     <div class="row">
-      <div class="col-md-9 col-md-push-3">
+      <div class="col-md-9 col-md-push-3 list-course">
         <%= render partial: 'partials/course_info', locals: {my_courses: @courses, my_groups: @groups} %>
       </div>
       <div class="col-md-3 col-md-pull-9">

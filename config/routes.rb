@@ -12,13 +12,17 @@ Rails.application.routes.draw do
     resources :customized_concepts
     get 'list_students'
     get 'reports'
+    get 'course_filter', on: :collection
   end
 
   resources :groups do
     resources :courses
-    get 'add_student', on: :collection
+    post 'add_student', on: :collection
   end
 
+  resources :prototypes do
+    
+  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'prototype#index'

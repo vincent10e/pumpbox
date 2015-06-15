@@ -85,6 +85,14 @@ class CoursesController < ApplicationController
     @students = @group.students
   end
 
+  def course_filter
+    @list_courses = Course.where(subject_id: params[:select_item][:subject_id])
+  
+    respond_to do |format|
+      format.js
+    end  
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
