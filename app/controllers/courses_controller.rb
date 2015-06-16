@@ -90,7 +90,11 @@ class CoursesController < ApplicationController
   end
 
   def course_filter
-    @list_courses = Course.where(subject_id: params[:select_item][:subject_id]).order(:title).page params[:page]
+    if params[:select_item][:subject_id].count > 1 # user didn't select any subject, so return all of the courses
+      @list_courses = Course.where(subject_id: params[:select_item][:subject_id]).order(:title).page params[:page]
+    else
+      @list_courses = Course.all.order(:title).page params[:page]
+    end
     respond_to do |format|
       format.js
     end  
