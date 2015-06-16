@@ -32,15 +32,16 @@
       <% end %>
     </div>
     <!-- list all subject -->
+
     <ul class="list-group">
-      <li class="list-group-item list-group-item-warning"><strong>科目</strong></li>
-      <%= form_tag(course_filter_courses_path, method: "get", remote: true) do %>
+      <li class="list-group-item list-group-item-warning"><strong>學程</strong></li>
+      <% @target_courses.each do |t| %>
+      <li class="list-group-item"> <%= radio_button_tag(:education_level_id, t.id, false, data: {remote: true, url: filter_by_level_courses_path}) %> <%= t.title %></li>
+      <% end %>
+    </ul>
+
+    <ul class="list-group subject-list">
       
-      <%= collection_check_boxes(:select_item, :subject_id, @subjects.all, :id, :title) do |b|%>
-        <%= b.label(class: "list-group-item") { b.check_box + b.text } %>
-      <% end %>
-      <%= submit_tag("送出", class: "list-group-item") %>
-      <% end %>
     </ul>
   <% end %>
 

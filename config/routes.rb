@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'list_students'
     get 'reports'
     get 'course_filter', on: :collection
+    get 'filter_by_level', on: :collection
   end
 
   resources :groups do

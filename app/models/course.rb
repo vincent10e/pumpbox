@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   belongs_to :teacher
-  has_many :customized_concepts
+  belongs_to :education_level
+  has_many :customized_concepts, :dependent => :destroy
   has_many :course_groupships
   has_many :groups, :through => :course_groupships
 

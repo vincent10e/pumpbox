@@ -5,6 +5,7 @@ class PrototypeController < ApplicationController
 
   def index
     @courses = Course.order(:title).page params[:page]
+    @target_courses = EducationLevel.all
     if current_user.has_role? :student
       @users = current_user.student
       @groups = @users.groups # To-Do : should modify the group which is student belongs to

@@ -90,8 +90,16 @@ class CoursesController < ApplicationController
   end
 
   def course_filter
-    @list_courses = Course.where(subject_id: params[:select_item][:subject_id])
+    @list_courses = Course.where(subject_id: params[:select_item][:subject_id]).order(:title).page params[:page]
   
+    respond_to do |format|
+      format.js
+    end  
+  end
+
+  def filter_by_level
+    @level = EducationLevel.find(params[:education_level_id])
+    @subjects = @level.subjects
     respond_to do |format|
       format.js
     end  

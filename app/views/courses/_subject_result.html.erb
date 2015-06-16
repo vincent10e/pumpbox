@@ -1,0 +1,8 @@
+<li class="list-group-item list-group-item-warning"><strong>科目</strong></li>
+  <%= form_tag(course_filter_courses_path, method: "get", remote: true) do %>
+
+  <%= collection_check_boxes(:select_item, :subject_id, @subjects.all, :id, :title) do |b|%>
+    <%= b.label(class: "list-group-item") { b.check_box + b.text } %>
+  <% end %>
+  <%= submit_tag("送出", class: "list-group-item") %>
+<% end %>
