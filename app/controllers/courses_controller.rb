@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
       @group = Group.find(params[:group_id])
       @course_group = @group.course_groupships.create
       @course_group.course = @course
-      @course_group.save
+      # @course_group.save
     end
   end
 
@@ -36,13 +36,12 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @group = Group.find(params[:group_id])
+    @group = Group.find(params[:course][:group_id])
     @teacher = current_user.teacher
     @course = @teacher.courses.new(course_params)
-
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to teacher_group_path(@teacher, @group), notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -54,6 +53,9 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    @group = Group.find(params[:group_id])
+    binding.pry
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }

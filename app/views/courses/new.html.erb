@@ -1,8 +1,10 @@
 <div class="pb-index-wrapper pb-container">
-  <h1>New Course</h1>
+  <%= link_to teacher_group_path(@teacher, @group) do %>
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 群組首頁
+  <% end %>
+
+  <h1>建立群組課程</h1>
 
   <%= render 'form' %>
-
-  <button type="button" class="btn btn-default"><%= link_to 'Back', courses_path %></button>
 
 </div>
