@@ -7,8 +7,8 @@
       </div>
       <nav>
         <ul class="pager">
-          <li><a href="#">Previous</a></li>
-          <li><a href="#">Next</a></li>
+          <li><%= link_to_previous_page @customized_concept_paginated, '上一個觀念' %></li>
+          <li><%= link_to_next_page @customized_concept_paginated, '下一個觀念' %></li>
         </ul>
       </nav>
       <div class="course-options">

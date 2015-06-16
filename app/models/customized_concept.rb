@@ -5,4 +5,5 @@ class CustomizedConcept < ActiveRecord::Base
   has_many :test_attempts, :dependent => :destroy
 
   mount_uploader :lecture, LectureUploader
+  paginates_per 1
 end
