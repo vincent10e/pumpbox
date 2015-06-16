@@ -4,7 +4,7 @@ class PrototypeController < ApplicationController
   before_action :load_student_as_user
 
   def index
-    @courses = Course.all
+    @courses = Course.order(:title).page params[:page]
     if current_user.has_role? :student
       @users = current_user.student
       @groups = @users.groups # To-Do : should modify the group which is student belongs to

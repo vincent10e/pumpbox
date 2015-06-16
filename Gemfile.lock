@@ -469,6 +469,7 @@ DEPENDENCIES
   hirb-unicode
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   lazy_high_charts
   meta_request
   mini_magick

@@ -12,14 +12,14 @@ class GroupsController < ApplicationController
   def show
     if current_user.has_role? :student
       @group = Group.find(params[:id])
-      @courses = @group.courses
+      @courses = @group.courses.order(:title).page params[:page]
       @students = @group.students
     end
 
     if current_user.has_role? :teacher
       @teacher = Teacher.find(params[:teacher_id])
       @group = @teacher.groups.find(params[:id])
-      @courses = @group.courses
+      @courses = @group.courses.order(:title).page params[:page]
       @students = @group.students
     end
   end
