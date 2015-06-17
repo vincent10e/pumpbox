@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Courses.new(course_params)
+    @course = Course.new(course_params)
     @group = @course.group
     @teacher = current_user.teacher
     
