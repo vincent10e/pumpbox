@@ -16,7 +16,7 @@
           <%= link_to("顯示講義", @customized_concept.lecture.url, class: "course-btn") if @customized_concept.lecture? %>
         </div>
         <div class="button-wrapper">
-          <%= link_to("開始自我挑戰", new_customized_concept_test_attempt_path(@customized_concept), class: "course-btn") %>
+          <%= link_to("開始自我挑戰", new_customized_concept_test_attempt_path(@customized_concept), class: "course-btn") if @customized_concept.tests.count != 0 %>
         </div>
         
       </div>

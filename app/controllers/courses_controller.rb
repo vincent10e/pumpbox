@@ -52,11 +52,10 @@ class CoursesController < ApplicationController
   def update
     @group = Group.find(params[:course][:group_id])
     @teacher = current_user.teacher
-    binding.pry
 
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to teacher_group_path(@teacher, @group), notice: 'Course was successfully updated.' }
+        format.html { redirect_to group_courses_path(@group), notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -68,9 +67,12 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    @course = Course.find(params[:id])
+    @group = @course.group
+    @teacher = current_user.teacher
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      format.html { redirect_to group_courses_path(@group), notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -83,7 +85,7 @@ class CoursesController < ApplicationController
   def reports
     @course = Course.find(params[:course_id])
     @concepts = @course.customized_concepts
-    @group = @course.groups.find_by(teacher_id: @teacher.id)
+    @group = @course.group
     @students = @group.students
   end
 

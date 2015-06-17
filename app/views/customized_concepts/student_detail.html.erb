@@ -17,7 +17,7 @@
         <tbody>
           <% @tests.each do |test| %>
           <tr>
-            <td><%= test.question%></td>
+            <td><%= raw(test.question)%></td>
             <td></td>
             <td><%= @test_attempts.last.updated_at %></td>
           </tr>

@@ -6,7 +6,7 @@
     <p><span class="school-name"><%= @users.school %></span> <span class="grade"><%= @grade %></span></p>
 
 
-    <%= form_tag("/groups/add_student", method: "get") do %>
+    <%= form_tag("/groups/add_student", method: "post") do %>
       <%= text_field_tag(:group_id) %>
       <%= submit_tag("加入群組") %>
     <% end %>

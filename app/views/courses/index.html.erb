@@ -21,6 +21,7 @@
           <td><%= course.title %></td>
           <td><%= course.overview %></td>
           <td><button type="button" class="btn btn-default"><%= link_to '課程內容', course %></button></td>
+          <td><button type="button" class="btn btn-default"><%= link_to '編輯', edit_course_path(course) %></button></td>
           <td><button type="button" class="btn btn-danger"><%= link_to '刪除', course, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
         </tr>
       <% end %>

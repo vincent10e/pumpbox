@@ -78,6 +78,7 @@ class GroupsController < ApplicationController
 
   def add_student
     @group = Group.where(group_code: params[:group_id])
+    binding.pry
     if @group.count != 0
       @student_group = @group.first.student_groupships.create
       @student_group.student = current_user.student
@@ -92,7 +93,7 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
-      @group = Group.find(params[:id])
+      # @group = Group.find(params[:id])
       # @courses = @group.courses
     end
 

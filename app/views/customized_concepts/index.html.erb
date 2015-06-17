@@ -32,7 +32,7 @@
           <tr>
             <th>名稱</th>
             <th>觀念描述</th>
-            <th>講義數量 </th>
+            <th>講義 </th>
             <th>考題數量 </th>
             <th colspan="3"></th>
           </tr>
@@ -43,7 +43,7 @@
             <tr>
               <td><%= customized_concept.title %></td>
               <td><%= customized_concept.description %></td>
-              <td><%= customized_concept.lecture %></td>
+              <td><%= link_to("顯示講義", customized_concept.lecture.url) if customized_concept.lecture.url != nil%></td>
               <th><%= customized_concept.tests.count %> </td>
               <td> <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_course_customized_concept_path(customized_concept.course_id, customized_concept) %></button> </td>
               <td><button type="button" class="btn btn-danger"><%= link_to '刪除', course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
