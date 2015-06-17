@@ -78,7 +78,7 @@ class GroupsController < ApplicationController
 
   def add_student
     @group = Group.where(group_code: params[:group_id])
-    binding.pry
+  
     if @group.count != 0
       @student_group = @group.first.student_groupships.create
       @student_group.student = current_user.student
