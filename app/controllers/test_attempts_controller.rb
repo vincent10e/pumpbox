@@ -33,13 +33,13 @@ class TestAttemptsController < ApplicationController
     @concept = CustomizedConcept.find(params[:test_attempt][:customized_concept_id])
     @tests = @concept.tests
     @test_attempt = @concept.test_attempts.new(test_attempt_params)
-    
+    @course = @concept.course
     
     @error_test = check_answer(@tests, @test_attempt.answer_records)
     respond_to do |format|
       if (@error_test.length == 0) 
         if @test_attempt.save
-          format.html { redirect_to @test_attempt, notice: 'Test attempt was successfully created.' }
+          format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Test attempt was successfully created.' }
           format.json { render :show, status: :created, location: @test_attempt }
         end
       else

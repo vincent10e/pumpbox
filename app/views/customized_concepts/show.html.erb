@@ -13,7 +13,7 @@
       </nav>
       <div class="course-options">
         <div class="button-wrapper">
-          <%= link_to("顯示", @customized_concept.lecture.url, class: "course-btn") if @customized_concept.lecture? %>
+          <%= link_to("顯示講義", @customized_concept.lecture.url, class: "course-btn") if @customized_concept.lecture? %>
         </div>
         <div class="button-wrapper">
           <%= link_to("開始自我挑戰", new_customized_concept_test_attempt_path(@customized_concept), class: "course-btn") %>
@@ -23,7 +23,8 @@
     </div>
     <div class="col-md-3 col-md-pull-9">
       <p id="notice"><%= notice %></p>
-      <%= link_to("編輯", edit_course_customized_concept_path(@course, @customized_concept)) %>
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> <%= link_to "Back", :back %>
+
       <h2 class="course-title">
         <%= @customized_concept.title %>
       </h2>
@@ -41,4 +42,28 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">已通過自我挑戰</h4>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default"><%= link_to_next_page @customized_concept_paginated, '前往下一個觀念' %></button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>  
+  $(document).ready(function() {
+    if($("#notice").html().indexOf("Test attempt was successfully created") >= 0) {
+      $('#myModal').modal();
+    }
+  });
+</script>

@@ -1,12 +1,11 @@
 <div class="pb-index-wrapper pb-container">
   <p id="notice"><%= notice %></p>
 
-  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back
+  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> <%= link_to "Back", :back %>
 
   <div class="row">
     <div class="col-md-8">
       <h2>
-        <strong>Title:</strong>
         <%= @course.title %>
       </h2>
     </div>

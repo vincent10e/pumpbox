@@ -20,13 +20,9 @@ class CoursesController < ApplicationController
   def new
     @teacher = current_user.teacher
     @course = @teacher.courses.build
+    @course.group_id = params[:group_id]
 
-    if params[:group_id]
-      @group = Group.find(params[:group_id])
-      @course_group = @group.course_groupships.create
-      @course_group.course = @course
-      @course_group.save
-    end
+    @group = Group.find(params[:group_id])
   end
 
   # GET /courses/1/edit
@@ -36,9 +32,9 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @group = Group.find(params[:course][:group_id])
+    @course = Courses.new(course_params)
+    @group = @course.group
     @teacher = current_user.teacher
-    @course = @teacher.courses.new(course_params)
     
     respond_to do |format|
       if @course.save
@@ -81,7 +77,7 @@ class CoursesController < ApplicationController
 
   def list_students
     @course = Course.find(params[:course_id])
-    @groups = @course.groups
+    @group = @course.group
   end
 
   def reports
@@ -122,6 +118,6 @@ class CoursesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview)
+      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id)
     end
 end
