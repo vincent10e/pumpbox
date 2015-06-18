@@ -1,5 +1,6 @@
 class Subject < ActiveRecord::Base
   belongs_to :education_level
+  belongs_to :volume
 	has_many :chapters, :dependent => :destroy
 	has_many :concepts, :dependent => :destroy
   validates :title, presence: true

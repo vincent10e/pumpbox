@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618031057) do
+ActiveRecord::Schema.define(version: 20150618072909) do
 
   create_table "answer_records", force: :cascade do |t|
     t.integer  "test_attempt_id", limit: 4
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150618031057) do
     t.integer  "education_level_id", limit: 4
     t.integer  "subject_id",         limit: 4
     t.integer  "group_id",           limit: 4
+    t.integer  "volume_id",          limit: 4
   end
 
   create_table "customized_concepts", force: :cascade do |t|
@@ -203,5 +204,13 @@ ActiveRecord::Schema.define(version: 20150618031057) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "volumes", force: :cascade do |t|
+    t.string   "title",              limit: 255
+    t.integer  "number",             limit: 4
+    t.string   "education_level_id", limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
 end

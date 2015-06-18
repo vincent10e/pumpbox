@@ -90,10 +90,15 @@ class CoursesController < ApplicationController
   end
 
   def course_filter
-    if params[:select_item][:subject_id].count > 1 # user didn't select any subject, so return all of the courses
-      @list_courses = Course.where(subject_id: params[:select_item][:subject_id]).order(:title).page params[:page]
+    @s_filter = params[:select_item][:subject_id]
+    @v_filter = params[:select_volume][:volume_id]
+
+    if @s_filter.count > 1 && @v_filter.count <= 1# user didn't select any subject, so return all of the courses
+      @list_courses = Course.where(subject_id: @s_filter).order(:title).page params[:page]
+    elsif @s_filter.count <= 1 && @v_filter.count > 1
+      @list_courses = Course.where(volume_id: @v_filter).order(:title).page params[:page]
     else
-      @list_courses = Course.all.order(:title).page params[:page]
+      @list_courses = Course.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
     end
     respond_to do |format|
       format.js
@@ -103,6 +108,7 @@ class CoursesController < ApplicationController
   def filter_by_level
     @level = EducationLevel.find(params[:education_level_id])
     @subjects = @level.subjects
+    @volumes = @level.volumes
     respond_to do |format|
       format.js
     end  
@@ -120,6 +126,6 @@ class CoursesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id)
+      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id, :volume_id)
     end
 end

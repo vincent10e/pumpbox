@@ -14,7 +14,8 @@ class CustomizedConceptsController < ApplicationController
     @course = Course.find(params[:course_id])
     @customized_concepts = @course.customized_concepts
     @customized_concept_paginated = @course.customized_concepts.order(:id).page params[:page]
-    @customized_concept = CustomizedConcept.find(params[:id])
+    @customized_concept ||= CustomizedConcept.find(params[:id])
+    @customized_concept = @customized_concept_paginated.first
   end
 
   # GET /customized_concepts/new
