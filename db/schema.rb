@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617022844) do
+ActiveRecord::Schema.define(version: 20150618031057) do
 
   create_table "answer_records", force: :cascade do |t|
     t.integer  "test_attempt_id", limit: 4
     t.integer  "test",            limit: 4
-    t.integer  "answer",          limit: 4
     t.integer  "error_times",     limit: 4, default: 0
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false

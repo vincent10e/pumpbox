@@ -4,35 +4,33 @@
   <% end %>
   <h2 class="test-title">自我挑戰</h2>
   <%= simple_form_for(@test_attempt) do |f| %>
-    
+      
       <div class="form-inputs">
         <%= f.input :customized_concept_id, as: :hidden %>
         <%= f.input :user, as: :hidden %>
       </div>
-      
-      
+    
         <%= f.fields_for :answer_records do |a| %>
-
 
           <% @tests.each_with_index do |test, index| %>
             <% if a.index == index %>
               <section class="test-unit">
                 <h3>第 <%= index+1 %> 題</h3>
-                <% if @error_test && @error_test[index]%>
+                <% if @error_test && @error_test.include?(test.id) %>
                   <div class="jumbotron error"><%= raw(test.question) %></div>
                 <% else %>
                   <div class="jumbotron"><%= raw(test.question) %></div>
                 <% end %>
                 <%= f.error_notification %>
                 <div class="form-inputs">
-                  <%= a.select :answer, test.options.map {|t|[t.description, t.id]}%>
+                  <%= collection_check_boxes(:select_answers, :"#{test.id}", test.options.all, :id, :description)%>
                   <%= a.input :test, input_html: { value: test.id}, as: :hidden %>
                   <%= a.input :error_times, as: :hidden %>
                 </div>
               </section>
             <% end %>
           <% end %>
-
+          
         <% end %>
       
     

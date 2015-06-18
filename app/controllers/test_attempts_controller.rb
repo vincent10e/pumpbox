@@ -34,8 +34,9 @@ class TestAttemptsController < ApplicationController
     @tests = @concept.tests
     @test_attempt = @concept.test_attempts.new(test_attempt_params)
     @course = @concept.course
-    
-    @error_test = check_answer(@tests, @test_attempt.answer_records)
+    @answer_records = @test_attempt.answer_records
+
+    @error_test = check_answer(params[:select_answers])
     respond_to do |format|
       if (@error_test.length == 0) 
         if @test_attempt.save
@@ -43,6 +44,11 @@ class TestAttemptsController < ApplicationController
           format.json { render :show, status: :created, location: @test_attempt }
         end
       else
+        @error_test.each do |e|
+          @answer_records.each do |a|
+            a.error_times += 1 if a.test == e
+          end
+        end
         format.html { render :new }
         format.json { render json: @test_attempt.errors, status: :unprocessable_entity }
       end
@@ -73,13 +79,19 @@ class TestAttemptsController < ApplicationController
     end
   end
 
-  def check_answer(tests, answers)
+  def check_answer(select_answers)
     error_test = []
-    answers.each_with_index do |a, index|
-      if !Option.find(a.answer).is_answer
-        a.error_times += 1
-        error_test << a.test
+    
+    select_answers.each do |test, answer|
+      answer.each do |a|
+        if a != "" && !Option.find(a).is_answer  # if the option is wrong, set record test.id to error_test    
+          error_test << test.to_i
+        end
       end
+      # if !Option.find(a.answer).is_answer
+      #   a.error_times += 1
+      #   error_test << a.test
+      # end
     end
 
     return error_test
@@ -94,6 +106,6 @@ class TestAttemptsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_attempt_params
       params.require(:test_attempt).permit(:customized_concept_id, :user,
-                                          answer_records_attributes: [:id, :test_attempt_id, :test, :answer, :error_times])
+                                          answer_records_attributes: [:id, :test, :error_times])
     end
 end
