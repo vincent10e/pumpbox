@@ -14,7 +14,7 @@
     <div class="list-group">
       <li class="list-group-item active"><strong>群組</strong></li>
       <% @groups.each do |group| %>
-        <li class="list-group-item"><span class="badge">9</span><%= link_to("#老師   #{group.name}", group_path(group)) %></li>
+        <li class="list-group-item"><span class="badge">9</span><%= link_to("#{group.name}", group_path(group)) %></li>
       <% end %>
     </div>
 
