@@ -1,25 +1,33 @@
-<%= simple_form_for(@course) do |f| %>
-  <%= f.error_notification %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= simple_form_for(@course) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :group_id, as: :hidden %>
-    <%= f.input :teacher_id, as: :hidden %>
-    <%= f.input :education_level_id do%>
-      <%= f.select :education_level_id, EducationLevel.all.map { |r| [r.title, r.id, { class: r.id }] } %>
+      <div class="form-inputs">
+        <%= f.input :group_id, as: :hidden %>
+        <%= f.input :teacher_id, as: :hidden %>
+        <%= f.input :education_level_id do%>
+          <%= f.select :education_level_id, EducationLevel.all.map { |r| [r.title, r.id, { class: r.id }] } %>
+        <% end %>
+
+        <%= f.input :volume_id do %>
+          <%= f.select(:volume_id, options_for_select([['無', 0], ['第一冊', 1], ['第二冊', 2], ['第三冊', 3], ['第四冊', 4], ['第五冊', 5], ['第六冊', 6]])) %>
+        <% end %>
+
+        <%= f.input :subject_id do %>
+          <%= f.select :subject_id, Subject.all.map { |s| [s.title, s.id, { class: s.id }] } %>
+        <% end %>
+        <%= f.input :title, label: '課程名稱'%>
+        <%= f.input :overview, label: '課程描述'%>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
     <% end %>
 
-    <%= f.input :volume_id do %>
-      <%= f.select(:volume_id, options_for_select([['無', 0], ['第一冊', 1], ['第二冊', 2], ['第三冊', 3], ['第四冊', 4], ['第五冊', 5], ['第六冊', 6]])) %>
-    <% end %>
 
-    <%= f.input :subject_id do %>
-      <%= f.select :subject_id, Subject.all.map { |s| [s.title, s.id, { class: s.id }] } %>
-    <% end %>
-    <%= f.input :title, label: '課程名稱'%>
-    <%= f.input :overview, label: '課程描述'%>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+

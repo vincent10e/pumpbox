@@ -1,10 +1,12 @@
 <div class="row">
-  <div class="col-md-9 col-md-push-3">
+  <div class="col-md-8 col-md-offset-2">
     <%= simple_form_for([@course, @customized_concept]) do |f| %>
       <%= f.error_notification %>
 
       <div class="form-inputs">
+        <div class="form-group">
         <%= f.input :title %> 
+        </div>
         <%= f.input :description, class: "fa fa-user"%>
         <%= f.input :video %><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">影片資料庫</button>
         <%= f.input :lecture, as: :file%>

@@ -31,10 +31,48 @@
     
   <% else %>
     <!-- teacher info   -->
-    
-    <h2 class="username"><%= @users.username %></h2>
-    <p><h4>服務單位：<%= @users.service_unit %></h4></p>
-    <p><h4>教授科目：<%= @users.suject %></h4></p>
+    <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <%= @users.username %>
+          </div>
+          <div class="profile-usertitle-job">
+            教授科目：<%= @users.suject %>
+          </div>
+          <div class="profile-usertitle-job">
+            服務單位：<%= @users.service_unit %>
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li>
+              <a href="#">
+              <i class="glyphicon glyphicon-user"></i>
+              Account Settings </a>
+            </li>
+            <li>
+              <a href="#" target="_blank">
+              <i class="glyphicon glyphicon-ok"></i>
+              Tasks </a>
+            </li>
+            <li>
+              <a href="#">
+              <i class="glyphicon glyphicon-flag"></i>
+              Help </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+      </div>
+    <br>
     <button type="button" class="btn btn-default"><%= link_to("建立群組", new_teacher_group_path(@users.id)) %></button>
     <!-- list all group -->
     <div class="list-group">
