@@ -23,7 +23,9 @@
                 <% end %>
                 <%= f.error_notification %>
                 <div class="form-inputs">
-                  <%= collection_check_boxes(:select_answers, :"#{test.id}", test.options.all, :id, :description)%>
+                  <div class="funkyradio">
+                    <%= collection_check_boxes(:select_answers, :"#{test.id}", test.options.all, :id, :description)%>
+                  </div>
                   <%= a.input :test, input_html: { value: test.id}, as: :hidden %>
                   <%= a.input :error_times, as: :hidden %>
                 </div>
@@ -33,7 +35,7 @@
           
         <% end %>
       
-    
+      
 
     <div class="form-actions">
       
@@ -49,5 +51,16 @@
 <script>
   $(document).ready(function() {
     $(".error").addClass("alert alert-danger");
+  });
+
+</script>
+
+<script>
+  $(document).ready(function() {
+    $(':input').each(function(){
+      var $this = $(this),
+      $label = $this.siblings( "label[for=" + $this.attr( "id" ) + "]" );
+       $this.add($label).wrapAll( '<div class="funkyradio-default">' );
+    });
   });
 </script>
