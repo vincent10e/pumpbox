@@ -98,8 +98,14 @@ class CoursesController < ApplicationController
     elsif @s_filter.count <= 1 && @v_filter.count > 1
       @list_courses = Course.where(volume_id: @v_filter).order(:title).page params[:page]
     else
-      @list_courses = Course.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
+      if @s_filter.count > 1 && @v_filter.count > 1
+        @list_courses = Course.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
+      else
+        @list_courses = Course.all.order(:title).page params[:page]
+      end
     end
+
+
     respond_to do |format|
       format.js
     end  
