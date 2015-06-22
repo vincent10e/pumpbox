@@ -6,4 +6,12 @@ class CustomizedConcept < ActiveRecord::Base
 
   mount_uploader :lecture, LectureUploader
   paginates_per 1
+
+  def next
+    self.class.where("id > ?", id).first
+  end
+
+  def previous
+    self.class.where("id < ?", id).last
+  end
 end

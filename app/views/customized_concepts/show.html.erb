@@ -7,8 +7,8 @@
       </div>
       <nav>
         <ul class="pager">
-          <li><%= link_to_previous_page @customized_concept_paginated, '上一個觀念' %></li>
-          <li><%= link_to_next_page @customized_concept_paginated, '下一個觀念' %></li>
+          <li><%= link_to("上一個觀念", course_customized_concept_path(@course, @prev_concept)) if @prev_concept%></li>
+          <li><%= link_to("下一個觀念", course_customized_concept_path(@course, @next_concept)) if @next_concept%></li>
         </ul>
       </nav>
       <div class="course-options">
@@ -52,7 +52,7 @@
       </div>
       <div class="modal-body">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default"><%= link_to_next_page @customized_concept_paginated, '前往下一個觀念' %></button>
+        <button type="button" class="btn btn-default"><%= link_to("前往下一個觀念", course_customized_concept_path(@course, @next_concept)) if @next_concept%></button>
       </div>
     </div>
   </div>
