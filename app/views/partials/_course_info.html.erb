@@ -5,7 +5,8 @@
           <div class="thumbnail" >
             <h4 class="text-center"><span class="label label-info">Free Course</span></h4>
             <% if course.image_url %>
-              <img src=<%= course.image.course_display.url %> class="img-responsive">
+              <div class="course-image-wrapper">
+              <img src=<%= course.image.course_display.url %> class="img-responsive"></div>
             <% else %>
               <img src="http://placehold.it/650x450&text=Course name" class="img-responsive">
             <% end %>

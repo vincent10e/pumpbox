@@ -21,7 +21,7 @@ class CouseImageUploader < CarrierWave::Uploader::Base
   end
 
   version :course_display do
-    process :resize_to_fill => [650, 450]
+    process :resize_to_fit => [650, 450]
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
