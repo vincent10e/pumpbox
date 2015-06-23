@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customized concept:</strong>
+  <%= @test_paper.customized_concept_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @test_paper.user %>
+</p>
+
+<%= link_to 'Edit', edit_test_paper_path(@test_paper) %> |
+<%= link_to 'Back', test_papers_path %>

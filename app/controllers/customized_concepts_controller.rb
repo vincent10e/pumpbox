@@ -107,6 +107,11 @@ class CustomizedConceptsController < ApplicationController
                                                                    :_destroy,
                                                                    :related_video, 
                                                                    options_attributes: [:id, :description, :is_answer]
-                                                                   ])
+                                                                   ],
+                                                test_paper_questions_attributes: [
+                                                                    :id,
+                                                                    :question,
+                                                                    :customized_concept_id
+                                                                  ])
     end
 end

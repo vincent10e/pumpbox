@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  resources :test_papers
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :test_attempts
 
@@ -112,6 +114,7 @@ Rails.application.routes.draw do
   resources :customized_concepts do
     resources :tests
     resources :test_attempts
+    resources :test_papers
     get 'student_detail/:user_id', to: 'customized_concepts#student_detail', as: 'student_detail'
   end
 end
