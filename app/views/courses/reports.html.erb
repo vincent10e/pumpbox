@@ -45,7 +45,6 @@
           <% @students.each do |student| %>
           <tr>
             <td> <%= student.username %></td>
-            <p> <%= student.id %> </p>
             <% @concepts.each do |c| %>
               <td><%= link_to(c.test_attempts.where(user: student.user_id).count , customized_concept_student_detail_path(c, student.user_id)) %></td>
             <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618072909) do
+ActiveRecord::Schema.define(version: 20150623032621) do
 
   create_table "answer_records", force: :cascade do |t|
     t.integer  "test_attempt_id", limit: 4
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150618072909) do
     t.integer  "subject_id",         limit: 4
     t.integer  "group_id",           limit: 4
     t.integer  "volume_id",          limit: 4
+    t.string   "image",              limit: 255
   end
 
   create_table "customized_concepts", force: :cascade do |t|

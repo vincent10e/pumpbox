@@ -17,6 +17,8 @@
         <%= f.input :subject_id do %>
           <%= f.select :subject_id, Subject.all.map { |s| [s.title, s.id, { class: s.id }] } %>
         <% end %>
+
+        <%= f.input :image, as: :file, label: '課程圖片'%>
         <%= f.input :title, label: '課程名稱'%>
         <%= f.input :overview, label: '課程描述'%>
       </div>
