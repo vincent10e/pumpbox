@@ -30,12 +30,20 @@ class CustomizedConceptsController < ApplicationController
     @database_tests = Test.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 
+
+
+    # test_paper
+    question = @customized_concept.test_paper_questions.build
+    5.times {question.test_paper_options.build}
+
+
   end
 
   # GET /customized_concepts/1/edit
   def edit
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.find(params[:id])
+
   end
 
   # POST /customized_concepts
@@ -88,6 +96,13 @@ class CustomizedConceptsController < ApplicationController
     
   end
 
+  def paper_option
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customized_concept
@@ -111,7 +126,8 @@ class CustomizedConceptsController < ApplicationController
                                                 test_paper_questions_attributes: [
                                                                     :id,
                                                                     :question,
-                                                                    :customized_concept_id
+                                                                    :customized_concept_id,
+                                                                    test_paper_options_attributes: [:id, :answer, :question_number]
                                                                   ])
     end
 end

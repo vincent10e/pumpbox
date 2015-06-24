@@ -10,10 +10,11 @@
         <%= f.input :description, class: "fa fa-user"%>
         <%= f.input :video %><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">影片資料庫</button>
         <%= f.input :lecture, as: :file%>
-        <%= f.fields_for :tests do |test| %>
-          <%= render 'test_fields', :f => test %>
+        <%= f.fields_for :test_paper_questions do |test| %>
+          <%= render 'test_paper_question_fields', :f => test %>
         <% end %>
         
+        <p><%= link_to_add_fields "Add a new Test", f, :tests, "btn btn-primary", "Add a new Test" %></p>
         <p><%= link_to_add_fields "新增自定考題", f, :tests, "btn btn-primary", "Add a new Test" %> <%= link_to_add_fields "新增文件考題", f, :test_paper_questions, "btn btn-primary", "Add a new Test" %></p>
       </div>
       

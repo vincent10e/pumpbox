@@ -7,9 +7,25 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :customized_concept_id %>
-        <%= f.input :user %>
+        <%= f.input :customized_concept_id, as: :hidden %>
+        <%= f.input :user, as: :hidden %>
       </div>
+
+      <% @options.each_with_index do |option, index| %>
+      <div class="form-inputs">
+        <% if @error_test && @error_test.include?(index+1) %>
+          <div class="error">
+            <p> 第 <%= index+1 %> 題
+            <%= collection_select(:select_answers, :"#{index+1}", SelectOption.all, :number, :label)%>
+          </div>
+        <% else %>
+          <div>
+            <p> 第 <%= index+1 %> 題
+            <%= collection_select(:select_answers, :"#{index+1}", SelectOption.all, :number, :label)%>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
 
       <div class="form-actions">
         <%= f.button :submit %>
@@ -18,11 +34,29 @@
     </div>
 
     <div class="col-md-10">
-      <iframe src=<%= @question%> width="900" height="780" style="border: none;"> </iframe>
+      <iframe src=<%= @question_url %> width="900" height="780" style="border: none;"> </iframe>
     </div>
     
     
   </div>
   
-
 </div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $(".error").addClass("alert alert-danger");
+  });
+
+</script>
+
+<script>
+  $(document).ready(function() {
+    $(':input').each(function(){
+      var $this = $(this),
+      $label = $this.siblings( "label[for=" + $this.attr( "id" ) + "]" );
+       $this.add($label).wrapAll( '<div class="funkyradio-default">' );
+    });
+  });
+</script>

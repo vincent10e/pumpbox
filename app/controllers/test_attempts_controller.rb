@@ -88,10 +88,6 @@ class TestAttemptsController < ApplicationController
           error_test << test.to_i
         end
       end
-      # if !Option.find(a.answer).is_answer
-      #   a.error_times += 1
-      #   error_test << a.test
-      # end
     end
 
     return error_test

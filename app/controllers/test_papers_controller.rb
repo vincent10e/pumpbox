@@ -15,9 +15,12 @@ class TestPapersController < ApplicationController
   # GET /test_papers/new
   def new
     @concept = CustomizedConcept.find(params[:customized_concept_id])
-    @test_paper = TestPaper.new
+    @test_paper = @concept.test_papers.build
+    @test_paper.user = current_user.id
 
-    @question = @concept.test_paper_questions.first.question.url
+    @question_url = @concept.test_paper_questions.first.question.url
+    @question = @concept.test_paper_questions.first
+    @options = @question.test_paper_options
     # @concept = CustomizedConcept.find(params[:customized_concept_id])
     # @tests = @concept.tests
     # @test_attempt = @concept.test_attempts.build
@@ -33,15 +36,24 @@ class TestPapersController < ApplicationController
   # POST /test_papers
   # POST /test_papers.json
   def create
+    @concept = CustomizedConcept.find(params[:test_paper][:customized_concept_id])
     @test_paper = TestPaper.new(test_paper_params)
+    @question_url = @concept.test_paper_questions.first.question.url
+    @question = @concept.test_paper_questions.first
+    @options = @question.test_paper_options
 
+    @error_test = check_answer(params[:select_answers], @options)
+   
     respond_to do |format|
-      if @test_paper.save
-        format.html { redirect_to @test_paper, notice: 'Test paper was successfully created.' }
-        format.json { render :show, status: :created, location: @test_paper }
+      if (@error_test.length == 0)
+        if @test_paper.save
+          format.html { redirect_to @test_paper, notice: 'Test paper was successfully created.' }
+          format.json { render :show, status: :created, location: @test_paper }
+        else
+          format.html { render :new }
+        end
       else
         format.html { render :new }
-        format.json { render json: @test_paper.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,6 +80,25 @@ class TestPapersController < ApplicationController
       format.html { redirect_to test_papers_url, notice: 'Test paper was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def paper_option
+    
+    respond_to do |format|
+      format.js
+    end  
+  end
+
+  def check_answer(select_answers, right_answer)
+    error_test = []
+    select_answers.each_pair do |number, answer|
+      if answer.to_i != right_answer.find_by_question_number(number.to_i).answer
+        error_test << number.to_i
+        
+      end
+    end
+  
+    return error_test
   end
 
   private

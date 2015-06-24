@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623085211) do
+ActiveRecord::Schema.define(version: 20150624075758) do
 
   create_table "answer_records", force: :cascade do |t|
     t.integer  "test_attempt_id", limit: 4
@@ -115,6 +115,13 @@ ActiveRecord::Schema.define(version: 20150623085211) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "select_options", force: :cascade do |t|
+    t.integer  "number",     limit: 4
+    t.string   "label",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "student_groupships", force: :cascade do |t|
     t.integer  "student_id", limit: 4
     t.integer  "group_id",   limit: 4
@@ -162,6 +169,14 @@ ActiveRecord::Schema.define(version: 20150623085211) do
     t.integer  "user",                  limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "test_paper_options", force: :cascade do |t|
+    t.integer  "test_paper_question_id", limit: 4
+    t.integer  "answer",                 limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "question_number",        limit: 4
   end
 
   create_table "test_paper_questions", force: :cascade do |t|

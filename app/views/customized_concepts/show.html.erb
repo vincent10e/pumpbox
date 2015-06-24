@@ -20,8 +20,6 @@
         </div>
         
         <%= link_to("開始自我挑戰2", new_customized_concept_test_paper_path(@customized_concept), class: "course-btn") if @customized_concept.test_paper_questions.count != 0 %>
-
-        <iframe src=<%= @customized_concept.lecture.url %> width="600" height="780" style="border: none;"> </iframe>
       </div>
     </div>
     <div class="col-md-3 col-md-pull-9">

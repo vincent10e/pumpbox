@@ -1,3 +1,22 @@
+<div class="alert alert-info" role="alert">
+  <%= f.input :question, :as => :file %>
 
-<%= f.input :question, :as => :file %>
+  <%= f.fields_for :test_paper_options do |option| %>
+    <%= render 'test_paper_option_fields', :f => option %>
+  <% end %>
 
+
+  <div class="option-list"></div>
+
+</div>
+
+<script type="text/javascript">  
+  $(function(){
+   $("input[name='select_item[subject_id][]']").on('change',function(){
+       $( ".subject-list-form" ).submit();
+      });
+   $("input[name='select_volume[volume_id][]']").on('change',function(){
+       $( ".subject-list-form" ).submit();
+      });
+  });
+</script>

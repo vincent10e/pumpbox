@@ -6,7 +6,9 @@ class CustomizedConcept < ActiveRecord::Base
   has_many :test_paper_questions, :dependent => :destroy
   accepts_nested_attributes_for :test_paper_questions, :reject_if => lambda { |a| a[:question].blank? }
   
+  
   has_many :test_attempts, :dependent => :destroy
+  has_many :test_papers, :dependent => :destroy
 
   mount_uploader :lecture, LectureUploader
   paginates_per 1

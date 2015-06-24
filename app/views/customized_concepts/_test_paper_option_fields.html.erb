@@ -1,0 +1,7 @@
+<p> 第<%= f.index+1 %>題答案 :
+<%= f.collection_check_boxes(:answer, SelectOption.all, :number, :label) do |b|%>
+    <%= b.label() { b.check_box + b.text } %>
+<% end %>
+</p>
+<%= f.input :question_number, input_html: { value: f.index.to_i+1}, as: :hidden %>
+

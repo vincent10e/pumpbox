@@ -116,5 +116,6 @@ Rails.application.routes.draw do
     resources :test_attempts
     resources :test_papers
     get 'student_detail/:user_id', to: 'customized_concepts#student_detail', as: 'student_detail'
+    get 'paper_option', on: :collection
   end
 end
