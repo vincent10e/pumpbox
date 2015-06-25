@@ -4,7 +4,7 @@ class CustomizedConceptsController < ApplicationController
   # GET /customized_concepts
   # GET /customized_concepts.json
   def index
-    @course = Course.find(params[:course_id]) 
+    @course = Course.find(params[:course_id])
     @customized_concepts = @course.customized_concepts
   end
 
@@ -24,22 +24,20 @@ class CustomizedConceptsController < ApplicationController
     
     @customized_concept = @course.customized_concepts.new
     
-    test = @customized_concept.tests.build 
+    test = @customized_concept.tests.build
     4.times { test.options.build }
     
     @database_tests = Test.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 
 
-
     # test_paper
     question = @customized_concept.test_paper_questions.build
-    5.times {question.test_paper_options.build}
-
+    5.times { question.test_paper_options.build }
 
   end
 
-  # GET /customized_concepts/1/edit
+  # GET /customized_concepts/1/editg
   def edit
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.find(params[:id])
@@ -100,7 +98,6 @@ class CustomizedConceptsController < ApplicationController
 
     respond_to do |format|
       format.js {}
-      format.html { render :new }
       
     end
   end
@@ -116,14 +113,16 @@ class CustomizedConceptsController < ApplicationController
       params.require(:customized_concept).permit(:course_id, 
                                                 :title, 
                                                 :description,
-                                                :video, 
-                                                :lecture, 
-                                                tests_attributes: [:id, 
-                                                                   :question, 
+                                                :video,
+                                                :lecture,
+                                                tests_attributes: [:id,
+                                                                   :question,
                                                                    :tip,
                                                                    :_destroy,
-                                                                   :related_video, 
-                                                                   options_attributes: [:id, :description, :is_answer]
+                                                                   :related_video,
+                                                                   options_attributes: [:id, 
+                                                                                        :description, 
+                                                                                        :is_answer]
                                                                    ],
                                                 test_paper_questions_attributes: [
                                                                     :id,
