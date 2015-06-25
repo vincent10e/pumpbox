@@ -99,7 +99,9 @@ class CustomizedConceptsController < ApplicationController
   def paper_option
 
     respond_to do |format|
-      format.js
+      format.js {}
+      format.html { render :new }
+      
     end
   end
 

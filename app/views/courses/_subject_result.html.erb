@@ -1,14 +1,14 @@
 <li class="list-group-item list-group-item-warning"><strong>科目</strong></li>
   <%= form_tag(course_filter_courses_path, method: "get", remote: true, class: "subject-list-form") do %>
-  <%= collection_check_boxes(:select_volume, :volume_id, @volumes.all, :number, :title) do |b|%>
-    <%= b.label(class: "list-group-item") { b.check_box + b.text } %>
-  <% end %>
+    <%= collection_check_boxes(:select_volume, :volume_id, @volumes.all, :number, :title) do |b|%>
+      <%= b.label(class: "list-group-item") { b.check_box + b.text } %>
+    <% end %>
 
-  <%= collection_check_boxes(:select_item, :subject_id, @subjects.all, :id, :title) do |b|%>
-    <%= b.label(class: "list-group-item") { b.check_box + b.text } %>
+    <%= collection_check_boxes(:select_item, :subject_id, @subjects.all, :id, :title) do |b|%>
+      <%= b.label(class: "list-group-item") { b.check_box + b.text } %>
+    <% end %>
+    <%= submit_tag("送出", :style => "display:none") %>
   <% end %>
-  <%= submit_tag("送出", :style => "display:none") %>
-<% end %>
 
 <script type="text/javascript">  
   $(function(){
