@@ -95,10 +95,8 @@ class CustomizedConceptsController < ApplicationController
   end
 
   def paper_option
-
     respond_to do |format|
-      format.js {}
-      
+      format.js
     end
   end
 

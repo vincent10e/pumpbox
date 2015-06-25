@@ -27,6 +27,8 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    @course = Course.find(params[:id])
+    
   end
 
   # POST /courses
@@ -115,6 +117,8 @@ class CoursesController < ApplicationController
     @level = EducationLevel.find(params[:education_level_id])
     @subjects = @level.subjects
     @volumes = @level.volumes
+    @list_courses = Course.where(education_level_id: params[:education_level_id]).order(:title).page params[:page]
+    
     respond_to do |format|
       format.js
     end  

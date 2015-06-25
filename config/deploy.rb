@@ -21,6 +21,7 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 # set :hipchat_color, 'green' #finished deployment message color
 # set :hipchat_failed_color, 'red' #cancelled deployment message color
 
+
 # install bower components before assets precompile
 before "deploy:assets:precompile", "bower:install"
 
