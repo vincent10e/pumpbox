@@ -24,7 +24,12 @@
           <td><button type="button" class="btn btn-default"><%= link_to '課程內容', course %></button></td>
           <td><button type="button" class="btn btn-default"><%= link_to '編輯', edit_group_course_path(@group, course) %></button></td>
           <td><button type="button" class="btn btn-danger"><%= link_to '刪除', course, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
-          <td><button type="button" class="btn btn-danger"><%= link_to '開放(beta)', course, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+          <% if course.is_open %>
+            <td><button type="button" class="btn btn-default"><%= link_to '開放', course_change_status_path(course, @group) %></button></td>
+          <% else %>  
+            <td><button type="button" class="btn btn-danger"><%= link_to '關閉', course_change_status_path(course, @group) %></button></td>
+          <% end %>
+          
         </tr>
       <% end %>
     </tbody>
@@ -32,5 +37,5 @@
 
   <br>
 
-  <button type="button" class="btn btn-default"><%= link_to '建立新課程', new_course_path %></button>
+  <button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button>
 </div>

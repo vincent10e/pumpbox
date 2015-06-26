@@ -4,7 +4,7 @@ class PrototypeController < ApplicationController
   before_action :load_student_as_user
 
   def index
-    @courses = Course.order(:title).page params[:page]
+    @courses = Course.where(is_open: true).order(:title).page params[:page] # To - DO : it should display the course which is set to opened.
     @target_courses = EducationLevel.all
     if current_user.has_role? :student
       @users = current_user.student

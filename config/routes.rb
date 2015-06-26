@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'reports'
     get 'course_filter', on: :collection
     get 'filter_by_level', on: :collection
+    get 'change_status/:group_id', to: 'courses#change_status', as: 'change_status'
   end
 
   resources :groups do

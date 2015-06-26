@@ -15,8 +15,7 @@
             <div class="caption">
               <div class="row">
                 <div class=".col-md-12 col-xs-12">
-                  <h6><%= EducationLevel.find(course.education_level_id).title %> <%= Subject.find(course.subject_id).title %> </h6>
-                  <h6> </h6>
+                  <h6><%= EducationLevel.find(course.education_level_id).title %> <%= Subject.find(course.subject_id).title %> <%= Volume.where(number: course.volume_id,  education_level_id: course.education_level_id).first.title%></h6>
                   <h5><%= link_to(course.title, course_path(course)) %></h5>
                 </div>
               </div>

@@ -124,6 +124,21 @@ class CoursesController < ApplicationController
     end  
   end
 
+  def change_status
+    @course = Course.find(params[:course_id])
+
+    @group = Group.find(params[:group_id])
+    @courses = @group.courses
+
+    @course.is_open = !@course.is_open #reverse is_open value
+
+    if @course.save!
+      respond_to do |format|
+        format.html { redirect_to group_courses_path(@group) }
+      end
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -136,6 +151,6 @@ class CoursesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id, :volume_id, :image)
+      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id, :volume_id, :image, :is_open)
     end
 end

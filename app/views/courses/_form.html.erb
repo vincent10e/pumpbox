@@ -18,6 +18,10 @@
           <%= f.select :subject_id, Subject.all.map { |s| [s.title, s.id, { class: s.id }] } %>
         <% end %>
 
+        <%= f.input :is_open, label: "是否開放課程" do %>
+          <%= f.select(:is_open, options_for_select([['不開放', false], ['開放', true]])) %>
+        <% end %>
+
         <%= f.input :image, as: :file, label: '課程圖片'%>
         <%= f.input :title, label: '課程名稱'%>
         <%= f.input :overview, label: '課程描述'%>
