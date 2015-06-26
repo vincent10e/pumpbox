@@ -10,8 +10,9 @@
           <%= f.select :education_level_id, EducationLevel.all.map { |r| [r.title, r.id, { class: r.id }] } %>
         <% end %>
 
-        <%= f.input :volume_id do %>
-          <%= f.select(:volume_id, options_for_select([['無', 0], ['第一冊', 1], ['第二冊', 2], ['第三冊', 3], ['第四冊', 4], ['第五冊', 5], ['第六冊', 6]])) %>
+        <!-- TO - DO : modify volume into EducationLevel.volume, it should disply by dynamic form  -->
+        <%= f.input :volume_id do %> 
+          <%= f.select :volume_id, Volume.where(education_level_id: 2).all.map { |r| [r.title, r.number] } %>
         <% end %>
 
         <%= f.input :subject_id do %>

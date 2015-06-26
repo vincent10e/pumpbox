@@ -28,32 +28,6 @@
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
-    <div class="field">
-      <%= f.label :school %><br />
-      <%= f.text_field :school %>
-    </div>
-
-    <div class="field">
-      <%= f.label :grade %><br />
-      <%= f.select(:grade, options_for_select([['一年級', 1], ['二年級', 2], ['三年級', 3], ['四年級', 4], ['五年級', 5], ['六年級', 6], ['七年級', 7], ['八年級', 8], ['九年級', 9]])) %> <br />
-    </div>
-
-    <div class="field">
-      <%= f.input :phone, as: :tel %> <br />
-    </div>
-
-    <div class="field">
-      <%= f.input :parent_name %> <br />
-    </div>
-
-    <div class="field">
-      <%= f.input :parent_phone %> <br />
-    </div>
-
-    <div class="field">
-      <%= f.input :parent_occupation %> <br />
-    </div>
-
     <div class="actions">
       <%= f.submit "Update" %>
     </div>

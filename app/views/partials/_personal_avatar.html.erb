@@ -1,0 +1,69 @@
+<div class="profile-sidebar">
+  <!-- SIDEBAR USERPIC -->
+  <div class="profile-userpic">
+    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+  </div>
+  <!-- END SIDEBAR USERPIC -->
+  <!-- SIDEBAR USER TITLE -->
+  <% if current_user.has_role? :student %>
+    <div class="profile-usertitle">
+      <div class="profile-usertitle-name">
+        <%= user.username %>
+      </div>
+      <div class="profile-usertitle-job">
+        學校：<%= user.school %>
+      </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR MENU -->
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          Account Settings </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-flag"></i>
+          Help </a>
+        </li>
+      </ul>
+    </div>
+    <!-- END MENU -->
+  <% else %>
+    <div class="profile-usertitle">
+      <div class="profile-usertitle-name">
+        <%= user.username %>
+      </div>
+      <div class="profile-usertitle-job">
+        教授科目：<%= user.suject %>
+      </div>
+      <div class="profile-usertitle-job">
+        服務單位：<%= user.service_unit %>
+      </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR MENU -->
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          Account Settings </a>
+        </li>
+        <li>
+          <%= link_to(new_teacher_group_path(user.id)) do %> 
+           <i class="fa fa-users"></i></i> 建立群組
+          <% end %>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-flag"></i>
+          Help </a>
+        </li>
+      </ul>
+    </div>
+    <!-- END MENU -->
+  <% end %>
+</div>

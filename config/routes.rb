@@ -108,6 +108,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/student_new', to: 'users/registrations#student_new', :as => :new_student_registration
     get 'users/teacher_new', to: 'users/registrations#teacher_new', :as => :new_teacher_registration
+    # get 'users/student_edit', to: 'users/registrations#student_edit', :as => :edit_student_registration
+    # get 'users/teacher_edit', to: 'users/registrations#teacher_edit', :as => :edit_teacher_registration
   end
 
 
