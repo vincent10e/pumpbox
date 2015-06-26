@@ -1,7 +1,13 @@
 <div class="pb-index-wrapper pb-container">
-  <%= link_to teacher_group_path(@teacher, @group) do %>
-    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 群組首頁
-  <% end %>
+  <!-- Back Link -->
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to teacher_group_path(@teacher, @group) do %>
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 群組首頁
+      <% end %>
+    </div>
+  </div>
+  <!-- End Back Link -->
 
   <div class="col-md-offset-5 col-md-4">
     <h1>建立群組課程</h1>

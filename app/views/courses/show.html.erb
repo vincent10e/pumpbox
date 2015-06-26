@@ -1,6 +1,7 @@
 <div class="pb-index-wrapper pb-container">
   <p id="notice"><%= notice %></p>
-  <a href="javascript:history.back()"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 回首頁 </a>
+  <%= render "course_back_link" %>
+  <!-- End Teacher Back Link -->
 
   <div class="row">
     <div class="col-md-8">
@@ -24,7 +25,11 @@
   <div class="row">
     <div class="col-md-9 col-md-push-3">
       <h3> 觀念地圖 </h3>
-      <%= render 'customized_concepts/index', locals: {customized_concepts: @customized_concepts} %>
+      <% if @group%>
+        <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>
+      <% else %>
+        <%= render partial: 'courses/list_customized_concept', locals: {customized_concepts: @customized_concepts} %>
+      <% end %>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <div class="list-group">

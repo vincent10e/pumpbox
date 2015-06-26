@@ -24,7 +24,16 @@
     </div>
     <div class="col-md-3 col-md-pull-9">
       <p id="notice"><%= notice %></p>
-      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> <%= link_to "Back", :back %>
+      
+      <% if @group %>
+        <%=link_to group_course_path(@group, @course) do %> 
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 課程首頁
+        <% end %>
+      <% else %>
+        <%=link_to course_path(@course) do %> 
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 課程首頁
+        <% end %>
+      <% end %>
 
       <h2 class="course-title">
         <%= @customized_concept.title %>

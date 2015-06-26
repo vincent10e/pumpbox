@@ -16,6 +16,8 @@ class CustomizedConceptsController < ApplicationController
     @customized_concept ||= CustomizedConcept.find(params[:id])
     @next_concept = @customized_concept.next
     @prev_concept = @customized_concept.previous
+
+    @group = Group.find(params[:group_id]) if params[:group_id]
   end
 
   # GET /customized_concepts/new
@@ -33,7 +35,7 @@ class CustomizedConceptsController < ApplicationController
 
     # test_paper
     question = @customized_concept.test_paper_questions.build
-    5.times { question.test_paper_options.build }
+    20.times { question.test_paper_options.build }
 
   end
 

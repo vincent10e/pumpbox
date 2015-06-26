@@ -7,6 +7,8 @@ class CoursesController < ApplicationController
   def index
     @group = Group.find(params[:group_id])
     @courses = @group.courses
+
+    @teacher = @group.teacher_id
   end
 
   # GET /courses/1
@@ -14,6 +16,9 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @customized_concepts = @course.customized_concepts
+
+    
+    @group = Group.find(params[:group_id]) if params[:group_id]
   end
 
   # GET /courses/new

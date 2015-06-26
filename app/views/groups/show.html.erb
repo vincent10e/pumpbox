@@ -1,12 +1,19 @@
 <div class="pb-index-wrapper pb-container">
-  <%= link_to root_path do %>
-    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 教師首頁
+  <!-- Back Link -->
+  <% if current_user.has_role? :student %>
+    <%=link_to root_path do %> 
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 學生首頁
+    <% end %>
+  <% else %>
+    <%=link_to root_path do %> 
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> 教師首頁
+    <% end %>
   <% end %>
-
+  <!-- End Back Link -->
+  
   <div class="row">
     <div class="col-md-9 col-md-push-3">
-      <%= render partial: "partials/course_info", locals: {my_courses: @courses} if @courses%>
-      
+      <%= render partial: "groups/group_course_info", locals: {my_courses: @courses, group: @group} if @courses%>
     </div>
     <div class="col-md-3 col-md-pull-9">
       <% if current_user.has_role? :student %>
