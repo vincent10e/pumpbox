@@ -14,7 +14,7 @@
 #= require growlyflash
 #= require sweet-alert-confirm
 #= require ckeditor/init 
-
+#= require bootstrap
 
 
 

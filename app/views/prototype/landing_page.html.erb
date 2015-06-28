@@ -1,0 +1,20 @@
+<%= render "landing_page_header" %>
+<div class="pb-index-wrapper pb-container">
+
+  
+    <div class="row">
+      <div class="col-md-9 col-md-push-3 list-course">
+        <%= render partial: 'partials/course_info', locals: {my_courses: @courses, my_groups: @groups} %>
+      </div>
+      <div class="col-md-3 col-md-pull-9">
+        <%= render partial: 'course_filter', locals: {my_courses: @courses, my_groups: @groups} %>
+      </div>
+    </div>
+  
+</div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    pumpBox.coursesPathDescriptionOverlayWindowFunction();
+  </script>
+<% end %>
