@@ -27,9 +27,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
   # def update
@@ -51,15 +51,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def student_new
-    super
+    build_resource()
   end
 
   def teacher_new
-    super
+    build_resource()
   end
 
   def student_edit(resource)
-    suer
+    super
   end
 
   def teacher_edit

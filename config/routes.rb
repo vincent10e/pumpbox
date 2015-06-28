@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'prototype#landing_page'
+  root 'prototypes#landing_page'
   get '/courses/12/' => 'prototype#course', as: :course1
   get '/courses/13/' => 'prototype#course2', as: :course2
   get '/courses/14/' => 'prototype#course3', as: :course3

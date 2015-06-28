@@ -8,7 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Pumpbox', root_path, class: "navbar-brand" %>
+      <% if user_signed_in? %>
+        <%= link_to 'Pumpbox', prototypes_path, class: "navbar-brand" %>
+      <% else %>
+        <%= link_to 'Pumpbox', root_path, class: "navbar-brand" %>
+      <% end %>
+      
     </div>
 
     <div class="collapse navbar-collapse" id="main-menu">

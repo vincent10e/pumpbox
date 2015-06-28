@@ -1,4 +1,4 @@
-class PrototypeController < ApplicationController
+class PrototypesController < ApplicationController
 
   before_action :fake_data
   before_action :load_student_as_user
