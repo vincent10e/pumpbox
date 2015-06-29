@@ -21,12 +21,7 @@ class TestPapersController < ApplicationController
     @question_url = @concept.test_paper_questions.first.question.url
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
-    # @concept = CustomizedConcept.find(params[:customized_concept_id])
-    # @tests = @concept.tests
-    # @test_attempt = @concept.test_attempts.build
-    # @test_attempt.user = current_user.id
-
-    # @tests.count.times {@test_attempt.answer_records.build}
+    
   end
 
   # GET /test_papers/1/edit
@@ -38,16 +33,17 @@ class TestPapersController < ApplicationController
   def create
     @concept = CustomizedConcept.find(params[:test_paper][:customized_concept_id])
     @test_paper = TestPaper.new(test_paper_params)
+    @course = @concept.course
     @question_url = @concept.test_paper_questions.first.question.url
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
 
     @error_test = check_answer(params[:select_answers], @options)
-   
+    
     respond_to do |format|
       if (@error_test.length == 0)
         if @test_paper.save
-          format.html { redirect_to @test_paper, notice: 'Test paper was successfully created.' }
+          format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Successfully pass' }
           format.json { render :show, status: :created, location: @test_paper }
         else
           format.html { render :new }

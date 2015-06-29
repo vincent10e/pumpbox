@@ -40,7 +40,7 @@ class TestAttemptsController < ApplicationController
     respond_to do |format|
       if (@error_test.length == 0) 
         if @test_attempt.save
-          format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Test attempt was successfully created.' }
+          format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Successfully pass' }
           format.json { render :show, status: :created, location: @test_attempt }
         end
       else

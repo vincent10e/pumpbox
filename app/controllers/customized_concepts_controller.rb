@@ -43,7 +43,7 @@ class CustomizedConceptsController < ApplicationController
   def edit
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.find(params[:id])
-
+    
   end
 
   # POST /customized_concepts
@@ -67,8 +67,10 @@ class CustomizedConceptsController < ApplicationController
   # PATCH/PUT /customized_concepts/1.json
   def update
     @course = Course.find(params[:course_id])
+    @customized_concept = CustomizedConcept.find(params[:id])
+    binding.pry
     respond_to do |format|
-      if @customized_concept.update(customized_concept_params)
+      if @customized_concept.update!(customized_concept_params)
         format.html { redirect_to course_customized_concepts_path(@course), notice: 'Customized concept was successfully updated.' }
         format.json { render :show, status: :ok, location: @customized_concept }
       else
@@ -128,7 +130,7 @@ class CustomizedConceptsController < ApplicationController
                                                                     :id,
                                                                     :question,
                                                                     :customized_concept_id,
-                                                                    test_paper_options_attributes: [:id, :answer, :question_number]
+                                                                    test_paper_options_attributes: [:id, :answer, :test_paper_question_id, :question_number]
                                                                   ])
     end
 end
