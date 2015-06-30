@@ -22,7 +22,8 @@
             <%= render 'test_fields', :f => test %>
           <% end %>
         <% end %>
-        <% if @test_paper_questions == nil &&  @tests == nil %>
+        
+        <% if !@test_paper_questions.any? && !@tests.any? %>
           <p><%= link_to_add_fields "自定考題", f, :tests, "btn btn-primary add_new_test", "Add a new Test" %> 
             <%= link_to_add_fields "上傳考題", f, :test_paper_questions, "btn btn-primary add_paper_test", "Add a new Test" %>
           </p>
