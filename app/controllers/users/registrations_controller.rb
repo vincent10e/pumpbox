@@ -29,12 +29,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
+    @user = current_user
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+
+    @user = current_user
+  end
 
   # DELETE /resource
   # def destroy
@@ -58,12 +61,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource()
   end
 
-  def student_edit(resource)
-    super
+  def student_edit
+
   end
 
   def teacher_edit
-    super
+    
   end
 
   # protected

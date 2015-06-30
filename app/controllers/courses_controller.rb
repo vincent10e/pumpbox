@@ -144,12 +144,22 @@ class CoursesController < ApplicationController
   end
 
   def filter_by_level
+    @target_courses = EducationLevel.all
+    if current_user.has_role? :student
+      @users = current_user.student
+      @groups = @users.groups # To-Do : should modify the group which is student belongs to
+    else
+      @users = current_user.teacher
+      @groups = @users.groups
+      @subjects = Subject.all
+    end
     @level = EducationLevel.find(params[:education_level_id])
     @subjects = @level.subjects
     @volumes = @level.volumes
-    @list_courses = Course.where(education_level_id: params[:education_level_id]).order(:title).page params[:page]
-    
+    @courses = Course.where(education_level_id: params[:education_level_id]).order(:title).page params[:page]
+
     respond_to do |format|
+      format.html {render "prototypes/index"}
       format.js
     end  
   end
