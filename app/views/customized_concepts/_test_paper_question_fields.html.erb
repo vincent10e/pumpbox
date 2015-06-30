@@ -5,7 +5,9 @@
     <%= render 'test_paper_option_fields', :f => option %>
   <% end %>
 
-  <p><%= link_to_add_fields "新增選項答案", f, :test_paper_options, "btn btn-primary add_new_option", "Add a new Option" %></p>
+  <% if @test_paper_questions.blank? && @tests.blank? %>
+    <p><%= link_to_add_fields "新增選項答案", f, :test_paper_options, "btn btn-primary add_new_option", "Add a new Option" %></p>
+  <% end %>
 </div>
 
 <script type="text/javascript">  

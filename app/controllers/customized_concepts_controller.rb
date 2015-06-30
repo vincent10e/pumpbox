@@ -23,20 +23,10 @@ class CustomizedConceptsController < ApplicationController
   # GET /customized_concepts/new
   def new
     @course = Course.find(params[:course_id])
-    
     @customized_concept = @course.customized_concepts.new
-    
-    test = @customized_concept.tests.build
-    4.times { test.options.build }
-    
     @database_tests = Test.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 
-
-    # test_paper
-    question = @customized_concept.test_paper_questions.build
-    20.times { question.test_paper_options.build }
-
   end
 
   # GET /customized_concepts/1/editg
@@ -71,7 +61,7 @@ class CustomizedConceptsController < ApplicationController
     @customized_concept = CustomizedConcept.find(params[:id])
     
 
-    if params[:customized_concept][:test_paper_questions_attributes][:"0"] != nil
+    if !params[:customized_concept][:test_paper_questions_attributes][:"0"].blank?
       test_paper_options_attributes = params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
       test_paper_options_attributes.each_value do |v|
         t = TestPaperOption.find(v[:id].to_i)
