@@ -15,6 +15,6 @@
 #= require sweet-alert-confirm
 #= require ckeditor/init 
 #= require bootstrap
-
+#= require bootstrap-sprockets
 
 
