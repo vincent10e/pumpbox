@@ -126,14 +126,14 @@ class CoursesController < ApplicationController
     @v_filter = params[:select_volume][:volume_id]
 
     if @s_filter.count > 1 && @v_filter.count <= 1# user didn't select any subject, so return all of the courses
-      @list_courses = Course.where(subject_id: @s_filter).order(:title).page params[:page]
+      @courses = Course.where(subject_id: @s_filter).order(:title).page params[:page]
     elsif @s_filter.count <= 1 && @v_filter.count > 1
-      @list_courses = Course.where(volume_id: @v_filter).order(:title).page params[:page]
+      @courses = Course.where(volume_id: @v_filter).order(:title).page params[:page]
     else
       if @s_filter.count > 1 && @v_filter.count > 1
-        @list_courses = Course.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
+        @courses = Course.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
       else
-        @list_courses = Course.all.order(:title).page params[:page]
+        @courses = Course.all.order(:title).page params[:page]
       end
     end
 
@@ -145,13 +145,15 @@ class CoursesController < ApplicationController
 
   def filter_by_level
     @target_courses = EducationLevel.all
-    if current_user.has_role? :student
-      @users = current_user.student
-      @groups = @users.groups # To-Do : should modify the group which is student belongs to
-    else
-      @users = current_user.teacher
-      @groups = @users.groups
-      @subjects = Subject.all
+    if user_signed_in?
+      if current_user.has_role? :student
+        @users = current_user.student
+        @groups = @users.groups # To-Do : should modify the group which is student belongs to
+      else
+        @users = current_user.teacher
+        @groups = @users.groups
+        @subjects = Subject.all
+      end
     end
     @level = EducationLevel.find(params[:education_level_id])
     @subjects = @level.subjects
