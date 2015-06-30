@@ -71,7 +71,7 @@ class CustomizedConceptsController < ApplicationController
     @customized_concept = CustomizedConcept.find(params[:id])
     
 
-    if params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
+    if params[:customized_concept][:test_paper_questions_attributes][:"0"] != nil
       test_paper_options_attributes = params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
       test_paper_options_attributes.each_value do |v|
         t = TestPaperOption.find(v[:id].to_i)
