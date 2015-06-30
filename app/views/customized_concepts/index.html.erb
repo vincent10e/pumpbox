@@ -42,7 +42,13 @@
               <td><%= customized_concept.title %></td>
               <td><%= customized_concept.description %></td>
               <td><%= link_to("顯示講義", customized_concept.lecture.url) if customized_concept.lecture.url != nil%></td>
-              <th><%= customized_concept.tests.count %> </td>
+              <td>
+                <% if customized_concept.test_paper_questions.first != nil %>
+                  <%= customized_concept.test_paper_questions.first.test_paper_options.count %>
+                <% else %>
+                  <%= customized_concept.tests.count %> 
+                <% end %>
+              </td>
               <td> <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_course_customized_concept_path(customized_concept.course_id, customized_concept) %></button> </td>
               <td><button type="button" class="btn btn-danger"><%= link_to '刪除', course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
             </tr>

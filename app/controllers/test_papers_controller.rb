@@ -21,7 +21,10 @@ class TestPapersController < ApplicationController
     @question_url = @concept.test_paper_questions.first.question.url
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
-    
+
+    @options.count.times do |i| 
+      @test_paper.paper_answer_records.build(test: i+1)
+    end
   end
 
   # GET /test_papers/1/edit
@@ -37,7 +40,7 @@ class TestPapersController < ApplicationController
     @question_url = @concept.test_paper_questions.first.question.url
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
-
+    @answer_records = @test_paper.paper_answer_records
     @error_test = check_answer(params[:select_answers], @options)
     
     respond_to do |format|
@@ -49,6 +52,11 @@ class TestPapersController < ApplicationController
           format.html { render :new }
         end
       else
+        @error_test.each do |e|
+          @answer_records.each do |a|
+            a.error_times += 1 if a.test == e
+          end
+        end
         format.html { render :new }
       end
     end
@@ -105,6 +113,8 @@ class TestPapersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_paper_params
-      params.require(:test_paper).permit(:customized_concept_id, :user)
+      params.require(:test_paper).permit(:customized_concept_id, 
+                                         :user,
+                                         paper_answer_records_attributes: [:id, :test, :error_times])
     end
 end

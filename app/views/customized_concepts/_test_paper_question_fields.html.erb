@@ -5,15 +5,19 @@
     <%= render 'test_paper_option_fields', :f => option %>
   <% end %>
 
+  <p><%= link_to_add_fields "新增選項答案", f, :test_paper_options, "btn btn-primary add_new_option", "Add a new Option" %></p>
 </div>
 
 <script type="text/javascript">  
   $(function(){
-   $("input[name='select_item[subject_id][]']").on('change',function(){
-       $( ".subject-list-form" ).submit();
-      });
-   $("input[name='select_volume[volume_id][]']").on('change',function(){
-       $( ".subject-list-form" ).submit();
-      });
+   var option_number = 1;
+   $(".add_new_option").click(function() {
+      $(".options").last().append("第" + option_number + "題答案:");
+      $("input[name*=question_number]").last().val(option_number);
+      option_number  += 1;
+      $(".add_new_test").slideUp();
+      $(".add_paper_test").slideUp();
+    });
   });
 </script>
+

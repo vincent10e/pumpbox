@@ -35,7 +35,7 @@ class TestAttemptsController < ApplicationController
     @test_attempt = @concept.test_attempts.new(test_attempt_params)
     @course = @concept.course
     @answer_records = @test_attempt.answer_records
-
+    
     @error_test = check_answer(params[:select_answers])
     respond_to do |format|
       if (@error_test.length == 0) 

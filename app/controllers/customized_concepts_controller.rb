@@ -43,7 +43,8 @@ class CustomizedConceptsController < ApplicationController
   def edit
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.find(params[:id])
-    
+    @tests = @customized_concept.tests
+    @test_paper_questions = @customized_concept.test_paper_questions
   end
 
   # POST /customized_concepts
@@ -68,7 +69,17 @@ class CustomizedConceptsController < ApplicationController
   def update
     @course = Course.find(params[:course_id])
     @customized_concept = CustomizedConcept.find(params[:id])
-    binding.pry
+    
+
+    if params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
+      test_paper_options_attributes = params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
+      test_paper_options_attributes.each_value do |v|
+        t = TestPaperOption.find(v[:id].to_i)
+        t.answer = v[:answer]
+        t.save!
+      end
+    end
+
     respond_to do |format|
       if @customized_concept.update!(customized_concept_params)
         format.html { redirect_to course_customized_concepts_path(@course), notice: 'Customized concept was successfully updated.' }
@@ -92,10 +103,14 @@ class CustomizedConceptsController < ApplicationController
   end
 
   def student_detail
+    # for test attempt
     @concept = CustomizedConcept.find(params[:customized_concept_id])
     @tests = @concept.tests
     @test_attempts = @concept.test_attempts.where(user: params[:user_id], customized_concept_id: @concept.id)
-    
+
+    # for test paper
+    @test_paper = @concept.test_papers.last
+  
   end
 
   def paper_option

@@ -1,4 +1,4 @@
-<p> 第<%= f.index+1 %>題答案 :
+<p class="options"> 
 <div class="checkbox">
 <%= f.collection_radio_buttons(:answer, SelectOption.all, :number, :label) do |b|%>
     <%= b.label() { b.radio_button+b.text } %>
