@@ -1,0 +1,56 @@
+
+      <table class="table table-striped table-hover .table-bordered", id="report">
+        <thead>
+          <h1> Teacher : <%= @teacher.username %> </h1>
+          <tr>
+            <th>學生</th>
+            <% @concepts.each do |c| %>
+              <th> <%= c.title %> </th> 
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @students.each do |student| %>
+          <tr>
+            <td> <%= student.username %></td>
+            <% @concepts.each do |c| %>
+              
+              <% if c.test_attempts.where(user: student.user_id).size!= 0 %>
+                <td><%= link_to(c.test_attempts.where(user: student.user_id).size , customized_concept_student_detail_path(c, student.user_id)) %> </td>
+              
+              <% else %>
+                <td>  <%= link_to(c.test_papers.where(user: student.user_id).size , customized_concept_student_detail_path(c, student.user_id)) %> </td>
+              <% end %>
+              
+            <% end %>
+          <tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // $('#report td:even').css({ backgroundColor: "#5cb85c", color: "white" });
+    
+    $('#report td').each(function(){
+      var n = $(this).text();
+      // one time pass
+      if (n == 1){ 
+        $(this).css({ backgroundColor: "#5cb85c", color: "white" });
+      }
+      // over two time pass
+      if (n >= 2){ 
+        $(this).css({ backgroundColor: "#d9534f", color: "white" });
+      }
+    });
+
+  });
+</script>
+
+
+

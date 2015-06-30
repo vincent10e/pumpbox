@@ -84,9 +84,30 @@ class CoursesController < ApplicationController
     end
   end
 
+  def concept_list
+    @course = Course.find(params[:course_id])
+    @customized_concepts = @course.customized_concepts
+    respond_to do |format|
+      format.js
+    end  
+  end
+
+  def concept_map
+    @course = Course.find(params[:course_id])
+    @customized_concepts = @course.customized_concepts
+
+    respond_to do |format|
+      format.js
+    end  
+  end
+
   def list_students
     @course = Course.find(params[:course_id])
     @group = @course.group
+
+    respond_to do |format|
+      format.js
+    end  
   end
 
   def reports
@@ -94,6 +115,10 @@ class CoursesController < ApplicationController
     @concepts = @course.customized_concepts
     @group = @course.group
     @students = @group.students
+
+    respond_to do |format|
+      format.js
+    end  
   end
 
   def course_filter

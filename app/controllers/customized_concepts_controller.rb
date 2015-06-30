@@ -6,6 +6,11 @@ class CustomizedConceptsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @customized_concepts = @course.customized_concepts
+
+    respond_to do |format|
+      format.html
+      format.js
+    end  
   end
 
   # GET /customized_concepts/1

@@ -1,0 +1,23 @@
+
+<h3><%= @group.name %></h3>
+<table class="table table-striped table-hover">
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <th>School</th>
+      <th>Last Login </th>
+    </tr>
+    <% @group.students.each do |s| %>
+    <tr>
+      <td> <%= s.username %></td>
+      <td> <%= s.school %> </td>
+      <td> 2015-06-03 06:47:47 </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :customized_concepts
+    get 'concept_map'
+    get 'concept_list'
     get 'list_students'
     get 'reports'
     get 'course_filter', on: :collection
