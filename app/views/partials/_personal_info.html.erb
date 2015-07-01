@@ -2,7 +2,7 @@
 
   <% if current_user.has_role? :student %>
   <!-- student info -->
-    <%= render partial: "partials/personal_avatar", locals: {user: @users} %>
+    <%= render partial: "partials/personal_avatar", locals: {user: @user} %>
     <%= form_tag("/groups/add_student", method: "post") do %>
       <%= text_field_tag(:group_id) %>
       <%= submit_tag("加入群組") %>
@@ -28,7 +28,7 @@
     
   <% else %>
     <!-- Teacher info   -->
-    <%= render partial: "partials/personal_avatar", locals: {user: @users} %>
+    <%= render partial: "partials/personal_avatar", locals: {user: @user} %>
     <!-- END Teach info -->
     <br>
     
@@ -36,7 +36,7 @@
     <div class="list-group">
       <li class="list-group-item active"><strong>群組</strong></li>
       <% @groups.each do |group| %>
-        <li class="list-group-item"><%= link_to(group.name, teacher_group_path(@users, group.id)) %></li>
+        <li class="list-group-item"><%= link_to(group.name, teacher_group_path(@user, group.id)) %></li>
       <% end %>
     </div>
     <!-- list all subject -->

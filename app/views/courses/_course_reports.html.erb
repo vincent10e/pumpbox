@@ -5,7 +5,11 @@
           <tr>
             <th>學生</th>
             <% @concepts.each do |c| %>
-              <th> <%= c.title %> </th> 
+              <th> <%= c.title %>
+                <% if !c.lecture.blank? %>
+                  <i class="fa fa-file-text-o"></i>
+                <% end %>
+              </th> 
             <% end %>
           </tr>
         </thead>

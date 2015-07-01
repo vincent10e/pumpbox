@@ -7,11 +7,11 @@ class PrototypesController < ApplicationController
     @courses = Course.where(is_open: true).order(:title).page params[:page] # To - DO : it should display the course which is set to opened.
     @target_courses = EducationLevel.all
     if current_user.has_role? :student
-      @users = current_user.student
-      @groups = @users.groups # To-Do : should modify the group which is student belongs to
+      @user = current_user.student
+      @groups = @user.groups # To-Do : should modify the group which is student belongs to
     else
-      @users = current_user.teacher
-      @groups = @users.groups
+      @user = current_user.teacher
+      @groups = @user.groups
       @subjects = Subject.all
     end
     
@@ -27,9 +27,7 @@ class PrototypesController < ApplicationController
   def landing_page
     @courses = Course.where(is_open: true).order(:title).page params[:page]
     @target_courses = EducationLevel.all
-    
-      @subjects = Subject.all
-   
+    @subjects = Subject.all 
   end
 
   def course
