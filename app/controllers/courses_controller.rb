@@ -161,9 +161,9 @@ class CoursesController < ApplicationController
     @courses = Course.where(education_level_id: params[:education_level_id]).order(:title).page params[:page]
 
     respond_to do |format|
-      format.html {render "prototypes/index"}
+      format.html { render "prototypes/index" }
       format.js
-    end  
+    end
   end
 
   def change_status
@@ -180,7 +180,6 @@ class CoursesController < ApplicationController
       end
     end
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

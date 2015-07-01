@@ -27,7 +27,7 @@ class PrototypesController < ApplicationController
   def landing_page
     @courses = Course.where(is_open: true).order(:title).page params[:page]
     @target_courses = EducationLevel.all
-    @subjects = Subject.all 
+    @subjects = Subject.all
   end
 
   def course

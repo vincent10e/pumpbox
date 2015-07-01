@@ -123,8 +123,6 @@ Rails.application.routes.draw do
     # get 'users/teacher_edit', to: 'users/registrations#teacher_edit', :as => :edit_teacher_registration
   end
 
-
-  
   resources :customized_concepts do
     resources :tests
     resources :test_attempts

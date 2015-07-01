@@ -50,7 +50,7 @@ class CustomizedConceptsController < ApplicationController
     
     respond_to do |format|
       if @customized_concept.save
-        format.html { redirect_to course_customized_concepts_path(@course.id), notice: 'Customized concept was successfully created.' }
+        format.html { redirect_to group_course_path(@course.group, @course), notice: 'Customized concept was successfully created.' }
         # format.json { render :show, status: :created, location: @customized_concept }
       else
         format.html { render :new }
@@ -65,8 +65,7 @@ class CustomizedConceptsController < ApplicationController
     @course = Course.find(params[:course_id])
     @customized_concept = CustomizedConcept.find(params[:id])
     
-
-    if !params[:customized_concept][:test_paper_questions_attributes][:"0"].blank?
+    if !params[:customized_concept][:test_paper_questions_attributes].blank?
       test_paper_options_attributes = params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
       test_paper_options_attributes.each_value do |v|
         t = TestPaperOption.find(v[:id].to_i)
@@ -77,7 +76,7 @@ class CustomizedConceptsController < ApplicationController
 
     respond_to do |format|
       if @customized_concept.update!(customized_concept_params)
-        format.html { redirect_to course_customized_concepts_path(@course), notice: 'Customized concept was successfully updated.' }
+        format.html { redirect_to group_course_path(@course.group, @course), notice: 'Customized concept was successfully updated.' }
         format.json { render :show, status: :ok, location: @customized_concept }
       else
         format.html { render :edit }
