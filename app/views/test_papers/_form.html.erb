@@ -16,22 +16,22 @@
 
       <% @options.each_with_index do |option, index| %>
         <div class="form-inputs">
-          <% if @error_test && @error_test.include?(index+1) %>
+          <% if @error_test && @error_test.include?(option.question_number) %>
             <div class="error">
-              <p> 第 <%= index+1 %>題
+              <p> 第 <%= option.question_number %>題
               <% if params[:select_answers] %>
-                <%= collection_select(:select_answers, :"#{index+1}", SelectOption.all, :number, :label, prompt: "請選擇", selected: params[:select_answers][:"#{(index+1).to_i}"])%>
+                <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇", selected: params[:select_answers][:"#{option.question_number}"])%>
               <% else %>
-                <%= collection_select(:select_answers, :"#{index+1}", SelectOption.all, :number, :label, prompt: "請選擇")%>
+                <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇")%>
               <% end %>
             </div>
           <% else %>
             <div>
-              <p> 第 <%= index+1 %>題
+              <p> 第 <%= option.question_number %>題
               <% if params[:select_answers] %>
-                <%= collection_select(:select_answers, :"#{index+1}", SelectOption.all, :number, :label, prompt: "請選擇", selected: params[:select_answers][:"#{(index+1).to_i}"])%>
+                <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇", selected: params[:select_answers][:"#{option.question_number}"])%>
               <% else %>
-                <%= collection_select(:select_answers, :"#{index+1}", SelectOption.all, :number, :label, prompt: "請選擇")%>
+                <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇")%>
               <% end %>
             </div>
           <% end %>

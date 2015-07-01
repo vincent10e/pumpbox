@@ -1,5 +1,10 @@
 <div class="alert alert-info" role="alert">
-  <%= f.input :question, :as => :file %>
+  <% if @customized_concept.test_paper_questions && !@customized_concept.test_paper_questions.blank? %>
+    <%= f.input :question, as: :file, label: "已上傳考卷 : #{@customized_concept.test_paper_questions.first.question_identifier}", wrapper_html: {class: "carrier-wave-field"}%>
+  <% else %>
+    <%= f.input :question, :as => :file %>
+  <% end %>
+  
 
   <%= f.fields_for :test_paper_options do |option| %>
     <%= render 'test_paper_option_fields', :f => option %>

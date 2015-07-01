@@ -1,0 +1,15 @@
+// Place all the styles related to the CustomizedConcepts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.carrier-wave-field {
+    color: black; /*or whatever you want to change*/
+}
+.carrier-wave-field input {
+    color: transparent; /*let no chosen file disapear*/
+}
+
+.carrier-wave-field-uploaded input {
+    color: black; /*let no chosen file disapear*/
+}

@@ -6,7 +6,7 @@
             <th>學生</th>
             <% @concepts.each do |c| %>
               <th> <%= c.title %>
-                <% if !c.lecture.blank? %>
+                <% if c.tests.count != 0 || c.test_paper_questions.count != 0 %>
                   <i class="fa fa-file-text-o"></i>
                 <% end %>
               </th> 
@@ -22,7 +22,6 @@
               
               <% if c.test_attempts.where(user: student.user_id).size!= 0 %>
                 <td><%= link_to(c.test_attempts.where(user: student.user_id).size , customized_concept_student_detail_path(c, student.user_id)) %> </td>
-              
               <% else %>
                 <td>  <%= link_to(c.test_papers.where(user: student.user_id).size , customized_concept_student_detail_path(c, student.user_id)) %> </td>
               <% end %>

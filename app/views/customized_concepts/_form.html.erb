@@ -30,7 +30,14 @@
         <% end %>
       </div>
 
+      <% if !@customized_concept.lecture.blank? %>
+        <%= f.input :lecture, as: :file, label: "已上傳講義 : #{@customized_concept.lecture_identifier}", wrapper_html: {class: "carrier-wave-field"}%>
+      <% else %>
         <%= f.input :lecture, as: :file%>
+      <% end %>
+      
+
+        
       <div class="form-actions">
         <%= f.button :submit %>
       </div>
@@ -38,7 +45,6 @@
 
   </div>
 </div>
-
 
 <script>
     function add_fields(link, association, content) {  
@@ -53,3 +59,12 @@
 </script>
 
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">  
+  $(document).ready(function () {
+     $("input[type=file]").change(function(){
+      $(this).parent().removeClass("arrier-wave-field").addClass("carrier-wave-field-uploaded");
+     });
+  });
+</script>
