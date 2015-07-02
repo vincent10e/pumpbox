@@ -130,4 +130,6 @@ Rails.application.routes.draw do
     get 'student_detail/:user_id', to: 'customized_concepts#student_detail', as: 'student_detail'
     get 'paper_option', on: :collection
   end
+
+  resources :personal_profiles
 end

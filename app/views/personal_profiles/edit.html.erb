@@ -1,0 +1,36 @@
+<div class="pb-index-wrapper pb-container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <% if current_user.has_role? :student %>
+        <%= simple_form_for(@student, url: personal_profile_path(@student)) do |f| %>
+          <%= f.error_notification %>
+
+            <%= f.input :username %>
+            <%= f.input :birth, as: :date%>
+            <%= f.input :school %>
+            <%= f.input :gender %>
+            <%= f.input :grade %>
+         
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= simple_form_for(@teacher, url: personal_profile_path(@teacher)) do |f| %>
+            <%= f.input :username %>
+            <%= f.input :service_unit %>
+            <%= f.input :birth, as: :date %>
+            <%= f.input :gender %>
+            <%= f.input :suject %>
+         
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+        <% end %>
+      <% end %>
+      
+    </div>
+  </div>
+</div>
