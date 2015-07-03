@@ -1,11 +1,16 @@
 <div class="profile-sidebar">
   <!-- SIDEBAR USERPIC -->
-  <div class="profile-userpic">
-    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-  </div>
+  
   <!-- END SIDEBAR USERPIC -->
   <!-- SIDEBAR USER TITLE -->
   <% if current_user.has_role? :student %>
+    <div class="profile-userpic">
+    <% if user.avatar? %>
+      <%= image_tag(user.avatar.thumb.url, class: "img-responsive")%>
+    <% else %>
+      <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+    <% end %>
+    </div>
     <div class="profile-usertitle">
       <div class="profile-usertitle-name">
         <%= user.username %>
@@ -32,6 +37,13 @@
     </div>
     <!-- END MENU -->
   <% else %>
+    <div class="profile-userpic">
+      <% if user.avatar? %>
+        <%= image_tag(user.avatar.thumb.url) %>
+      <% else %>
+        <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+      <% end %>
+    </div>
     <div class="profile-usertitle">
       <div class="profile-usertitle-name">
         <%= user.username %>

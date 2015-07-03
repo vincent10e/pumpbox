@@ -33,10 +33,10 @@ class PersonalProfilesController < ApplicationController
 
   private
   def teacher_params
-    params.require(:teacher).permit(:user_id, :username, :service_unit, :birth, :gender, :suject)
+    params.require(:teacher).permit(:user_id, :username, :service_unit, :birth, :gender, :suject, :avatar)
   end
 
   def student_params
-    params.require(:student).permit(:user_id, :username, :birth, :school, :gender, :grade)
+    params.require(:student).permit(:user_id, :username, :birth, :school, :gender, :grade, :avatar)
   end
 end

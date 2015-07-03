@@ -6,6 +6,7 @@
           <%= f.error_notification %>
 
             <%= f.input :username %>
+            <%= f.input :avatar, as: :file %>
             <%= f.input :birth, as: :date%>
             <%= f.input :school %>
             <%= f.input :gender %>
@@ -19,6 +20,7 @@
       <% else %>
         <%= simple_form_for(@teacher, url: personal_profile_path(@teacher)) do |f| %>
             <%= f.input :username %>
+            <%= f.input :avatar, as: :file %>
             <%= f.input :service_unit %>
             <%= f.input :birth, as: :date %>
             <%= f.input :gender %>
