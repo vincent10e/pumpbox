@@ -9,7 +9,7 @@
       <tr>
         <th>題號</th>
         <th>錯誤次數 </th>
-        <th>時間</th>
+        <th>是否跳過</th>
       </tr>
     </thead>
 
@@ -18,7 +18,7 @@
       <tr>
         <td><%= record.test %></td>
         <td><%= record.error_times %></td>
-        <td></td>
+        <td><%= record.is_skip %></td>
       </tr>
       <% end %>
     </tbody>

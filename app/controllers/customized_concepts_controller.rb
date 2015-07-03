@@ -47,7 +47,6 @@ class CustomizedConceptsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.new(customized_concept_params)
-    
     respond_to do |format|
       if @customized_concept.save
         format.html { redirect_to group_course_path(@course.group, @course), notice: 'Customized concept was successfully created.' }
@@ -64,16 +63,25 @@ class CustomizedConceptsController < ApplicationController
   def update
     @course = Course.find(params[:course_id])
     @customized_concept = CustomizedConcept.find(params[:id])
-    
+    @customized_concept.update!(customized_concept_params)
     if !params[:customized_concept][:test_paper_questions_attributes].blank?
       test_paper_options_attributes = params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
-      test_paper_options_attributes.each_value do |v|
-        t = TestPaperOption.find(v[:id].to_i)
-        t.answer = v[:answer]
-        t.save!
+      test_paper_options_attributes.each_value do |v| # only edit, but will get wrong when new;
+        if v[:id]
+          t = TestPaperOption.find(v[:id].to_i)
+          t.answer = v[:answer]
+          t.save!
+          if v[:_destroy] == "1"
+            t.destroy!
+          end
+        else
+          t = @customized_concept.test_paper_questions.first.test_paper_options.new(answer: v[:answer], question_number: v[:question_number])
+          t.save!
+        end
       end
     end
 
+    # remove the test_paper_options
     respond_to do |format|
       if @customized_concept.update!(customized_concept_params)
         format.html { redirect_to group_course_path(@course.group, @course), notice: 'Customized concept was successfully updated.' }
@@ -142,4 +150,5 @@ class CustomizedConceptsController < ApplicationController
                                                                     test_paper_options_attributes: [:id, :answer, :test_paper_question_id, :question_number]
                                                                   ])
     end
+
 end

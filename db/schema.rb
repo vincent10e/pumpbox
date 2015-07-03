@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629082007) do
+ActiveRecord::Schema.define(version: 20150703070640) do
 
   create_table "answer_records", force: :cascade do |t|
     t.integer  "test_attempt_id", limit: 4
@@ -109,8 +109,9 @@ ActiveRecord::Schema.define(version: 20150629082007) do
     t.integer  "test_paper_id", limit: 4
     t.integer  "test",          limit: 4
     t.integer  "error_times",   limit: 4, default: 0
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "is_skip",       limit: 1, default: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -198,8 +199,9 @@ ActiveRecord::Schema.define(version: 20150629082007) do
   create_table "test_papers", force: :cascade do |t|
     t.integer  "customized_concept_id", limit: 4
     t.integer  "user",                  limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "retry_time",            limit: 4, default: 1
   end
 
   create_table "tests", force: :cascade do |t|

@@ -83,10 +83,10 @@ class GroupsController < ApplicationController
       @student_group = @group.first.student_groupships.create
       @student_group.student = current_user.student
       @student_group.save
-      redirect_to root_path
+      redirect_to authenticated_root_path
 
     else
-      redirect_to root_path
+      redirect_to authenticated_root_path
     end
   end
 

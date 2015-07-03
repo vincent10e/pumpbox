@@ -41,8 +41,7 @@ class TestPapersController < ApplicationController
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
     @answer_records = @test_paper.paper_answer_records
-    @error_test = check_answer(params[:select_answers], @options)
-    
+    @error_test = check_answer(params[:select_answers], @options, params[:skip], @answer_records)
     respond_to do |format|
       if (@error_test.length == 0)
         if @test_paper.save
@@ -52,6 +51,7 @@ class TestPapersController < ApplicationController
           format.html { render :new }
         end
       else
+        @test_paper.retry_time += 1
         @error_test.each do |e|
           @answer_records.each do |a|
             a.error_times += 1 if a.test == e
@@ -93,15 +93,19 @@ class TestPapersController < ApplicationController
     end  
   end
 
-  def check_answer(select_answers, right_answer)
+  def check_answer(select_answers, right_answer, skip_num, answer_records)
     error_test = []
     select_answers.each_pair do |number, answer|
       if answer.to_i != right_answer.find_by_question_number(number.to_i).answer
-        error_test << number.to_i
-        
+        if !skip_num.blank? && skip_num.include?(number.to_s) # student select the skip check_box
+          answer_records.each do |a|
+            a.is_skip = true if a.test == number.to_i
+          end
+        else
+          error_test << number.to_i
+        end
       end
     end
-  
     return error_test
   end
 

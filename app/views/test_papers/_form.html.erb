@@ -6,9 +6,9 @@
       <%= simple_form_for(@test_paper) do |f| %>
       <%= f.error_notification %>
       <%= f.fields_for :paper_answer_records do |a| %>
-          <%= a.input :test, as: :hidden%>
-          <%= a.input :error_times, as: :hidden %>
-        <% end %>
+        <%= a.input :test, as: :hidden%>
+        <%= a.input :error_times, as: :hidden %>
+      <% end %>
       <div class="form-inputs">
         <%= f.input :customized_concept_id, as: :hidden %>
         <%= f.input :user, as: :hidden %>
@@ -18,18 +18,30 @@
         <div class="form-inputs">
           <% if @error_test && @error_test.include?(option.question_number) %>
             <div class="error">
-              <p> 第 <%= option.question_number %>題
+              <p> 第 <%= option.question_number %> 題 </p>
               <% if params[:select_answers] %>
                 <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇", selected: params[:select_answers][:"#{option.question_number}"])%>
+                <% if params[:skip] && params[:skip].include?(option.question_number.to_s) %>
+                  <%= check_box_tag("skip[#{option.question_number}]", 1,1) %>
+                <% else %>
+                  <%= check_box_tag("skip[#{option.question_number}]") %>
+                <% end %>
+                <%= label_tag("skip[#{option.question_number}]", "想不出來或題目有錯") %>
               <% else %>
                 <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇")%>
               <% end %>
+              
             </div>
           <% else %>
             <div>
-              <p> 第 <%= option.question_number %>題
+              <p> 第 <%= option.question_number %>題 </p>
               <% if params[:select_answers] %>
                 <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇", selected: params[:select_answers][:"#{option.question_number}"])%>
+                <% if params[:skip] && params[:skip].include?(option.question_number.to_s) %>
+                  <%= check_box_tag("skip[#{option.question_number}]", 1,1) %>
+                  <%= label_tag("skip[#{option.question_number}]", "想不出來或題目有錯") %>
+                <% end %>
+                
               <% else %>
                 <%= collection_select(:select_answers, :"#{option.question_number}", SelectOption.all, :number, :label, prompt: "請選擇")%>
               <% end %>

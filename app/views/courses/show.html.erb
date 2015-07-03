@@ -28,9 +28,17 @@
       <div class="course-info-display">
         <h3> 觀念地圖 </h3>
         <% if @group%>
-          <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>
+          <% if current_user.has_role? :student %>
+            <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>
+          <% else %>
+            <%= render  partial: "courses/course_concept_list", locals: {customized_concepts: @customized_concepts, group: @group} %>
+          <% end %>
         <% else %>
-          <%= render partial: 'courses/list_customized_concept', locals: {customized_concepts: @customized_concepts} %>
+          <% if current_user.has_role? :student %>
+            <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>
+          <% else %>
+            <%= render  partial: "courses/course_concept_list", locals: {customized_concepts: @customized_concepts, group: @group} %>
+          <% end %>
         <% end %><h1> </h1>
       </div>
     </div>

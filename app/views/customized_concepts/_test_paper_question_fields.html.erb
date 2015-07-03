@@ -10,11 +10,14 @@
     <%= render 'test_paper_option_fields', :f => option %>
   <% end %>
 
-  <% if @test_paper_questions.blank? && @tests.blank? %>
+  <!-- only new page will have this button, edit page will not have -->
     <p><%= link_to_add_fields "新增選項答案", f, :test_paper_options, "btn btn-primary add_new_option", "Add a new Option" %></p>
-  <% end %>
 </div>
 
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<!-- 
 <script type="text/javascript">  
   $(function(){
    var option_number = 1;
@@ -26,9 +29,48 @@
       $(".add_paper_test").slideUp();
     });
   });
-  
 </script>
+ -->
 
+<script type="text/javascript">  
+  $(function(){
+   var option_number = 1;
+   var total_options = $(".options").size();
+   
+    $(".options").each(function( index ) {
+      $(this).empty().append("第" + (index+1) + "題答案:");
+      $(this).next().next().next(".form-group").children("input").val(index+1);
+      $(this).siblings("a").hide();
+    });
+    
+    $(".options").last().next().next().next().next().next().next().show();
 
+   $(".add_new_option").click(function() {
+      total_options += 1;
+      $(".options").each(function( index ) {
+        $(this).empty().append("第" + (index+1) + "題答案:");
+        $(this).next().next().next(".form-group").children("input").val(index+1);
+        $(".add_new_test").slideUp();
+        $(".add_paper_test").slideUp();
+        $(this).siblings("a").hide();
+        if ((index+1) == total_options){
+          $(this).next().next().next().next().next().next().show();
+        }
+      });
+      
+    });
 
+  $(".options").siblings("a").click(function() {
+    total_options -= 1;
+    alert(total_options);
+    $(".options").each(function( index ) {
+        $(this).empty().append("第" + (index+1) + "題答案:");
+        $(this).next().next().next(".form-group").children("input").val(index+1);
+        if ((index+1) == total_options){
+          $(this).siblings("a").show();
+        }
+      });
+   });
+  });
+</script>
 
