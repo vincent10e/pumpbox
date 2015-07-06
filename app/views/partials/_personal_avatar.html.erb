@@ -39,7 +39,7 @@
   <% else %>
     <div class="profile-userpic">
       <% if user.avatar? %>
-        <%= image_tag(user.avatar.thumb.url) %>
+        <%= image_tag(user.avatar.thumb.url, class: "img-responsive") %>
       <% else %>
         <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
       <% end %>
