@@ -1,5 +1,5 @@
 
-      <table class="table table-striped table-hover .table-bordered", id="report">
+      <table class="table table-striped table-hover table-bordered", id="report">
         <thead>
           <tr>
             <th>學生</th>
@@ -18,7 +18,7 @@
           <tr>
             <td> <%= student.username %></td>
             <% @concepts.each do |concept| %>
-							<td>  
+							<td class="test-detail">  
 								<%= show_retry_time(concept, student.user_id) %>
 							</td>
             <% end %>
@@ -34,8 +34,10 @@
 <script>
   $(document).ready(function() {
     // $('#report td:even').css({ backgroundColor: "#5cb85c", color: "white" });
-    
-    $('#report td').each(function(){
+    $('.test-detail > a').css("color", "transparent");
+    $('.test-detail').css("color", "transparent");
+    $('.test-detail').each(function(){
+      
       var n = $(this).text();
       // one time pass
       if (n == 1){ 
