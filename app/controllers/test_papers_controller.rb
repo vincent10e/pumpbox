@@ -45,7 +45,6 @@ class TestPapersController < ApplicationController
     respond_to do |format|
       if (@error_test.length == 0)
         if @test_paper.save
-					binding.pry
           format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Successfully pass' }
           format.json { render :show, status: :created, location: @test_paper }
         else
@@ -53,7 +52,6 @@ class TestPapersController < ApplicationController
         end
       else
         @test_paper.retry_time += 1
-				binding.pry
         @error_test.each do |e|
           @answer_records.each do |a|
             a.error_times += 1 if a.test == e
