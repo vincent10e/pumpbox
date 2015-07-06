@@ -23,7 +23,9 @@
               <% if c.test_attempts.where(user: student.user_id).size!= 0 %>
                 <td><%= link_to(c.test_attempts.where(user: student.user_id).size , customized_concept_student_detail_path(c, student.user_id)) %> </td>
               <% else %>
-                <td>  <%= link_to(c.test_papers.where(user: student.user_id).size , customized_concept_student_detail_path(c, student.user_id)) %> </td>
+								<td>  
+									<%= test_paper_retry_time(c, student.user_id) %>
+								</td>
               <% end %>
               
             <% end %>
