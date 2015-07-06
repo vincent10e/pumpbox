@@ -15,7 +15,7 @@
       <% @tests.each do |test| %>
       <tr>
         <td><%= raw(test.question)%></td>
-        <td></td>
+        <td><%= @test_attempts.last.answer_records.where(test: test).first.error_times %></td>
         <td><%= @test_attempts.last.updated_at %></td>
       </tr>
       <% end %>

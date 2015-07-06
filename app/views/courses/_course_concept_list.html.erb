@@ -1,32 +1,31 @@
-<h1>Listing Customized Concepts</h1>
-  <button type="button" class="btn btn-default"><%= link_to("新增觀念", new_course_customized_concept_path(@course)) %></button>
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>名稱</th>
-        <th>觀念描述</th>
-        <th>講義 </th>
-        <th>考題數量 </th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+<button type="button" class="btn btn-default"><%= link_to("新增觀念", new_course_customized_concept_path(@course)) %></button>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>名稱</th>
+			<th>觀念描述</th>
+			<th>講義 </th>
+			<th>考題數量 </th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
 
-    <tbody>
-      <% @customized_concepts.each do |customized_concept| %>
-        <tr>
-          <td><%= customized_concept.title %></td>
-          <td><%= customized_concept.description %></td>
-          <td><%= link_to("顯示講義", customized_concept.lecture.url) if customized_concept.lecture.url != nil%></td>
-          <td>
-            <% if customized_concept.test_paper_questions.first != nil %>
-              <%= customized_concept.test_paper_questions.first.test_paper_options.count %>
-            <% else %>
-              <%= customized_concept.tests.count %> 
-            <% end %>
-          </td>
-          <td> <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_course_customized_concept_path(customized_concept.course_id, customized_concept) %></button> </td>
-          <td><button type="button" class="btn btn-danger"><%= link_to '刪除', course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+	<tbody>
+		<% @customized_concepts.each do |customized_concept| %>
+			<tr>
+				<td><%= customized_concept.title %></td>
+				<td><%= customized_concept.description %></td>
+				<td><%= link_to("顯示講義", customized_concept.lecture.url) if customized_concept.lecture.url != nil%></td>
+				<td>
+					<% if customized_concept.test_paper_questions.first != nil %>
+						<%= customized_concept.test_paper_questions.first.test_paper_options.count %>
+					<% else %>
+						<%= customized_concept.tests.count %> 
+					<% end %>
+				</td>
+				<td> <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_course_customized_concept_path(customized_concept.course_id, customized_concept) %></button> </td>
+				<td><button type="button" class="btn btn-danger"><%= link_to '刪除', course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

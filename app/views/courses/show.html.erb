@@ -26,7 +26,6 @@
     <div class="col-md-9 col-md-push-3">
       
       <div class="course-info-display">
-        <h3> 觀念地圖 </h3>
         <% if @group%>
           <% if current_user.has_role? :student %>
             <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>

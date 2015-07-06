@@ -44,6 +44,8 @@ class TestAttemptsController < ApplicationController
           format.json { render :show, status: :created, location: @test_attempt }
         end
       else
+				@test_attempt.retry_time += 1
+				binding.pry
         @error_test.each do |e|
           @answer_records.each do |a|
             a.error_times += 1 if a.test == e
@@ -101,7 +103,7 @@ class TestAttemptsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_attempt_params
-      params.require(:test_attempt).permit(:customized_concept_id, :user,
+      params.require(:test_attempt).permit(:customized_concept_id, :user, :retry_time,
                                           answer_records_attributes: [:id, :test, :error_times])
     end
 end
