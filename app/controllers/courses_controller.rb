@@ -137,24 +137,18 @@ class CoursesController < ApplicationController
       end
     end
 
-
+    @target_courses = EducationLevel.all
+    set_user
     respond_to do |format|
+      format.html { render "prototypes/index" }
       format.js
     end  
   end
 
   def filter_by_level
     @target_courses = EducationLevel.all
-    if user_signed_in?
-      if current_user.has_role? :student
-        @user = current_user.student
-        @groups = @user.groups # To-Do : should modify the group which is student belongs to
-      else
-        @user = current_user.teacher
-        @groups = @user.groups
-        @subjects = Subject.all
-      end
-    end
+    set_user
+
     @level = EducationLevel.find(params[:education_level_id])
     @subjects = @level.subjects
     @volumes = @level.volumes
@@ -187,9 +181,17 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    def set_teacher
-      @teacher = current_user.teacher
+    def set_user
+      if current_user.has_role? :student
+        @user = current_user.student
+        @groups = @user.groups # To-Do : should modify the group which is student belongs to
+      else
+        @user = current_user.teacher
+        @groups = @user.groups
+        @subjects = Subject.all
+      end
     end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id, :volume_id, :image, :is_open)
