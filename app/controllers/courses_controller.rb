@@ -181,6 +181,10 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
+    def set_teacher
+      @teacher = current_user.teacher
+    end
+    
     def set_user
       if current_user.has_role? :student
         @user = current_user.student
