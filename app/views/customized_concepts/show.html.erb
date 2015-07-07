@@ -59,11 +59,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">已通過自我挑戰</h4>
+        <% if @next_concept %>
+          <h4 class="modal-title" id="myModalLabel">已通過自我挑戰</h4>
+        <% else %>
+          <h4 class="modal-title" id="myModalLabel">恭喜完成此課程所有觀念挑戰</h4>
+        <% end %>
+        
       </div>
       <div class="modal-body">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default"><%= link_to("前往下一個觀念", course_customized_concept_path(@course, @next_concept)) if @next_concept%></button>
+        <% if @next_concept %>
+          <button type="button" class="btn btn-default"><%= link_to("前往下一個觀念", course_customized_concept_path(@course, @next_concept))%></button>
+        <% end %>
       </div>
     </div>
   </div>

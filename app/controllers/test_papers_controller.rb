@@ -52,6 +52,7 @@ class TestPapersController < ApplicationController
         end
       else
         @test_paper.retry_time += 1
+        binding.pry
         @error_test.each do |e|
           @answer_records.each do |a|
             a.error_times += 1 if a.test == e

@@ -19,8 +19,8 @@ class CustomizedConceptsController < ApplicationController
     @course = Course.find(params[:course_id])
     @customized_concepts = @course.customized_concepts
     @customized_concept ||= CustomizedConcept.find(params[:id])
-    @next_concept = @customized_concept.next
-    @prev_concept = @customized_concept.previous
+    @next_concept = @customized_concept.next(@course.id)
+    @prev_concept = @customized_concept.previous(@course.id)
 
     @group = Group.find(params[:group_id]) if params[:group_id]
   end
@@ -63,24 +63,10 @@ class CustomizedConceptsController < ApplicationController
   def update
     @course = Course.find(params[:course_id])
     @customized_concept = CustomizedConcept.find(params[:id])
-    @customized_concept.update!(customized_concept_params)
     if !params[:customized_concept][:test_paper_questions_attributes].blank?
-      test_paper_options_attributes = params[:customized_concept][:test_paper_questions_attributes][:"0"][:test_paper_options_attributes]
-      test_paper_options_attributes.each_value do |v| # only edit, but will get wrong when new;
-        if v[:id]
-          t = TestPaperOption.find(v[:id].to_i)
-          t.answer = v[:answer]
-          t.save!
-          if v[:_destroy] == "1"
-            t.destroy!
-          end
-        else
-          t = @customized_concept.test_paper_questions.first.test_paper_options.new(answer: v[:answer], question_number: v[:question_number])
-          t.save!
-        end
-      end
+      update_test_paper_option(params[:customized_concept][:test_paper_questions_attributes])
     end
-
+    binding.pry
     # remove the test_paper_options
     respond_to do |format|
       if @customized_concept.update!(customized_concept_params)
@@ -118,6 +104,26 @@ class CustomizedConceptsController < ApplicationController
   def paper_option
     respond_to do |format|
       format.js
+    end
+  end
+
+  def update_test_paper_option(questions_attributes)
+    if questions_attributes[:"0"] != nil
+      test_paper_options_attributes = questions_attributes[:"0"][:test_paper_options_attributes] 
+      binding.pry
+      test_paper_options_attributes.each_value do |v| # only edit, but will get wrong when new;
+        if v[:id]
+          t = TestPaperOption.find(v[:id].to_i)
+          t.answer = v[:answer]
+          t.save!
+          if v[:_destroy] == "1"
+            t.destroy!
+          end
+        else
+          t = @customized_concept.test_paper_questions.first.test_paper_options.new(answer: v[:answer], question_number: v[:question_number])
+          t.save!
+        end
+      end
     end
   end
 

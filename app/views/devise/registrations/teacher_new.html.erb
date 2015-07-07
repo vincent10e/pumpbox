@@ -42,3 +42,18 @@
 
   <%= render "devise/shared/links" %>
 </div>
+
+
+<script>
+  $(document).ready(function () {
+    $("#new_user").validate({
+      debug: true,
+      rules: {
+        "username": {required: true},
+        "user[email]": {required: true, email: true},
+        "user[password]": {required: true, minlength: 8},
+        "user[password_confirmation]": {required: true, equalTo: "#user_password"}
+      }
+    });
+  });
+</script>

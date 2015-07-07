@@ -147,11 +147,11 @@ class CoursesController < ApplicationController
     @target_courses = EducationLevel.all
     if user_signed_in?
       if current_user.has_role? :student
-        @users = current_user.student
-        @groups = @users.groups # To-Do : should modify the group which is student belongs to
+        @user = current_user.student
+        @groups = @user.groups # To-Do : should modify the group which is student belongs to
       else
-        @users = current_user.teacher
-        @groups = @users.groups
+        @user = current_user.teacher
+        @groups = @user.groups
         @subjects = Subject.all
       end
     end

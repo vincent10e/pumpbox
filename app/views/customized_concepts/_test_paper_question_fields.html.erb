@@ -34,43 +34,45 @@
 
 <script type="text/javascript">  
   $(function(){
-   var option_number = 1;
    var total_options = $(".options").size();
    
     $(".options").each(function( index ) {
       $(this).empty().append("第" + (index+1) + "題答案:");
       $(this).next().next().next(".form-group").children("input").val(index+1);
       $(this).siblings("a").hide();
+      if (index+1 == total_options) {
+        $(this).siblings("a").show();
+      }
     });
     
-    $(".options").last().next().next().next().next().next().next().show();
-
-   $(".add_new_option").click(function() {
+    
+    // when click add option
+    $(".add_new_option").click(function() {
       total_options += 1;
-      $(".options").each(function( index ) {
+      $(".options:visible").each(function( index ) {
         $(this).empty().append("第" + (index+1) + "題答案:");
         $(this).next().next().next(".form-group").children("input").val(index+1);
         $(".add_new_test").slideUp();
         $(".add_paper_test").slideUp();
         $(this).siblings("a").hide();
         if ((index+1) == total_options){
-          $(this).next().next().next().next().next().next().show();
+          $(this).siblings("a").show();
         }
       });
       
     });
-
-  $(".options").siblings("a").click(function() {
-    total_options -= 1;
-    alert(total_options);
-    $(".options").each(function( index ) {
-        $(this).empty().append("第" + (index+1) + "題答案:");
-        $(this).next().next().next(".form-group").children("input").val(index+1);
-        if ((index+1) == total_options){
-          $(this).siblings("a").show();
-        }
+    // when click remove
+    $(".options").siblings("a").click(function() {
+      total_options -= 1;
+      $(".options").each(function( index ) {
+          $(this).empty().append("第" + (index+1) + "題答案:");
+          $(this).next().next().next(".form-group").children("input").val(index+1);
+          if ((index+1) == total_options){
+            $(this).siblings("a").show();
+          }
       });
-   });
+    });
   });
 </script>
+
 

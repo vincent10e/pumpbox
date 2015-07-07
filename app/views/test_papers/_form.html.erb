@@ -12,6 +12,7 @@
       <div class="form-inputs">
         <%= f.input :customized_concept_id, as: :hidden %>
         <%= f.input :user, as: :hidden %>
+        <%= f.input :retry_time, as: :hidden %>
       </div>
 
       <% @options.each_with_index do |option, index| %>

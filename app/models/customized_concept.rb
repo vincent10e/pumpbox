@@ -13,11 +13,11 @@ class CustomizedConcept < ActiveRecord::Base
   mount_uploader :lecture, LectureUploader
   paginates_per 1
 
-  def next
-    self.class.where("id > ?", id).first
+  def next(course_id)
+    self.class.where("id > ? AND course_id = ?", id, course_id).first
   end
 
-  def previous
-    self.class.where("id < ?", id).last
+  def previous(course_id)
+    self.class.where("id < ? AND course_id = ?", id, course_id).last
   end
 end

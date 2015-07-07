@@ -16,5 +16,6 @@
 #= require ckeditor/init 
 #= require bootstrap
 #= require bootstrap-sprockets
+#= require vendor/jquery.validate.min
 
 
