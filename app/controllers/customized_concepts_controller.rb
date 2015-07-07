@@ -66,7 +66,6 @@ class CustomizedConceptsController < ApplicationController
     if !params[:customized_concept][:test_paper_questions_attributes].blank?
       update_test_paper_option(params[:customized_concept][:test_paper_questions_attributes])
     end
-    binding.pry
     # remove the test_paper_options
     respond_to do |format|
       if @customized_concept.update!(customized_concept_params)
@@ -110,7 +109,6 @@ class CustomizedConceptsController < ApplicationController
   def update_test_paper_option(questions_attributes)
     if questions_attributes[:"0"] != nil
       test_paper_options_attributes = questions_attributes[:"0"][:test_paper_options_attributes] 
-      binding.pry
       test_paper_options_attributes.each_value do |v| # only edit, but will get wrong when new;
         if v[:id]
           t = TestPaperOption.find(v[:id].to_i)
