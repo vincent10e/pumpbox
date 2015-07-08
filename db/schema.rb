@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706023721) do
+ActiveRecord::Schema.define(version: 20150708072515) do
+
+  create_table "answer_records", force: :cascade do |t|
+    t.integer  "test_attempt_id", limit: 4
+    t.integer  "test",            limit: 4
+    t.integer  "error_times",     limit: 4, default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "volume_number", limit: 4
@@ -37,6 +45,22 @@ ActiveRecord::Schema.define(version: 20150706023721) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "collect_courses", force: :cascade do |t|
+    t.integer  "teacher_id",         limit: 4
+    t.string   "title",              limit: 255
+    t.text     "overview",           limit: 65535
+    t.integer  "education_level_id", limit: 4
+    t.integer  "subject_id",         limit: 4
+    t.integer  "group_id",           limit: 4
+    t.integer  "volume_id",          limit: 4
+    t.string   "image",              limit: 255
+    t.boolean  "is_open",            limit: 1
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "build_teacher_id",   limit: 4
+    t.integer  "original_course_id", limit: 4
+  end
 
   create_table "concepts", force: :cascade do |t|
     t.integer  "subject_id",       limit: 4
@@ -87,14 +111,6 @@ ActiveRecord::Schema.define(version: 20150706023721) do
     t.string   "group_code", limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-  end
-
-  create_table "h", force: :cascade do |t|
-    t.integer  "test_attempt_id", limit: 4
-    t.integer  "test",            limit: 4
-    t.integer  "error_times",     limit: 4, default: 0
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
   end
 
   create_table "options", force: :cascade do |t|

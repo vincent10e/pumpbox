@@ -1,0 +1,2 @@
+module CollectCoursesHelper
+end

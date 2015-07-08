@@ -8,7 +8,8 @@ class CoursesController < ApplicationController
     @group = Group.find(params[:group_id])
     @courses = @group.courses
 
-    @teacher = @group.teacher_id
+    @teacher = current_user.teacher
+    @collect_courses = @teacher.collect_courses
   end
 
   # GET /courses/1
@@ -198,6 +199,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id, :volume_id, :image, :is_open)
+      params.require(:course).permit(:education_level_id, :subject_id, :teacher_id, :title, :overview, :group_id, :volume_id, :image, :is_open, :build_teacher_id)
     end
 end

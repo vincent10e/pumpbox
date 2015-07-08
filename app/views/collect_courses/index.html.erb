@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Collect Courses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Teacher</th>
+      <th>Title</th>
+      <th>Overview</th>
+      <th>Education level</th>
+      <th>Subject</th>
+      <th>Group</th>
+      <th>Volume</th>
+      <th>Image</th>
+      <th>Is open</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @collect_courses.each do |collect_course| %>
+      <tr>
+        <td><%= collect_course.teacher_id %></td>
+        <td><%= collect_course.title %></td>
+        <td><%= collect_course.overview %></td>
+        <td><%= collect_course.education_level_id %></td>
+        <td><%= collect_course.subject_id %></td>
+        <td><%= collect_course.group_id %></td>
+        <td><%= collect_course.volume_id %></td>
+        <td><%= collect_course.image %></td>
+        <td><%= collect_course.is_open %></td>
+        <td><%= link_to 'Show', collect_course %></td>
+        <td><%= link_to 'Edit', edit_collect_course_path(collect_course) %></td>
+        <td><%= link_to 'Destroy', collect_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Collect course', new_collect_course_path %>

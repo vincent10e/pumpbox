@@ -1,4 +1,5 @@
 <div class="pb-index-wrapper pb-container">
+  <p class="notice"></p>
   <% if current_user.has_role? :student %>  <!-- if student login  -->
     <div class="row">
       <div class="col-md-9 col-md-push-3 list-course">
@@ -26,3 +27,6 @@
     pumpBox.coursesPathDescriptionOverlayWindowFunction();
   </script>
 <% end %>
+
+
+

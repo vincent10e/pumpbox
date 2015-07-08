@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @collect_course.teacher_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @collect_course.title %>
+</p>
+
+<p>
+  <strong>Overview:</strong>
+  <%= @collect_course.overview %>
+</p>
+
+<p>
+  <strong>Education level:</strong>
+  <%= @collect_course.education_level_id %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @collect_course.subject_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @collect_course.group_id %>
+</p>
+
+<p>
+  <strong>Volume:</strong>
+  <%= @collect_course.volume_id %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @collect_course.image %>
+</p>
+
+<p>
+  <strong>Is open:</strong>
+  <%= @collect_course.is_open %>
+</p>
+
+<%= link_to 'Edit', edit_collect_course_path(@collect_course) %> |
+<%= link_to 'Back', collect_courses_path %>
