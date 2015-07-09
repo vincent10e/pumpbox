@@ -4,6 +4,8 @@
   <table class="table table-striped table-hover">
     <thead>
       <h1> <%= @concept.title%> </h1>
+      <p><i class="fa fa-calendar"></i> 測驗日期 : <%= @test_attempts.last.created_at.strftime("%Y/%m/%d") %></p>
+      <p><i class="fa fa-clock-o"></i> 測驗時間 : <%= Time.at(@test_attempts.last.test_time_sec).utc.strftime("%H:%M:%S") if @test_attempts.last.test_time_sec%></p>
       <tr>
         <th>題目</th>
         <th>錯誤次數 </th>

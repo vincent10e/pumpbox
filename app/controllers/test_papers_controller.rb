@@ -17,7 +17,7 @@ class TestPapersController < ApplicationController
     @concept = CustomizedConcept.find(params[:customized_concept_id])
     @test_paper = @concept.test_papers.build
     @test_paper.user = current_user.id
-
+    @test_paper.test_time_sec = Time.now().to_i
     @question_url = @concept.test_paper_questions.first.question.url
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
@@ -44,6 +44,7 @@ class TestPapersController < ApplicationController
     @error_test = check_answer(params[:select_answers], @options, params[:skip], @answer_records)
     respond_to do |format|
       if (@error_test.length == 0)
+        @test_paper.test_time_sec = Time.now.to_i - @test_paper.test_time_sec
         if @test_paper.save
           format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Successfully pass' }
           format.json { render :show, status: :created, location: @test_paper }
@@ -120,6 +121,7 @@ class TestPapersController < ApplicationController
       params.require(:test_paper).permit(:customized_concept_id, 
                                          :user,
 																				 :retry_time,
+                                         :test_time_sec,
                                          paper_answer_records_attributes: [:id, :test, :error_times])
     end
 end

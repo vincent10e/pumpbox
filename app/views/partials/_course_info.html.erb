@@ -28,13 +28,18 @@
                     <a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
                   </div>
                   <div class="col-md-6">
-                    <% if current_user.has_role? :teacher %>
-                      <%= link_to join_list_collect_courses_path(course), remote: true, class: "btn btn-success btn-product" do %>
-                        <span class="glyphicon glyphicon-shopping-cart"></span>收藏
+                    <% if user_signed_in? %>
+                      <% if current_user.has_role? :teacher  %>
+                        <%= link_to join_list_collect_courses_path(course), remote: true, class: "btn btn-success btn-product" do %>
+                          <span class="glyphicon glyphicon-shopping-cart"></span>收藏
+                        <% end %>
+                      <% else %>
+                        <a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a>
                       <% end %>
                     <% else %>
                       <a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a>
                     <% end %>
+                    
                   </div>
                 </div>
               </div>

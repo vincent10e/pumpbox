@@ -18,7 +18,7 @@ class TestAttemptsController < ApplicationController
     @tests = @concept.tests
     @test_attempt = @concept.test_attempts.build
     @test_attempt.user = current_user.id
-
+    @test_attempt.test_time_sec = Time.now().to_i
     @tests.count.times {@test_attempt.answer_records.build}
 
   end
@@ -39,6 +39,7 @@ class TestAttemptsController < ApplicationController
     @error_test = check_answer(params[:select_answers])
     respond_to do |format|
       if (@error_test.length == 0) 
+        @test_attempt.test_time_sec = Time.now.to_i - @test_attempt.test_time_sec
         if @test_attempt.save
           format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Successfully pass' }
           format.json { render :show, status: :created, location: @test_attempt }
@@ -103,7 +104,7 @@ class TestAttemptsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_attempt_params
-      params.require(:test_attempt).permit(:customized_concept_id, :user, :retry_time,
+      params.require(:test_attempt).permit(:customized_concept_id, :user, :retry_time, :test_time_sec,
                                           answer_records_attributes: [:id, :test, :error_times])
     end
 end

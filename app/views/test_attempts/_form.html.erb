@@ -8,7 +8,8 @@
       <div class="form-inputs">
         <%= f.input :customized_concept_id, as: :hidden %>
         <%= f.input :user, as: :hidden %>
-				<%= f.input :retry_time %>
+				<%= f.input :retry_time, as: :hidden %>
+        <%= f.input :test_time_sec, as: :hidden %>
       </div>
     
         <%= f.fields_for :answer_records do |a| %>
