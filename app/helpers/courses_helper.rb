@@ -14,4 +14,13 @@ module CoursesHelper
 			0
 		end
 	end
+
+  def join_group_button(courses, collect_course, group)
+    
+    if courses.where(title: collect_course.title, overview: collect_course.overview).count != 0
+      link_to "已加入到此群組", collect_course_join_group_path(collect_course, @group), class: "btn btn-default disabled"
+    else
+      link_to "加入到此群組", collect_course_join_group_path(collect_course, group), class: "btn btn-default"
+    end
+  end
 end

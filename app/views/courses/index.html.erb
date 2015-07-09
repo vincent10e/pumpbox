@@ -30,15 +30,18 @@
           <td><%= course.teacher_id %></td>
           <td><%= course.title %></td>
           <td><%= course.overview %></td>
-          <td><button type="button" class="btn btn-default"><%= link_to '課程內容', course %></button></td>
-          <td><button type="button" class="btn btn-default"><%= link_to '編輯', edit_group_course_path(@group, course) %></button></td>
-          <td><button type="button" class="btn btn-danger"><%= link_to '刪除', course, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
-          <% if course.is_open %>
-            <td><button type="button" class="btn btn-default"><%= link_to '開放', course_change_status_path(course, @group) %></button></td>
-          <% else %>  
-            <td><button type="button" class="btn btn-danger"><%= link_to '關閉', course_change_status_path(course, @group) %></button></td>
+          <td><%= link_to '課程內容', course, class: "btn btn-default" %></td>
+          <td><%= link_to '編輯', edit_group_course_path(@group, course), class: "btn btn-default"  %></td>
+          <td><%= link_to '刪除', course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %> </td>
+          <% if !course.is_collect? %>
+              <% if course.is_open %>
+              <td><%= link_to '開放', course_change_status_path(course, @group), class: "btn btn-info"  %></td>
+            <% else %>  
+              <td><%= link_to '關閉', course_change_status_path(course, @group), class: "btn btn-danger"  %></td>
+            <% end %>
+          <% else %>
+            <td><a tabindex="0" class="btn btn-default" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="是否開放" data-content="經由收藏的課程所加入的課程無法開放。"><i class="fa fa-ban"></i></a></td>
           <% end %>
-          
         </tr>
       <% end %>
     </tbody>
@@ -46,7 +49,7 @@
 
   <br>
 
-  <button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button>
+  <%=link_to("建立課程",new_group_course_path(@group), class: "btn btn-primary")%>
 
 
   <h2>收藏的課程</h2>
@@ -62,16 +65,23 @@
     </thead>
 
     <tbody>
-      <% @collect_courses.each do |course| %>
+      <% @collect_courses.each do |collect_course| %>
         <tr>
-          <td><%= course.teacher_id %></td>
-          <td><%= course.title %></td>
-          <td><%= course.overview %></td>
-          <td><button type="button" class="btn btn-default"><%= link_to '課程內容', course %></button></td>
-          <td><button type="button" class="btn btn-danger"><%= link_to '刪除', collect_course_path(course), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
-          <td><button type="button" class="btn btn-default"><%= link_to "加入到 #{@group.name} 群組", collect_course_join_group_path(course, @group) %></button></td>
+          <td><%= collect_course.teacher_id %></td>
+          <td><%= collect_course.title %></td>
+          <td><%= collect_course.overview %></td>
+          <td><%= link_to '課程內容', collect_course, class: "btn btn-default"  %></td>
+          <td><%= link_to '刪除', collect_course_path(collect_course), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %></td>
+          <td><%= join_group_button(@courses, collect_course, @group) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>

@@ -12,9 +12,13 @@
   <!-- End Back Link -->
   
   <div class="row">
+    <!-- RIGHT PAGE -->
     <div class="col-md-9 col-md-push-3">
       <%= render partial: "groups/group_course_info", locals: {my_courses: @courses, group: @group} if @courses%>
     </div>
+    <!-- END RIGHT PAGE -->
+
+    <!-- LEFT PAGE -->
     <div class="col-md-3 col-md-pull-9">
       <% if current_user.has_role? :student %>
         <p id="notice"><%= notice %></p>
@@ -24,7 +28,6 @@
         <p id="notice"><%= notice %></p>
         <h2><%= Teacher.find(@group.teacher_id).username %>老師</h2>
         <h3><%= @group.name %></h3>
-
         <p>
           <strong>Group code:</strong>
           <%= @group.group_code %>
@@ -44,9 +47,39 @@
         <% end %>
       </div>
     </div>
+    <!-- END LEFT PAGE -->
   </div>
 
 </div>
+
+
+<!-- Modal : WHEN USER CREATE GROUP SUCCESS -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">成功建立"<%= @group.name %>群組"，群組代碼為：<%= @group.group_code %></h4>
+      </div>
+      <div class="modal-body">
+        <p>學生可以借由輸入此群組代碼加入群組，之後老師就能掌握每一位學生的學習狀況。</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">我了解</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END Modal -->
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>  
+  $(document).ready(function() {
+    if($("#notice").html().indexOf("Group was successfully created") >= 0) {
+      $('#myModal').modal();
+    }
+  });
+</script>
 
 
 

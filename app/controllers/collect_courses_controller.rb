@@ -84,6 +84,8 @@ class CollectCoursesController < ApplicationController
 
     @course = Course.new(@collect_course.to_hash)
     @course.group_id = @group.id
+    @course.is_collect = true
+    
     # @course.image = File.open(@collect_course.image.path) if !@collect_course.image.nil?
     
     respond_to do |format|
