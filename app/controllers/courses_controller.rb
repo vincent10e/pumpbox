@@ -187,13 +187,15 @@ class CoursesController < ApplicationController
     end
     
     def set_user
-      if current_user.has_role? :student
-        @user = current_user.student
-        @groups = @user.groups # To-Do : should modify the group which is student belongs to
-      else
-        @user = current_user.teacher
-        @groups = @user.groups
-        @subjects = Subject.all
+      if user_signed_in?
+        if current_user.has_role? :student
+          @user = current_user.student
+          @groups = @user.groups # To-Do : should modify the group which is student belongs to
+        else
+          @user = current_user.teacher
+          @groups = @user.groups
+          @subjects = Subject.all
+        end
       end
     end
 

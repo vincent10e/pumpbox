@@ -23,4 +23,18 @@ module CoursesHelper
       link_to "加入到此群組", collect_course_join_group_path(collect_course, group), class: "btn btn-default"
     end
   end
+
+  def render_course_right_info(course, customized_concepts, group)
+    if current_user.has_role? :student
+      render  partial: "courses/list_customized_concept", locals: {customized_concepts: customized_concepts, group: group}
+    else
+      if current_user.teacher == course.teacher_id
+        # TEACHER CAN EDIT, DELETE
+        render  partial: "courses/course_concept_list", locals: {customized_concepts: customized_concepts, group: group}
+      else
+        # ONLY SHOW CONCEPT MAP
+        render  partial: "courses/list_customized_concept", locals: {customized_concepts: customized_concepts, group: group}
+      end
+    end
+  end
 end

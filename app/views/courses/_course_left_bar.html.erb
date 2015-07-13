@@ -1,9 +1,11 @@
 <div class="list-group">
   <% if current_user.has_role? :teacher %>
-    <%= link_to("觀念地圖", course_concept_map_path(@course), remote: true, class: "list-group-item") %>
-    <%= link_to("觀念編輯", course_concept_list_path(@course), remote: true, class: "list-group-item") %>
-    <%= link_to("學生", course_list_students_path(@course), remote: true, class: "list-group-item") %>
-    <%= link_to("Report", course_reports_path(@course), remote: true, class: "list-group-item") %>
+		<% if current_user.teacher.id == @course.teacher_id %>
+			<%= link_to("觀念地圖", course_concept_map_path(@course), remote: true, class: "list-group-item") %>
+			<%= link_to("觀念編輯", course_concept_list_path(@course), remote: true, class: "list-group-item") %>
+			<%= link_to("學生", course_list_students_path(@course), remote: true, class: "list-group-item") %>
+			<%= link_to("Report", course_reports_path(@course), remote: true, class: "list-group-item") %>
+		<% end %>
   <% end  %>
 
 </div>

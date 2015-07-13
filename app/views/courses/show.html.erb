@@ -27,18 +27,10 @@
       
       <div class="course-info-display">
         <% if @group%>
-          <% if current_user.has_role? :student %>
-            <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>
-          <% else %>
-            <%= render  partial: "courses/course_concept_list", locals: {customized_concepts: @customized_concepts, group: @group} %>
-          <% end %>
+          <%= render_course_right_info(@course, @customized_concepts, @group) %>
         <% else %>
-          <% if current_user.has_role? :student %>
-            <%= render  partial: "courses/list_customized_concept", locals: {customized_concepts: @customized_concepts, group: @group} %>
-          <% else %>
-            <%= render  partial: "courses/course_concept_list", locals: {customized_concepts: @customized_concepts, group: @group} %>
-          <% end %>
-        <% end %><h1> </h1>
+          <%= render_course_right_info(@course, @customized_concepts, @group) %>
+        <% end %>
       </div>
     </div>
     <div class="col-md-3 col-md-pull-9">
