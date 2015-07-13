@@ -28,6 +28,10 @@
             <%= link_to_add_fields "上傳考題", f, :test_paper_questions, "btn btn-primary add_paper_test", "Add a new Test" %>
           </p>
         <% end %>
+
+        <% if !@tests.blank? %>
+          <p><%= link_to_add_fields "自定考題", f, :tests, "btn btn-primary add_new_test", "Add a new Test" %> </p>
+        <% end %>
       </div>
 
       <% if !@customized_concept.lecture.blank? %>
