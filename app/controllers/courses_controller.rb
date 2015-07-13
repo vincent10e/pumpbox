@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   # GET /courses/1.json
-  def showx
+  def show
     @course = Course.find(params[:id])
     @customized_concepts = @course.customized_concepts
 
