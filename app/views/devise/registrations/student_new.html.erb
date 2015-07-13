@@ -32,7 +32,17 @@
       <%= text_field_tag :school %>
     </div>
 
-    
+    <%-
+      city = '01000'
+      district = '01100'
+      cities     = TaiwanCity.list
+      districtes = TaiwanCity.list(city)
+    %>
+
+    <div class='rails-helper city-group'>
+      <%= select_tag :city    , options_for_select(cities)        , prompt: '--縣市--', class: ['city-select', 'city-city'] %>
+      <%= select_tag :district, options_for_select(districtes), prompt: '--鄉鎮市區--', class: ['city-select', 'city-district'] %>
+    </div>
 
     <br>
     <div class="actions">

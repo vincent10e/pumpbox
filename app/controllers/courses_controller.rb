@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   # GET /courses/1.json
-  def show
+  def showx
     @course = Course.find(params[:id])
     @customized_concepts = @course.customized_concepts
 
@@ -127,14 +127,14 @@ class CoursesController < ApplicationController
     @v_filter = params[:select_volume][:volume_id]
 
     if @s_filter.count > 1 && @v_filter.count <= 1# user didn't select any subject, so return all of the courses
-      @courses = Course.where(subject_id: @s_filter).order(:title).page params[:page]
+      @courses = Course.opened.where(subject_id: @s_filter).order(:title).page params[:page]
     elsif @s_filter.count <= 1 && @v_filter.count > 1
-      @courses = Course.where(volume_id: @v_filter).order(:title).page params[:page]
+      @courses = Course.opened.where(volume_id: @v_filter).order(:title).page params[:page]
     else
       if @s_filter.count > 1 && @v_filter.count > 1
-        @courses = Course.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
+        @courses = Course.opened.where(subject_id: @s_filter, volume_id: @v_filter).order(:title).page params[:page]
       else
-        @courses = Course.all.order(:title).page params[:page]
+        @courses = Course.opened.order(:title).page params[:page]
       end
     end
 
@@ -153,7 +153,7 @@ class CoursesController < ApplicationController
     @level = EducationLevel.find(params[:education_level_id])
     @subjects = @level.subjects
     @volumes = @level.volumes
-    @courses = Course.where(education_level_id: params[:education_level_id]).order(:title).page params[:page]
+    @courses = Course.opened.where(education_level_id: params[:education_level_id]).order(:title).page params[:page]
 
     respond_to do |format|
       format.html { render "prototypes/index" }

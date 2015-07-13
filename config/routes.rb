@@ -84,4 +84,7 @@ Rails.application.routes.draw do
   end
 
   resources :personal_profiles
+
+  # FOR THE CITY SELECT FORM IN THE SINGUP PAGE 
+  mount TaiwanCity::Engine => '/taiwan_city'
 end

@@ -17,4 +17,6 @@ class Course < ActiveRecord::Base
      :image => self.image
     }
   end
+
+  scope :opened, -> { where(is_open: true) }
 end
