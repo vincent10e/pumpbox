@@ -11,7 +11,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if params[:from] == "student"
-      binding.pry
       @user.save!
       @user.add_role :student
       @student = @user.build_student(:username => params[:username], 
