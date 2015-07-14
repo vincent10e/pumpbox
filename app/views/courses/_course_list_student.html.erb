@@ -5,13 +5,18 @@
     <tr>
       <th>Name</th>
       <th>School</th>
+      <th>P幣</th>
+      <th>Email</th>
       <th>Last Login </th>
     </tr>
     <% @group.students.each do |s| %>
     <tr>
-      <td> <%= s.username %></td>
+      <% user = User.find(s.user_id) %>
+      <td> <%= s.username %> </td>
       <td> <%= s.school %> </td>
-      <td> 2015-06-03 06:47:47 </td>
+      <td> <%= s.point %> </td>
+      <td> <%= user.email %> </td>
+      <td> <%= user.last_sign_in_at %> </td>
     </tr>
     <% end %>
   </tbody>

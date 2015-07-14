@@ -32,8 +32,8 @@
           <strong>Group code:</strong>
           <%= @group.group_code %>
         </p>
-        <p><button type="button" class="btn btn-default"><%=link_to("建立課程",new_group_course_path(@group)) %></button></p>
-        <p><button type="button" class="btn btn-default"><%= link_to("課程編輯", group_courses_path(@group)) %></button></p>
+        <p><%=link_to("建立課程",new_group_course_path(@group), class: "btn btn-default") %></p>
+        <p><%= link_to("課程編輯", group_courses_path(@group), class: "btn btn-default") %></p>
       <% end %>
 
       

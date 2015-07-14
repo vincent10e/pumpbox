@@ -42,11 +42,13 @@ class TestPapersController < ApplicationController
     @options = @question.test_paper_options
     @answer_records = @test_paper.paper_answer_records
     @error_test = check_answer(params[:select_answers], @options, params[:skip], @answer_records)
+
     respond_to do |format|
       if (@error_test.length == 0)
         @test_paper.test_time_sec = Time.now.to_i - @test_paper.test_time_sec
         if @test_paper.save
-          format.html { redirect_to course_customized_concept_path(@course, @concept), notice: 'Successfully pass' }
+          @notice = notice_message(@test_paper.retry_time, @concept.point)
+          format.html { redirect_to course_customized_concept_path(@course, @concept), notice: @notice}
           format.json { render :show, status: :created, location: @test_paper }
         else
           format.html { render :new }
@@ -136,7 +138,17 @@ class TestPapersController < ApplicationController
     end
   end
 
+  def notice_message(retry_time, point)
+    if retry_time == 1
+      "恭喜一次就通過測驗，獲得P幣 : " + point.to_s
+    else
+      'Successfully pass'
+    end
+  end
+  
+
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_test_paper
       @test_paper = TestPaper.find(params[:id])

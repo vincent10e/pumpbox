@@ -60,7 +60,10 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <% if @next_concept %>
-          <h4 class="modal-title" id="myModalLabel">已通過自我挑戰</h4>
+          <h4 class="modal-title" id="myModalLabel">已通過自我挑戰 </h4>
+          <div class="modal-body">
+            <p></p>
+          </div>
         <% else %>
           <h4 class="modal-title" id="myModalLabel">恭喜完成此課程所有觀念挑戰</h4>
         <% end %>
@@ -83,5 +86,11 @@
     if($("#notice").html().indexOf("Successfully pass") >= 0) {
       $('#myModal').modal();
     }
+
+    if($("#notice").html().indexOf("恭喜一次通過測驗") >= 0) {
+      $('.modal-body p').text($('#notice').text());
+      $('#myModal').modal();
+    }
+
   });
 </script>
