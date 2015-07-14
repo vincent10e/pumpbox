@@ -20,4 +20,5 @@ class CustomizedConcept < ActiveRecord::Base
   def previous(course_id)
     self.class.where("id < ? AND course_id = ?", id, course_id).last
   end
+
 end

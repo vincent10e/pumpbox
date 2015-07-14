@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713030538) do
+ActiveRecord::Schema.define(version: 20150714023150) do
 
   create_table "answer_records", force: :cascade do |t|
     t.integer  "test_attempt_id", limit: 4
@@ -123,12 +123,17 @@ ActiveRecord::Schema.define(version: 20150713030538) do
   end
 
   create_table "paper_answer_records", force: :cascade do |t|
-    t.integer  "test_paper_id", limit: 4
-    t.integer  "test",          limit: 4
-    t.integer  "error_times",   limit: 4, default: 0
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.boolean  "is_skip",       limit: 1, default: false
+    t.integer  "test_paper_id",   limit: 4
+    t.integer  "test",            limit: 4
+    t.integer  "error_times",     limit: 4,   default: 0
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "is_skip",         limit: 1,   default: false
+    t.string   "select_record_1", limit: 255
+    t.string   "select_record_2", limit: 255
+    t.string   "select_record_3", limit: 255
+    t.string   "select_record_4", limit: 255
+    t.string   "select_record_5", limit: 255
   end
 
   create_table "roles", force: :cascade do |t|

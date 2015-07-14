@@ -97,6 +97,8 @@ class CustomizedConceptsController < ApplicationController
 
     # for test paper
     @test_paper = @concept.test_papers.last
+    @test_paper_question = @concept.test_paper_questions.last
+    @test_paper_options = @test_paper_question.test_paper_options
   
   end
 

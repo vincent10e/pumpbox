@@ -8,6 +8,11 @@
       <%= f.fields_for :paper_answer_records do |a| %>
         <%= a.input :test, as: :hidden%>
         <%= a.input :error_times, as: :hidden %>
+        <%= a.input :select_record_1, as: :hidden %>
+        <%= a.input :select_record_2, as: :hidden %>
+        <%= a.input :select_record_3, as: :hidden %>
+        <%= a.input :select_record_4, as: :hidden %>
+        <%= a.input :select_record_5, as: :hidden %>
       <% end %>
       <div class="form-inputs">
         <%= f.input :customized_concept_id, as: :hidden %>

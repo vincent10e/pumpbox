@@ -102,12 +102,38 @@ class TestPapersController < ApplicationController
           answer_records.each do |a|
             a.is_skip = true if a.test == number.to_i
           end
-        else
+        else  # student select wrong anser, it will record test number and record selected option which is student choose
           error_test << number.to_i
+          # record every select
+          answer_records.each do |a|
+            for i in 1..5
+              if a[:"select_record_#{i}"].blank?
+                a[:"select_record_#{i}"] = number_to_letter(answer)
+                break
+              end
+            end
+          end
         end
       end
     end
     return error_test
+  end
+
+  def number_to_letter(answer)
+    case answer.to_i
+    when 1
+      "A"
+    when 2
+      "B"
+    when 3
+      "C"
+    when 4
+      "D"
+    when 5
+      "E"
+    when 6
+      "F"
+    end
   end
 
   private
@@ -122,6 +148,6 @@ class TestPapersController < ApplicationController
                                          :user,
 																				 :retry_time,
                                          :test_time_sec,
-                                         paper_answer_records_attributes: [:id, :test, :error_times])
+                                         paper_answer_records_attributes: [:id, :test, :error_times, :select_record_1, :select_record_2, :select_record_3, :select_record_4, :select_record_5])
     end
 end

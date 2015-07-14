@@ -12,6 +12,8 @@
         <th>題號</th>
         <th>錯誤次數 </th>
         <th>是否跳過</th>
+        <th>正確答案</th>
+        <th>作答記錄</th>
       </tr>
     </thead>
 
@@ -21,8 +23,18 @@
         <td><%= record.test %></td>
         <td><%= record.error_times %></td>
         <td><%= record.is_skip %></td>
+        <td><%= number_to_letter(@test_paper_options.find_by_question_number(record.test).answer) %></td>
+        <td><a tabindex="0" class="btn btn-default" role="button" data-html="true" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="記錄" data-content="<%= list_answer_record(record) %>"><i class="fa fa-info"></i></a></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+
+
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
