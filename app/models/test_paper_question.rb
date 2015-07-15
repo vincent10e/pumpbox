@@ -4,4 +4,7 @@ class TestPaperQuestion < ActiveRecord::Base
   accepts_nested_attributes_for :test_paper_options, :reject_if => lambda { |a| a[:answer].blank? }
 
   mount_uploader :question, QuestionUploader
+
+  # For gem 'acts-as-taggable-on'
+  acts_as_taggable
 end
