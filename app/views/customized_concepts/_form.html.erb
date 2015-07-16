@@ -29,6 +29,10 @@
           </p>
         <% end %>
 
+        <% if !@database_tests.blank? %>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">題庫出題</button>
+        <% end %>
+
         <% if !@tests.blank? %>
           <p><%= link_to_add_fields "自定考題", f, :tests, "btn btn-primary add_new_test", "Add a new Test" %> </p>
         <% end %>
@@ -49,6 +53,24 @@
 
   </div>
 </div>
+
+
+
+<!-- Large modal -->
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <% if !@database_tests.blank? %>
+        <% @database_tests.each do |t| %>
+          <li><%= t.id %> <%=t.tag_list %></li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <script>
     function add_fields(link, association, content) {  

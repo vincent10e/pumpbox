@@ -29,7 +29,7 @@ class CustomizedConceptsController < ApplicationController
   def new
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.new
-    @database_tests = Test.all # TO-DO :  like @chapter.test
+    @database_tests = TestPaperQuestion.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 
   end
@@ -40,6 +40,7 @@ class CustomizedConceptsController < ApplicationController
     @customized_concept = @course.customized_concepts.find(params[:id])
     @tests = @customized_concept.tests
     @test_paper_questions = @customized_concept.test_paper_questions
+
   end
 
   # POST /customized_concepts

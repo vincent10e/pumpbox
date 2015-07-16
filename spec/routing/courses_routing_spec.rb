@@ -1,4 +1,5 @@
 require "rails_helper"
+require 'spec_helper'
 
 RSpec.describe CoursesController, type: :routing do
   describe "routing" do
@@ -29,6 +30,10 @@ RSpec.describe CoursesController, type: :routing do
 
     it "routes to #destroy" do
       expect(:delete => "/courses/1").to route_to("courses#destroy", :id => "1")
+    end
+
+    it "routes to #concept_list" do
+      expect(:get => "/courses/1/concept_list").to route_to("courses#concept_list", :course_id => "1")
     end
 
   end

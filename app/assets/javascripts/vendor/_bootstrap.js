@@ -9,6 +9,6 @@
 // require bootstrap-sass-official/assets/javascripts/bootstrap/transition
 // require bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy
 //= require bootstrap-sass-official/assets/javascripts/bootstrap/modal
-// require bootstrap-sass-official/assets/javascripts/bootstrap/tooltip
-// require bootstrap-sass-official/assets/javascripts/bootstrap/popover
+//= require bootstrap-sass-official/assets/javascripts/bootstrap/tooltip
+//= require bootstrap-sass-official/assets/javascripts/bootstrap/popover
 
