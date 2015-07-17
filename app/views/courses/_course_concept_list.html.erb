@@ -25,7 +25,7 @@
 					<% end %>
 				</td>
 				<td><%= customized_concept.point %></td>
-				<td>建立考題</td>
+				<td><%= link_to '建立考題', new_customized_concept_test_paper_question_path(customized_concept, group: @group), class: "btn btn-default" %></td>
 				<td><%= link_to 'Edit', edit_course_customized_concept_path(customized_concept.course_id, customized_concept), class: "btn btn-default" %></td>
 				<td><%= link_to '刪除', course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
 			</tr>

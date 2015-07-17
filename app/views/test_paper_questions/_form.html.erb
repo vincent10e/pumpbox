@@ -1,10 +1,52 @@
-<%= simple_form_for(@test_paper_question) do |f| %>
+<%= simple_form_for([@customized_concept, @test_paper_question]) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-  </div>
+
+  <%= hidden_field_tag(:group_id, @group.id, as: :hidden)  %>
+
+  <% if @customized_concept.test_paper_questions && !@customized_concept.test_paper_questions.blank? %>
+    <%= f.input :question, as: :file, label: "已上傳考卷 : #{@customized_concept.test_paper_questions.first.question_identifier}", wrapper_html: {class: "carrier-wave-field"}%>
+  <% else %>
+    <%= f.input :question, :as => :file %>
+  <% end %>
+  
+
+  <%= f.fields_for :test_paper_options do |option| %>
+    <%= render 'test_paper_option_fields', :f => option %>
+  <% end %>
+
+  <!-- only new page will have this button, edit page will not have -->
+  <p><%= link_to_add_fields "新增選項答案", f, :test_paper_options, "btn btn-primary add_new_option", "Add a new Option" %></p>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+
+
+
+<script>
+    function add_fields(link, association, content) {  
+        var new_id = new Date().getTime();  
+        var regexp = new RegExp("new_" + association, "g");  
+        $(link).parent().before(content.replace(regexp, new_id));  
+    }
+    function remove_fields(link) {  
+        $(link).prev("input[type=hidden]").val("1");  
+        $(link).parent(".fields").slideUp();
+    } 
+</script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
+<!-- it cover carrierwave's message : No file chosen -->
+<script type="text/javascript">  
+  $(document).ready(function () {
+     $("input[type=file]").change(function(){
+      $(this).parent().removeClass("arrier-wave-field").addClass("carrier-wave-field-uploaded");
+     });
+  });
+</script>

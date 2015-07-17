@@ -14,7 +14,9 @@ class TestPaperQuestionsController < ApplicationController
 
   # GET /test_paper_questions/new
   def new
-    @test_paper_question = TestPaperQuestion.new
+    @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+    @test_paper_question = @customized_concept.test_paper_questions.new
+    @group = Group.find(params[:group])
   end
 
   # GET /test_paper_questions/1/edit
@@ -24,11 +26,13 @@ class TestPaperQuestionsController < ApplicationController
   # POST /test_paper_questions
   # POST /test_paper_questions.json
   def create
-    @test_paper_question = TestPaperQuestion.new(test_paper_question_params)
+    @group = Group.find(params[:group_id])
+    @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+    @test_paper_question = @customized_concept.test_paper_questions.new(test_paper_question_params)
 
     respond_to do |format|
       if @test_paper_question.save
-        format.html { redirect_to @test_paper_question, notice: 'Test paper question was successfully created.' }
+        format.html { redirect_to course_customized_concepts_path(@customized_concept.course), notice: 'Test paper question was successfully created.' }
         format.json { render :show, status: :created, location: @test_paper_question }
       else
         format.html { render :new }
@@ -69,6 +73,10 @@ class TestPaperQuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_paper_question_params
-      params[:test_paper_question]
+      params.require(:test_paper_question).permit(:id,
+                                                  :question,
+                                                  :customized_concept_id,
+                                                  test_paper_options_attributes: [:id, :answer, :test_paper_question_id, :question_number]
+                                                )
     end
 end

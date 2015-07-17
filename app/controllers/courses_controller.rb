@@ -87,6 +87,7 @@ class CoursesController < ApplicationController
 
   def concept_list
     @course = Course.find(params[:course_id])
+    @group = Group.find(@course.group) 
     @customized_concepts = @course.customized_concepts
     respond_to do |format|
       format.js
