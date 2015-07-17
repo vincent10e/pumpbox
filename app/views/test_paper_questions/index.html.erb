@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Test Paper Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @test_paper_questions.each do |test_paper_question| %>
+      <tr>
+        <td><%= link_to 'Show', test_paper_question %></td>
+        <td><%= link_to 'Edit', edit_test_paper_question_path(test_paper_question) %></td>
+        <td><%= link_to 'Destroy', test_paper_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Test paper question', new_test_paper_question_path %>
