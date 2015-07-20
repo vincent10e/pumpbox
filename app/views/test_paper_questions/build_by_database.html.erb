@@ -1,0 +1,14 @@
+<div class="pb-index-wrapper pb-container">
+  <div class="col-lg-6">
+    <%= form_tag('/search_test', method: :get, remote: true) do -%>
+      <%= hidden_field_tag(:customized_concept_id, @customized_concept.id, as: :hidden)  %>
+      <%= text_field_tag(:keyword) %>
+      <div><%= submit_tag 'Save' %></div>
+    <% end -%>
+
+    <div class="test-search-result">
+    </div>
+  </div><!-- /.col-lg-6 -->
+
+
+</div>

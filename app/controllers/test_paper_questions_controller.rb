@@ -17,6 +17,7 @@ class TestPaperQuestionsController < ApplicationController
     @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
     @test_paper_question = @customized_concept.test_paper_questions.new
     @group = Group.find(params[:group])
+
   end
 
   # GET /test_paper_questions/1/edit
@@ -32,7 +33,7 @@ class TestPaperQuestionsController < ApplicationController
 
     respond_to do |format|
       if @test_paper_question.save
-        format.html { redirect_to course_customized_concepts_path(@customized_concept.course), notice: 'Test paper question was successfully created.' }
+        format.html { redirect_to group_course_path(@group, @customized_concept.course), notice: 'Test paper question was successfully created.' }
         format.json { render :show, status: :created, location: @test_paper_question }
       else
         format.html { render :new }
@@ -65,10 +66,31 @@ class TestPaperQuestionsController < ApplicationController
     end
   end
 
+  def build_by_database
+    @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+  end
+
+  def search_test
+    @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+    @test_paper_questions = TestPaperQuestion.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_test
+    binding.pry
+    @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+    @test_paper_question = TestPaperQuestion.find(params[:test_paper_question_id]).dup
+    @test_paper_question.customized_concept_id = @customized_concept.id
+    binding.pry
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_test_paper_question
       @test_paper_question = TestPaperQuestion.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
