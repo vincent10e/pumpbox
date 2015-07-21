@@ -24,3 +24,62 @@
 <% end %>
 
 
+
+<script>
+    function add_fields(link, association, content) {  
+        var new_id = new Date().getTime();  
+        var regexp = new RegExp("new_" + association, "g");  
+        $(link).parent().before(content.replace(regexp, new_id));  
+    }
+    function remove_fields(link) {  
+        $(link).prev("input[type=hidden]").val("1");  
+        $(link).parent(".fields").slideUp();
+    } 
+
+    
+</script>
+
+
+<script type="text/javascript">  
+  $(function(){
+   var total_options = $(".options").size();
+   
+    $(".options").each(function( index ) {
+      $(this).empty().append("第" + (index+1) + "題答案:");
+      $(this).next().next().next(".form-group").children("input").val(index+1);
+      $(this).siblings("a").hide();
+      if (index+1 == total_options) {
+        $(this).siblings("a").show();
+      }
+    });
+    
+    
+    // when click add option
+    $(".add_new_option").click(function() {
+      total_options += 1;
+      $(".options:visible").each(function( index ) {
+        $(this).empty().append("第" + (index+1) + "題答案:");
+        $(this).next().next().next(".form-group").children("input").val(index+1);
+        $(".add_new_test").slideUp();
+        $(".add_paper_test").slideUp();
+        $(this).siblings("a").hide();
+        if ((index+1) == total_options){
+          $(this).siblings("a").show();
+        }
+      });
+      
+    });
+    // when click remove
+    $(".options").siblings("a").click(function() {
+      total_options -= 1;
+      $(".options").each(function( index ) {
+          $(this).empty().append("第" + (index+1) + "題答案:");
+          $(this).next().next().next(".form-group").children("input").val(index+1);
+          if ((index+1) == total_options){
+            $(this).siblings("a").show();
+          }
+      });
+    });
+  });
+</script>
+

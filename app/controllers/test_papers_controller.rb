@@ -108,10 +108,12 @@ class TestPapersController < ApplicationController
           error_test << number.to_i
           # record every select
           answer_records.each do |a|
-            for i in 1..5
-              if a[:"select_record_#{i}"].blank?
-                a[:"select_record_#{i}"] = number_to_letter(answer)
-                break
+            if a[:test] == number.to_i
+              for i in 1..5
+                if a[:"select_record_#{i}"].blank?
+                  a[:"select_record_#{i}"] = number_to_letter(answer)
+                  break
+                end
               end
             end
           end
