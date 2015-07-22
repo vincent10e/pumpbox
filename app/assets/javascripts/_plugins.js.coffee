@@ -16,4 +16,3 @@
 #= require ckeditor/init 
 #= require vendor/jquery.validate.min
 #= require taiwan_city/jquery.taiwan_city
-

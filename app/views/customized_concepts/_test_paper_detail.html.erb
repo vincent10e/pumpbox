@@ -1,11 +1,11 @@
-<div class="col-md-8">
-  <iframe src=<%= @concept.test_paper_questions.first.question.url %> width="900" height="780" style="border: none;"> </iframe>
+<div class="col-md-7">
+  <iframe src=<%= @concept.test_paper_questions.first.question.url %> width="800" height="780" style="border: none;"> </iframe>
 </div>
 
 <div class="col-md-4">
   <table class="table table-striped table-hover">
     <thead>
-      <h1> 觀念：<%= @concept.title%> </h1>
+      <h3> <%= @concept.title%> </h3>
       <p><i class="fa fa-calendar"></i> 測驗日期 : <%= @test_paper.created_at.strftime("%Y/%m/%d") %></p>
       <p><i class="fa fa-clock-o"></i> 測驗時間 : <%= Time.at(@test_paper.test_time_sec).utc.strftime("%H:%M:%S") if @test_paper.test_time_sec %></p>
       <tr>
@@ -24,7 +24,9 @@
         <td><%= record.error_times %></td>
         <td><%= record.is_skip %></td>
         <td><%= number_to_letter(@test_paper_options.find_by_question_number(record.test).answer) %></td>
-        <td><a tabindex="0" class="btn btn-default" role="button" data-html="true" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="記錄" data-content="<%= list_answer_record(record) %>"><i class="fa fa-info"></i></a></td>
+        
+
+        <td> <%= list_answer_record(record) %> </td>
       </tr>
       <% end %>
     </tbody>
@@ -32,9 +34,14 @@
 </div>
 
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script>
-$(function () {
-  $('[data-toggle="popover"]').popover();
-});
+  $(document).on('ready', function(event) {
+    $('[data-toggle="popover-record"]').popover()
+  });
+    // $('#report td:even').css({ backgroundColor: "#5cb85c", color: "white" });
 </script>
+
+
+

@@ -5,7 +5,7 @@
 #
 # *************************************
 #= require _plugins
-#= require _app-base 
+#= require _app-base
   
 pumpBox.coursesPathDescriptionOverlayWindowFunction = ()->
   showOverlayWindow = (node)->

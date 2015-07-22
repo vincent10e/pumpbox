@@ -1,9 +1,14 @@
+
 <div class="pb-index-wrapper pb-container">
   <div class="row">
     <% if @tests.count != 0 %>
       <%= render 'test_attemp_detail' %>
     <% else %>
+      <!-- TEST_PAPER_DETAIL START -->
       <%= render 'test_paper_detail' %>
+      <!-- TEST_PAPER_DETAIL END -->
     <% end %>
   </div>
 </div>
+
+
