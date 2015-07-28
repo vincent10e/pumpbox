@@ -72,7 +72,8 @@ class TestPaperQuestionsController < ApplicationController
 
   def search_test
     @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
-    @test_paper_questions = TestPaperQuestion.all
+    @test_paper_questions = TestPaperQuestion.tagged_with(params[:keyword])
+    @keyword = params[:keyword]
     respond_to do |format|
       format.js
     end

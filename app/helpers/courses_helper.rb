@@ -37,4 +37,27 @@ module CoursesHelper
       end
     end
   end
+
+  def test_total_count(concept)
+    if concept.test_paper_questions.first != nil
+      concept.test_paper_questions.first.test_paper_options.count
+    else
+      concept.tests.count
+    end
+  end
+
+  def build_test(concept, group)
+    if concept.test_paper_questions.first == nil
+      link_to '建立考題', new_customized_concept_test_paper_question_path(concept, group: group), class: "btn btn-default"
+    end
+  end
+
+  def build_test_from_database(concept)
+    if concept.test_paper_questions.first == nil
+      link_to '題庫出題', build_by_database_path(concept), class: "btn btn-default"
+    end
+  end
+
+
 end
+

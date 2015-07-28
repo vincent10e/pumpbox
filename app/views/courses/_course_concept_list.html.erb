@@ -1,4 +1,4 @@
-<%= link_to("新增觀念", new_course_customized_concept_path(@course), 'data-toggle' => "modal", 'data-target' => "#myModal", class: "btn btn-default", remote: true) %>
+<%= link_to("新增觀念", new_course_customized_concept_path(@course), 'data-toggle' => "modal", 'data-target' => "#myModal", class: "btn btn-primary", remote: true) %>
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -6,8 +6,9 @@
 			<th>觀念描述</th>
 			<th>講義 </th>
 			<th>考題數量 </th>
-			<th>點數</th>
-			<th colspan="3"></th>
+      <th colspan="2"> 出題方式</th>
+      <th>點數</th>
+      <th> 觀念編輯 </th>
 		</tr>
 	</thead>
 
@@ -17,18 +18,20 @@
 				<td><%= customized_concept.title %></td>
 				<td><%= customized_concept.description %></td>
 				<td><%= link_to("顯示講義", customized_concept.lecture.url) if customized_concept.lecture.url != nil%></td>
+				<td><%= test_total_count(customized_concept) %></td>
+        <td><%= build_test(customized_concept, @group) %></td>
+        <td><%= build_test_from_database(customized_concept) %> </td>
+        <td><%= customized_concept.point %></td>
+        <td>
+          <%= link_to edit_course_customized_concept_path(customized_concept.course_id, customized_concept), class: "btn btn-default" do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+        </td>
 				<td>
-					<% if customized_concept.test_paper_questions.first != nil %>
-						<%= customized_concept.test_paper_questions.first.test_paper_options.count %>
-					<% else %>
-						<%= customized_concept.tests.count %> 
-					<% end %>
-				</td>
-				<td><%= customized_concept.point %></td>
-				<td><%= link_to '建立考題', new_customized_concept_test_paper_question_path(customized_concept, group: @group), class: "btn btn-default" %></td>
-        <td><%= link_to '題庫出題', build_by_database_path(customized_concept) %> </td>
-				<td><%= link_to 'Edit', edit_course_customized_concept_path(customized_concept.course_id, customized_concept), class: "btn btn-default" %></td>
-				<td><%= link_to '刪除', course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          <%= link_to course_customized_concept_path(customized_concept.course_id, customized_concept), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+          <i class="fa fa-trash-o"></i>
+          <% end %>
+        </td>
 			</tr>
 		<% end %>
 	</tbody>
