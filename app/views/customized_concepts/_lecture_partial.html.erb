@@ -1,0 +1,12 @@
+
+<% if concept.video.blank? %>
+  <% if !concept.lecture.blank? %>
+    <div class="col-md-10">
+      <iframe src=<%= concept.lecture.url %> width="900" height="780" style="border: none;"> </iframe>
+    </div>
+  <% end %>
+<% else %>
+  <div class="button-wrapper">
+    <%= link_to("顯示講義", concept.lecture.url, class: "course-btn") if concept.lecture? %>
+  </div>
+<% end %>
