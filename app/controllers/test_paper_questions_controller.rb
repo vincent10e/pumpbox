@@ -79,11 +79,26 @@ class TestPaperQuestionsController < ApplicationController
   end
 
   def add_test
-    binding.pry
     @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
-    @test_paper_question = TestPaperQuestion.find(params[:test_paper_question_id]).dup
-    @test_paper_question.customized_concept_id = @customized_concept.id
-    binding.pry
+    @test_paper_question = TestPaperQuestion.find(params[:test_paper_question_id])
+    @new_question = @test_paper_question.dup
+
+    @new_question.customized_concept_id = @customized_concept.id
+
+    # FIXME : 
+    @new_question.question = File.open(@test_paper_question.question.path)
+    @new_question.save
+    copy_test_paper_option(@new_question, @test_paper_question)
+
+  end
+
+  def copy_test_paper_option(new_question, original_question)
+    original_question.test_paper_options.each do |option|
+      copy_option = new_question.test_paper_options.new
+      copy_option = option.dup
+      copy_option.test_paper_question_id = new_question.id
+      copy_option.save
+    end
   end
 
   private

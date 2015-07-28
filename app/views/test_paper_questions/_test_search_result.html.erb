@@ -3,7 +3,6 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>名稱</th>
       <th>考題</th>
       <th>考題數量 </th>
       <th> 關鍵字 </th>
@@ -15,9 +14,8 @@
   <tbody>
     <% @test_paper_questions.each do |test| %>
       <tr>
-        <td><%= test.id %></td>
         <td><%= test.question.url %></td>
-        <td> </td>
+        <td><%= test.test_paper_options.count %></td>
         <td><%= test.tag_list %></td>
         <td> <i class="fa fa-plus"></i><%= link_to("加入", add_test_path(@customized_concept, test.id) ) %></td>
       </tr>
