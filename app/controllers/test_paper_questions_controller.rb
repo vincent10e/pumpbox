@@ -108,11 +108,18 @@ class TestPaperQuestionsController < ApplicationController
     end
   end
 
+  def test_preview
+    @test = TestPaperQuestion.find(params[:test_paper_question_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_test_paper_question
-      @test_paper_question = TestPaperQuestion.find(params[:id])
+      @test_paper_question = TestPaperQuestion.first
 
     end
 

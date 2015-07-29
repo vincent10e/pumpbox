@@ -84,9 +84,14 @@ Rails.application.routes.draw do
     get 'paper_option', on: :collection
   end
 
+  resources :test_paper_questions do
+    get 'test_preview'
+  end
+
   get 'build_by_database/:customized_concept_id', to: 'test_paper_questions#build_by_database', as: 'build_by_database'
   get 'search_test', to: 'test_paper_questions#search_test', as: 'search_test'
   get 'add_test/:customized_concept_id/:test_paper_question_id', to: 'test_paper_questions#add_test', as: 'add_test'
+  
   resources :personal_profiles
 
   # FOR THE CITY SELECT FORM IN THE SINGUP PAGE 
