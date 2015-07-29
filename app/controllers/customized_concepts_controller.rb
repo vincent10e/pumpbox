@@ -34,7 +34,7 @@ class CustomizedConceptsController < ApplicationController
     @database_tests = TestPaperQuestion.all # TO-DO :  like @chapter.test
 
     @chapters = Subject.find(@course.subject_id).chapters 
-
+    @collect_videos = current_user.collect_videos
     respond_to do |format|
       format.js
     end

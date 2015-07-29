@@ -8,9 +8,15 @@
         <%= f.input :title, label: '觀念名稱' %> 
         </div>
         <%= f.input :description, label: '觀念描述' %>
-        <%= f.input :video, label: '觀念相關影片連結', placeholder: 'http://..' %>
+        <%= f.input :video, label: '觀念相關影片連結', placeholder: 'http://..' %><button type="button" class="btn btn-default" id="sellect-video-list">+</button>
       </div>
-
+      <div class="video-list"> 
+        <div class="list-group">
+          <% @collect_videos.each do |v| %>
+            <button type="button" class="list-group-item"><%= v.title %> <div class="video-url"> <%= v.url %><div></button>
+          <% end %>
+        </div>
+      </div>
       <% if !@customized_concept.lecture.blank? %>
         <%= f.input :lecture, as: :file, label: "已上傳講義 : #{@customized_concept.lecture_identifier}", wrapper_html: {class: "carrier-wave-field"}%>
       <% else %>
@@ -36,9 +42,7 @@
     function remove_fields(link) {  
         $(link).prev("input[type=hidden]").val("1");  
         $(link).parent(".fields").slideUp();
-    } 
-
-    
+    }
 </script>
 
 
@@ -51,5 +55,21 @@
      $("input[type=file]").change(function(){
       $(this).parent().removeClass("arrier-wave-field").addClass("carrier-wave-field-uploaded");
      });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+     $(".video-list").hide();
+     $(".video-url").hide();
+
+    $("#sellect-video-list").click(function(){
+      $(".video-list").slideDown();
+    });
+
+    $(".list-group-item").click(function(){
+      $("input[name*='customized_concept[video]'").val($(this).children('.video-url').text());
+      $(".video-list").hide();
+    });
   });
 </script>
