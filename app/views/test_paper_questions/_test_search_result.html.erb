@@ -13,8 +13,8 @@
   <tbody>
     <% @test_paper_questions.each do |test| %>
       <tr>
-        <td colspan="1"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">預覽考卷</button></td>
-        <td><%= test.test_paper_options.count %></td>
+        <td colspan="1"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".test_<%=test.id%>">預覽考卷</button></td>
+        <td><%= test.total_test %></td>
         <td><%= test.tag_list %></td>
         <td>
           <%= link_to add_test_path(@customized_concept, test.id),  data: { confirm: '確定加入此試題？' } do %>
