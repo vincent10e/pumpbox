@@ -23,6 +23,8 @@ class CustomizedConceptsController < ApplicationController
     @prev_concept = @customized_concept.previous(@course.id)
 
     @group = Group.find(params[:group_id]) if params[:group_id]
+
+    @collect_video = current_user.collect_videos.build
   end
 
   # GET /customized_concepts/new

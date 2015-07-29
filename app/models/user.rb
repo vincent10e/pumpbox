@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
 
   has_one :student, :dependent => :destroy
   has_one :teacher, :dependent => :destroy
+
+  has_many :collect_videos, :dependent => :destroy
 end

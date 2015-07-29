@@ -1,0 +1,2 @@
+module CollectVideosHelper
+end

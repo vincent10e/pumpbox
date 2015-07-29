@@ -13,7 +13,7 @@
   <tbody>
     <% @test_paper_questions.each do |test| %>
       <tr>
-        <td> <%= link_to("預覽考卷", test_paper_question_test_preview_path(test), remote: true, "data-toggle" => "modal", "data-target" => ".bs-example-modal-lg") %> </td>
+        <td> <%= link_to("預覽考卷", test_paper_question_test_preview_path(test), remote: true, "data-toggle" => "modal", "data-target" => ".bs-example-modal-lg", class: "btn btn-primary") %> </td>
         <td><%= test.total_test %></td>
         <td><%= test.tag_list %></td>
         <td>

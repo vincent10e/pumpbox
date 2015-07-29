@@ -94,6 +94,7 @@ Rails.application.routes.draw do
   
   resources :personal_profiles
 
+  resources :collect_videos
   # FOR THE CITY SELECT FORM IN THE SINGUP PAGE 
   mount TaiwanCity::Engine => '/taiwan_city'
 end
