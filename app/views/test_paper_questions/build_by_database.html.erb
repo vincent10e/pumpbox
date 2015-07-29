@@ -3,7 +3,7 @@
     <%= form_tag('/search_test', method: :get, remote: true) do %>
     <div class="col-xs-6 col-md-4">
         <%= hidden_field_tag(:customized_concept_id, @customized_concept.id, as: :hidden)  %>
-        <%= text_field_tag(:keyword, nil, class: "form-control")%>
+        <%= text_field_tag(:keyword, nil, class: "form-control", placeholder: '請輸入關鍵字 ex: 數學.. 國中..')%>
     </div>
     <div class="col-xs-6 col-md-4"><%= submit_tag 'Search', class: "btn btn-default"  %></div>
     <% end %>
@@ -12,9 +12,6 @@
   </div>
 
 </div>
-
-
-
 
           
 

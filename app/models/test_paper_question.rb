@@ -7,4 +7,19 @@ class TestPaperQuestion < ActiveRecord::Base
 
   # For gem 'acts-as-taggable-on'
   acts_as_taggable
+
+  after_create :add_tag
+
+
+
+  def add_tag
+    self.tag_list.add(self.customized_concept.title, 
+                     self.customized_concept.course.title, 
+                     Volume.find(self.customized_concept.course.volume_id).title
+                     )
+  end
+
+  def total_test
+    test_paper_options.count
+  end
 end

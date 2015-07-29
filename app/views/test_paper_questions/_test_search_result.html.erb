@@ -16,7 +16,11 @@
         <td colspan="1"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">預覽考卷</button></td>
         <td><%= test.test_paper_options.count %></td>
         <td><%= test.tag_list %></td>
-        <td> <i class="fa fa-plus"></i><%= link_to("加入", add_test_path(@customized_concept, test.id) ) %></td>
+        <td>
+          <%= link_to add_test_path(@customized_concept, test.id),  data: { confirm: '確定加入此試題？' } do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
+        </td>
         <td> <%= render partial: "test_preview", locals: {test: test}%></td>
       </tr>
     <% end %>

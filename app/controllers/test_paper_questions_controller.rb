@@ -74,6 +74,7 @@ class TestPaperQuestionsController < ApplicationController
     @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
     @test_paper_questions = TestPaperQuestion.tagged_with(params[:keyword])
     @keyword = params[:keyword]
+    
     respond_to do |format|
       format.js
     end
@@ -81,6 +82,8 @@ class TestPaperQuestionsController < ApplicationController
 
   def add_test
     @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+    @course = @customized_concept.course
+    @group = @course.group
     @test_paper_question = TestPaperQuestion.find(params[:test_paper_question_id])
     @new_question = @test_paper_question.dup
 
@@ -91,6 +94,9 @@ class TestPaperQuestionsController < ApplicationController
     @new_question.save
     copy_test_paper_option(@new_question, @test_paper_question)
 
+    respond_to do |format|
+      format.html { redirect_to group_course_path(@group, @course) }
+    end
   end
 
   def copy_test_paper_option(new_question, original_question)
@@ -101,6 +107,7 @@ class TestPaperQuestionsController < ApplicationController
       copy_option.save
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

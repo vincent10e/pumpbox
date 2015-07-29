@@ -22,7 +22,7 @@ class TestPapersController < ApplicationController
     @question = @concept.test_paper_questions.first
     @options = @question.test_paper_options
 
-    @options.count.times do |i| 
+    @options.count.times do |i|
       @test_paper.paper_answer_records.build(test: i+1)
     end
   end
