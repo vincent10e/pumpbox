@@ -59,9 +59,12 @@ class TestPaperQuestionsController < ApplicationController
   # DELETE /test_paper_questions/1
   # DELETE /test_paper_questions/1.json
   def destroy
+    @test_paper_question = TestPaperQuestion.find(params[:id])
+    @customized_concept = CustomizedConcept.find(params[:customized_concept_id])
+    @course = @customized_concept.course
     @test_paper_question.destroy
     respond_to do |format|
-      format.html { redirect_to test_paper_questions_url, notice: 'Test paper question was successfully destroyed.' }
+      format.html { redirect_to group_course_path(@course.group, @course), notice: 'Test paper question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

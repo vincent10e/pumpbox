@@ -44,9 +44,11 @@ class CustomizedConceptsController < ApplicationController
   def edit
     @course = Course.find(params[:course_id])
     @customized_concept = @course.customized_concepts.find(params[:id])
-    @tests = @customized_concept.tests
-    @test_paper_questions = @customized_concept.test_paper_questions
+    @collect_videos = current_user.collect_videos
 
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /customized_concepts

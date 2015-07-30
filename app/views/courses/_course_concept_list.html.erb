@@ -19,11 +19,11 @@
 				<td><%= customized_concept.description %></td>
 				<td><%= link_to("顯示講義", customized_concept.lecture.url) if customized_concept.lecture.url != nil%></td>
 				<td><%= test_total_count(customized_concept) %></td>
-        <td><%= build_test(customized_concept, @group) %></td>
+        <td><%= build_test(customized_concept, @group, customized_concept.test_paper_questions) %></td>
         <td><%= build_test_from_database(customized_concept) %> </td>
         <td><%= customized_concept.point %></td>
         <td>
-          <%= link_to edit_course_customized_concept_path(customized_concept.course_id, customized_concept), class: "btn btn-default" do %>
+          <%= link_to edit_course_customized_concept_path(customized_concept.course_id, customized_concept), 'data-toggle' => "modal", 'data-target' => "#myModal", class: "btn btn-default", remote: true do %>
             <i class="fa fa-pencil"></i>
           <% end %>
         </td>

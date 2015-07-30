@@ -46,9 +46,11 @@ module CoursesHelper
     end
   end
 
-  def build_test(concept, group)
+  def build_test(concept, group, tests)
     if concept.test_paper_questions.first == nil
       link_to '建立考題', new_customized_concept_test_paper_question_path(concept, group: group), class: "btn btn-default"
+    else
+      link_to('移除考題', customized_concept_test_paper_question_path(concept, tests.last.id), method: :delete ,class: "btn btn-danger")
     end
   end
 
