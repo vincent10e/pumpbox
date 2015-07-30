@@ -29,12 +29,13 @@
       </div>
     </div>
     <div class="col-md-9">
-      
+      <div class="course-info-display">
         <% if @group%>
           <%= render_course_right_info(@course, @customized_concepts, @group) %>
         <% else %>
           <%= render_course_right_info(@course, @customized_concepts, @group) %>
         <% end %>
+      </div>
     </div>
 
     
