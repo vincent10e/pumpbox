@@ -28,7 +28,7 @@ module CoursesHelper
     if current_user.has_role? :student
       render  partial: "courses/list_customized_concept", locals: {customized_concepts: customized_concepts, group: group}
     else
-      if current_user.teacher == course.teacher_id
+      if current_user.teacher.id == course.teacher_id
         # TEACHER CAN EDIT, DELETE
         render  partial: "courses/course_concept_list", locals: {customized_concepts: customized_concepts, group: group}
       else

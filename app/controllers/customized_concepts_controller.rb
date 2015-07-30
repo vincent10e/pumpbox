@@ -91,7 +91,7 @@ class CustomizedConceptsController < ApplicationController
     @course = Course.find(params[:course_id])
     @customized_concept.destroy
     respond_to do |format|
-      format.html { redirect_to course_customized_concepts_path(@course), notice: 'Customized concept was successfully destroyed.' }
+      format.html { redirect_to group_course_path(@course.group, @course), notice: 'Customized concept was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
