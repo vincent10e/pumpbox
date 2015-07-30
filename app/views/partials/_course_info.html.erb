@@ -25,9 +25,9 @@
                 <p> </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+                    <!-- <a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>  -->
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-10">
                     <% if user_signed_in? %>
                       <% if current_user.has_role? :teacher  %>
                         <%= link_to join_list_collect_courses_path(course), remote: true, class: "btn btn-success btn-product" do %>

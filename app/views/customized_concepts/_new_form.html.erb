@@ -7,8 +7,11 @@
         <div class="form-group">
         <%= f.input :title, label: '觀念名稱' %> 
         </div>
-        <%= f.input :description, label: '觀念描述' %>
-        <%= f.input :video, label: '觀念相關影片連結', placeholder: 'http://..' %><button type="button" class="btn btn-default" id="sellect-video-list">+</button>
+        <%= f.input :description, label: '觀念描述' %>  
+          
+        <button type="button" class="btn btn-default" id="sellect-video-list"><i class="fa fa-youtube"></i></button>
+        <%= f.input :video, label: '觀念相關影片連結', placeholder: 'http://..' %>
+
       </div>
       <div class="video-list"> 
         <div class="list-group">
